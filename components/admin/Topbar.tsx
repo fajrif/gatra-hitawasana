@@ -84,6 +84,11 @@ export default function Topbar() {
                 open={changePasswordOpen}
                 onOpenChange={setChangePasswordOpen}
                 userId={session?.user?.id || ''}
+                userData={{
+                    email: session?.user?.email || '',
+                    full_name: session?.user?.name || '',
+                    phone: (session?.user as any)?.phone || '',
+                }}
             />
         </>
     )

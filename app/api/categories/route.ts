@@ -62,6 +62,23 @@ export async function POST(request: Request) {
         const body = await request.json()
         const validatedData = categorySchema.parse(body)
 
+        // Check if category name already exists (case-insensitive)
+        const existing = await prisma.category.findFirst({
+            where: {
+                name: {
+                    equals: validatedData.name,
+                    mode: 'insensitive'
+                }
+            }
+        })
+
+        if (existing) {
+            return NextResponse.json(
+                { error: 'Category name already exists' },
+                { status: 400 }
+            )
+        }
+
         const category = await prisma.category.create({
             data: validatedData,
         })

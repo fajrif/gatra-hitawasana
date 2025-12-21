@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -44,12 +44,18 @@ interface ChangePasswordDialogProps {
     open: boolean
     onOpenChange: (open: boolean) => void
     userId: string
+    userData?: {
+        email: string
+        full_name: string
+        phone?: string | null
+    }
 }
 
 export function ChangePasswordDialog({
     open,
     onOpenChange,
     userId,
+    userData,
 }: ChangePasswordDialogProps) {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
@@ -62,6 +68,19 @@ export function ChangePasswordDialog({
     } = useForm<ChangePasswordForm>({
         resolver: zodResolver(changePasswordSchema),
     })
+
+    // Pre-fill form fields when dialog opens
+    useEffect(() => {
+        if (open && userData) {
+            reset({
+                email: userData.email || '',
+                full_name: userData.full_name || '',
+                phone: userData.phone || '',
+                password: '',
+                confirmPassword: '',
+            })
+        }
+    }, [open, userData, reset])
 
     const onSubmit = async (data: ChangePasswordForm) => {
         setIsLoading(true)

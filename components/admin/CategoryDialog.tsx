@@ -50,6 +50,15 @@ export function CategoryDialog({
         }
     }, [category, reset])
 
+    // Reset form and state when dialog closes
+    useEffect(() => {
+        if (!open) {
+            reset({ name: '' })
+            setIsSubmitting(false)
+            setError('')
+        }
+    }, [open, reset])
+
     const onSubmit = async (data: CategoryFormData) => {
         setIsSubmitting(true)
         setError('')

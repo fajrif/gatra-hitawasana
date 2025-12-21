@@ -64,13 +64,10 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
                             </p>
                         )}
 
-                        <div className="prose max-w-none">
-                            {article.content?.split('\n').map((paragraph: string, index: number) => (
-                                <p key={index} className="mb-4 text-gray-700">
-                                    {paragraph}
-                                </p>
-                            ))}
-                        </div>
+                        <div
+                            className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-primary prose-strong:text-gray-900"
+                            dangerouslySetInnerHTML={{ __html: article.content || '' }}
+                        />
                     </div>
                 </div>
             </div>

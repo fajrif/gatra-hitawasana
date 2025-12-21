@@ -47,6 +47,24 @@ export async function PUT(
         const body = await request.json()
         const validatedData = categorySchema.parse(body)
 
+        // Check if category name already exists (excluding current category)
+        const existing = await prisma.category.findFirst({
+            where: {
+                name: {
+                    equals: validatedData.name,
+                    mode: 'insensitive'
+                },
+                NOT: { id: params.id }
+            }
+        })
+
+        if (existing) {
+            return NextResponse.json(
+                { error: 'Category name already exists' },
+                { status: 400 }
+            )
+        }
+
         const category = await prisma.category.update({
             where: { id: params.id },
             data: validatedData,
