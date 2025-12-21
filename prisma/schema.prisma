@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Admin {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  full_name     String
+  phone         String?
+  password_hash String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  articles  Article[]
+
+  @@map("categories")
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Article {
+  id                String        @id @default(uuid())
+  title             String        @unique
+  slug              String        @unique
+  short_description String?
+  content           String?       @db.Text
+  image             String?
+  category_id       String
+  published_date    DateTime?
+  status            ArticleStatus @default(DRAFT)
+  meta_title        String?
+  meta_description  String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  category Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@index([slug])
+  @@map("articles")
+}

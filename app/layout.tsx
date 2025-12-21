@@ -2,8 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { JetBrains_Mono, DM_Sans, Host_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { Navigation } from "@/components/Navigation"
-import { Footer } from "@/components/Footer"
+import { LayoutWrapper } from "./LayoutWrapper"
 import "@/styles/globals.css"
 
 const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: '--font-jetbrains-mono' })
@@ -41,9 +40,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${_dmSans.className} ${_hostGrotesk.variable} ${_jetbrainsMono.variable} antialiased`}>
-        <Navigation />
-        {children}
-        <Footer />
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
         <Analytics />
       </body>
     </html>
