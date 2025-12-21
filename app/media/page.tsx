@@ -30,7 +30,7 @@ export default async function MediaPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article: typeof articles[0]) => (
-              <Link key={article.id} href={`/blog/${article.slug}`}>
+              <Link key={article.id} href={`/media/${article.slug}`}>
                 <Card className="p-6 h-full hover:shadow-xl transition-all hover:scale-[1.02] cursor-pointer group">
                   <div className="space-y-3">
                     <div className="text-xs font-medium text-primary">{article.category.name}</div>
