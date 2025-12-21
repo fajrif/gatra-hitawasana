@@ -4,14 +4,44 @@ import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { categorySchema } from '@/lib/validations/category'
 
-// GET /api/categories - List all categories
-export async function GET() {
+// GET /api/categories - List all categories with search and pagination
+export async function GET(request: Request) {
     try {
+        const { searchParams } = new URL(request.url)
+        const search = searchParams.get('search') || ''
+        const page = Number.parseInt(searchParams.get('page') || '1')
+        const limit = Number.parseInt(searchParams.get('limit') || '10')
+
+        // Build where clause
+        const where: any = {}
+
+        if (search) {
+            where.name = {
+                contains: search,
+                mode: 'insensitive',
+            }
+        }
+
+        // Get total count for pagination
+        const total = await prisma.category.count({ where })
+
+        // Get paginated categories
         const categories = await prisma.category.findMany({
+            where,
             orderBy: { name: 'asc' },
+            skip: (page - 1) * limit,
+            take: limit,
         })
 
-        return NextResponse.json(categories)
+        return NextResponse.json({
+            categories,
+            pagination: {
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit),
+            },
+        })
     } catch (error) {
         console.error('Error fetching categories:', error)
         return NextResponse.json(

@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from 'sonner'
 import {
     Select,
     SelectContent,
@@ -79,10 +80,15 @@ export function ArticleForm({ initialData, categories }: ArticleFormProps) {
                 throw new Error(error.error || 'Failed to save article')
             }
 
+            // Show success toast
+            toast.success(isEdit ? 'Article updated successfully' : 'Article created successfully')
+
             router.push('/admin/articles')
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Something went wrong')
+            const errorMessage = err instanceof Error ? err.message : 'Something went wrong'
+            setError(errorMessage)
+            toast.error(errorMessage)
             setIsSubmitting(false)
         }
     }

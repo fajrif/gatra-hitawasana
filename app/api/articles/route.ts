@@ -10,13 +10,29 @@ import { generateSlug } from '@/lib/slug'
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url)
+        const search = searchParams.get('search') || ''
+        const page = Number.parseInt(searchParams.get('page') || '1')
+        const limit = Number.parseInt(searchParams.get('limit') || '10')
         const status = searchParams.get('status')
 
+        // Build where clause
         const where: any = {}
+
         if (status) {
             where.status = status
         }
 
+        if (search) {
+            where.OR = [
+                { title: { contains: search, mode: 'insensitive' } },
+                { short_description: { contains: search, mode: 'insensitive' } },
+            ]
+        }
+
+        // Get total count for pagination
+        const total = await prisma.article.count({ where })
+
+        // Get paginated articles
         const articles = await prisma.article.findMany({
             where,
             include: {
@@ -28,9 +44,19 @@ export async function GET(request: Request) {
                 },
             },
             orderBy: { createdAt: 'desc' },
+            skip: (page - 1) * limit,
+            take: limit,
         })
 
-        return NextResponse.json(articles)
+        return NextResponse.json({
+            articles,
+            pagination: {
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit),
+            },
+        })
     } catch (error) {
         console.error('Error fetching articles:', error)
         return NextResponse.json(

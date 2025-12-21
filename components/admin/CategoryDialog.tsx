@@ -14,6 +14,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { toast } from 'sonner'
 
 interface CategoryDialogProps {
     open: boolean
@@ -68,11 +69,16 @@ export function CategoryDialog({
                 throw new Error(errorData.error || 'Failed to save category')
             }
 
+            // Show success toast
+            toast.success(isEdit ? 'Category updated successfully' : 'Category created successfully')
+
             reset()
             onSuccess()
             onOpenChange(false)
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Something went wrong')
+            const errorMessage = err instanceof Error ? err.message : 'Something went wrong'
+            setError(errorMessage)
+            toast.error(errorMessage)
             setIsSubmitting(false)
         }
     }
