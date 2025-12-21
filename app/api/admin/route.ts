@@ -1,31 +1,68 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { adminSchema } from '@/lib/validations/admin'
 import bcrypt from 'bcryptjs'
 
-// GET /api/admin - List all admins
-export async function GET() {
+// GET /api/admin - List admins with search and pagination
+export async function GET(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions)
         if (!session) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const admins = await prisma.admin.findMany({
-            select: {
-                id: true,
-                email: true,
-                full_name: true,
-                phone: true,
-                createdAt: true,
-                updatedAt: true,
-            },
-            orderBy: { createdAt: 'desc' },
-        })
+        // Get query parameters
+        const searchParams = request.nextUrl.searchParams
+        const search = searchParams.get('search') || ''
+        const page = parseInt(searchParams.get('page') || '1')
+        const limit = parseInt(searchParams.get('limit') || '10')
 
-        return NextResponse.json(admins)
+        // Calculate skip for pagination
+        const skip = (page - 1) * limit
+
+        // Build where clause for search
+        const where = search
+            ? {
+                OR: [
+                    { full_name: { contains: search, mode: 'insensitive' as const } },
+                    { email: { contains: search, mode: 'insensitive' as const } },
+                ],
+            }
+            : {}
+
+        // Fetch admins with pagination
+        const [admins, total] = await Promise.all([
+            prisma.admin.findMany({
+                where,
+                select: {
+                    id: true,
+                    email: true,
+                    full_name: true,
+                    phone: true,
+                    createdAt: true,
+                    updatedAt: true,
+                },
+                orderBy: { createdAt: 'desc' },
+                skip,
+                take: limit,
+            }),
+            prisma.admin.count({ where }),
+        ])
+
+        // Calculate total pages
+        const totalPages = Math.ceil(total / limit)
+
+        return NextResponse.json({
+            admins,
+            pagination: {
+                total,
+                page,
+                limit,
+                totalPages,
+            },
+        })
     } catch (error) {
         console.error('Error fetching admins:', error)
         return NextResponse.json(

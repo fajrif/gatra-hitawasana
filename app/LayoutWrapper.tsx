@@ -8,8 +8,8 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
     const isAdminRoute = pathname?.startsWith('/admin')
 
+    // Admin routes don't get public navigation/footer
     if (isAdminRoute) {
-        // Admin routes don't get public navigation/footer
         return <>{children}</>
     }
 

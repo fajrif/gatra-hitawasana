@@ -1,18 +1,17 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { JetBrains_Mono, DM_Sans, Host_Grotesk } from "next/font/google"
+import { Geist, Geist_Mono, Host_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LayoutWrapper } from "./LayoutWrapper"
 import "@/styles/globals.css"
 
-const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: '--font-jetbrains-mono' })
+const _geist = Geist({ subsets: ["latin"], variable: '--font-geist-sans' })
+const _geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-geist-mono' })
 const _hostGrotesk = Host_Grotesk({ subsets: ["latin"], variable: '--font-host-grotesk' })
-const _dmSans = DM_Sans({ subsets: ["latin"], variable: '--font-dm-sans' })
 
 export const metadata: Metadata = {
   title: "PT Gatra Hita Wasana - IT Konsultan & Inovasi Digital",
-  description:
-    "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
+  description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
   icons: {
     icon: [
       {
@@ -39,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${_dmSans.className} ${_hostGrotesk.variable} ${_jetbrainsMono.variable} antialiased`}>
+      <body className={`${_geist.className} ${_geistMono.variable} ${_hostGrotesk.variable} antialiased`}>
         <LayoutWrapper>
           {children}
         </LayoutWrapper>

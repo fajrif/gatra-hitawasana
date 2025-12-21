@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Trash2, MoreHorizontal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
     Table,
     TableBody,
@@ -13,6 +13,14 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table'
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import {
     AlertDialog,
     AlertDialogAction,
@@ -37,9 +45,11 @@ interface Admin {
 interface AdminTableProps {
     admins: Admin[]
     currentUserId: string
+    isLoading: boolean
+    onDelete: (id: string) => Promise<void>
 }
 
-export function AdminTable({ admins, currentUserId }: AdminTableProps) {
+export function AdminTable({ admins, currentUserId, isLoading, onDelete }: AdminTableProps) {
     const router = useRouter()
     const [deleteId, setDeleteId] = useState<string | null>(null)
     const [isDeleting, setIsDeleting] = useState(false)
@@ -49,70 +59,99 @@ export function AdminTable({ admins, currentUserId }: AdminTableProps) {
 
         setIsDeleting(true)
         try {
-            const response = await fetch(`/api/admin/${deleteId}`, {
-                method: 'DELETE',
-            })
-
-            if (!response.ok) {
-                throw new Error('Failed to delete admin')
-            }
-
+            await onDelete(deleteId)
             setDeleteId(null)
-            router.refresh()
         } catch (error) {
             console.error('Error deleting admin:', error)
             alert('Failed to delete admin')
+        } finally {
             setIsDeleting(false)
         }
     }
 
+    const handleEdit = (adminId: string) => {
+        router.push(`/admin/admins/${adminId}/edit`)
+    }
+
     return (
         <>
-            <div className="bg-white shadow rounded-lg overflow-hidden">
+            <div className="rounded-md border">
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Email</TableHead>
+                            <TableHead>User</TableHead>
                             <TableHead>Phone</TableHead>
                             <TableHead>Created</TableHead>
                             <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {admins.length === 0 ? (
+                        {isLoading ? (
                             <TableRow>
-                                <TableCell colSpan={5} className="text-center text-gray-500">
+                                <TableCell colSpan={4} className="text-center text-gray-500 py-8">
+                                    Loading...
+                                </TableCell>
+                            </TableRow>
+                        ) : admins.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={4} className="text-center text-gray-500 py-8">
                                     No admins found
                                 </TableCell>
                             </TableRow>
                         ) : (
                             admins.map((admin) => (
                                 <TableRow key={admin.id}>
-                                    <TableCell className="font-medium">
-                                        {admin.full_name}
-                                    </TableCell>
-                                    <TableCell>{admin.email}</TableCell>
-                                    <TableCell>{admin.phone || '-'}</TableCell>
                                     <TableCell>
+                                        <div className="flex items-center space-x-3">
+                                            <Avatar className="h-8 w-8">
+                                                <AvatarImage src="/placeholder.svg" alt={admin.full_name} />
+                                                <AvatarFallback>
+                                                    {admin.full_name
+                                                        .split(' ')
+                                                        .map((n) => n[0])
+                                                        .join('')
+                                                        .toUpperCase()}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <div className="font-medium text-gray-900">{admin.full_name}</div>
+                                                <div className="text-sm text-gray-500">{admin.email}</div>
+                                            </div>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-sm text-gray-500">
+                                        {admin.phone || '-'}
+                                    </TableCell>
+                                    <TableCell className="text-sm text-gray-500">
                                         {format(new Date(admin.createdAt), 'MMM dd, yyyy')}
                                     </TableCell>
                                     <TableCell className="text-right">
-                                        <div className="flex items-center justify-end gap-2">
-                                            <Link href={`/admin/admins/${admin.id}/edit`}>
-                                                <Button variant="outline" size="sm">
-                                                    <Pencil className="h-4 w-4" />
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                                    <span className="sr-only">Open menu</span>
+                                                    <MoreHorizontal className="h-4 w-4" />
                                                 </Button>
-                                            </Link>
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={() => setDeleteId(admin.id)}
-                                                disabled={admin.id === currentUserId}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </div>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                                <DropdownMenuItem
+                                                    onClick={() => handleEdit(admin.id)}
+                                                >
+                                                    <Pencil className="mr-2 h-4 w-4" />
+                                                    Edit Admin
+                                                </DropdownMenuItem>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem
+                                                    className="text-red-600"
+                                                    onClick={() => setDeleteId(admin.id)}
+                                                    disabled={admin.id === currentUserId}
+                                                >
+                                                    <Trash2 className="mr-2 h-4 w-4" />
+                                                    Delete Admin
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
                             ))

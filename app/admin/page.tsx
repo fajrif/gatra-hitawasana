@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { Users, FileText } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default async function AdminDashboard() {
     const session = await getServerSession(authOptions)
@@ -17,55 +18,45 @@ export default async function AdminDashboard() {
         prisma.article.count(),
     ])
 
+    const dashboardStat = [
+        {
+            key: 1,
+            title: "Total Users",
+            value: adminCount,
+            icon: Users,
+            color: "text-blue-600",
+        },
+        {
+            key: 2,
+            title: "Total Articles",
+            value: articleCount,
+            icon: FileText,
+            color: "text-green-600",
+        },
+    ]
+
     return (
-        <div className="space-y-6">
+        <div className="p-6 space-y-6">
+            {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-                <p className="mt-2 text-gray-600">
-                    Welcome back, {session.user.name}!
-                </p>
+                <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
+                <p className="text-gray-600">Welcome back, {session.user.name}! Here's what's happening on your site today.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white overflow-hidden shadow rounded-lg">
-                    <div className="p-6">
-                        <div className="flex items-center">
-                            <div className="flex-shrink-0 bg-primary rounded-md p-3">
-                                <Users className="h-6 w-6 text-primary-foreground" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {dashboardStat.map((stat) => (
+                    <Card key={stat.key}>
+                        <CardContent className="py-3 px-6">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                                </div>
+                                <stat.icon className={`h-8 w-8 ${stat.color}`} />
                             </div>
-                            <div className="ml-5 w-0 flex-1">
-                                <dl>
-                                    <dt className="text-sm font-medium text-gray-500 truncate">
-                                        Total Admins
-                                    </dt>
-                                    <dd className="text-3xl font-semibold text-gray-900">
-                                        {adminCount}
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white overflow-hidden shadow rounded-lg">
-                    <div className="p-6">
-                        <div className="flex items-center">
-                            <div className="flex-shrink-0 bg-primary rounded-md p-3">
-                                <FileText className="h-6 w-6 text-primary-foreground" />
-                            </div>
-                            <div className="ml-5 w-0 flex-1">
-                                <dl>
-                                    <dt className="text-sm font-medium text-gray-500 truncate">
-                                        Total Articles
-                                    </dt>
-                                    <dd className="text-3xl font-semibold text-gray-900">
-                                        {articleCount}
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
 
             <div className="bg-white shadow rounded-lg p-6">

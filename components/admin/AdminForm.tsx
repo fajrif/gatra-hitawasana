@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export function AdminForm({ initialData }: { initialData?: any }) {
     const router = useRouter()
@@ -44,10 +45,15 @@ export function AdminForm({ initialData }: { initialData?: any }) {
                 throw new Error(errorData.error || 'Failed to save admin')
             }
 
+            // Show success toast
+            toast.success(isEdit ? 'Admin updated successfully' : 'Admin created successfully')
+
             router.push('/admin/admins')
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Something went wrong')
+            const errorMessage = err instanceof Error ? err.message : 'Something went wrong'
+            setError(errorMessage)
+            toast.error(errorMessage)
             setIsSubmitting(false)
         }
     }

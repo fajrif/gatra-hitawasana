@@ -1,0 +1,61 @@
+/* Admin Panel Specific Styles */
+
+/* Apply admin colors to body when admin-layout is present */
+/* This ensures portaled components (Radix UI dropdowns, etc.) get the right colors */
+body:has(.admin-layout) {
+    --accent: oklch(0.948 0.001 264.53);
+    /* slate-100 equivalent - light gray background for hover/focus */
+    --accent-foreground: oklch(0.15 0.01 264);
+    /* slate-900 equivalent */
+}
+
+/* Also apply to the admin-layout container itself */
+.admin-layout {
+    /* Override accent colors to slate */
+    --accent: oklch(0.948 0.001 264.53);
+    /* slate-100 equivalent - light gray background for hover/focus */
+    --accent-foreground: oklch(0.15 0.01 264);
+    /* slate-900 equivalent */
+
+    /* Additional admin-specific overrides for better consistency */
+    --muted: oklch(0.94 0.001 264);
+    /* slate-100 */
+    --muted-foreground: oklch(0.45 0.01 264);
+    /* slate-600 */
+}
+
+/* Dark mode admin overrides (if needed) */
+.admin-layout.dark,
+body:has(.admin-layout.dark) {
+    --accent: oklch(0.282 0.015 256.85);
+    /* slate-700 for dark mode */
+    --accent-foreground: oklch(0.95 0.01 264);
+}
+
+/* Toast notification colors for success and error */
+[data-sonner-toast][data-type="success"] {
+    background-color: hsl(142 71% 45%) !important;
+    /* green-600 */
+    border-color: hsl(142 71% 45%) !important;
+    color: white !important;
+}
+
+[data-sonner-toast][data-type="error"] {
+    background-color: hsl(0 84% 60%) !important;
+    /* red-600 */
+    border-color: hsl(0 84% 60%) !important;
+    color: white !important;
+}
+
+/* Override text color for toast content */
+[data-sonner-toast][data-type="success"] [data-content],
+[data-sonner-toast][data-type="success"] [data-title],
+[data-sonner-toast][data-type="success"] [data-description] {
+    color: white !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-content],
+[data-sonner-toast][data-type="error"] [data-title],
+[data-sonner-toast][data-type="error"] [data-description] {
+    color: white !important;
+}
