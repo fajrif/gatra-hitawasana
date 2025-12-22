@@ -6,6 +6,7 @@ import { NeuralNetworkBackground } from "@/components/ui/neural-network-backgrou
 import { AnimatedHeroContent } from "@/components/ui/animated-hero-content"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { BackedByICONPlus } from '@/components/ui/backed-by-icon-plus'
+import { ShinyButton } from '@/components/ui/shiny-button'
 
 const clientLogos = [
   { src: "/images/clients/icon-green-logo.png", alt: "Our Clients" },
@@ -33,7 +34,7 @@ export default function Home() {
           <AnimatedHeroContent
             title="Mitra Terpercaya dalam Solusi Digital dan Inovasi"
             description="PT Gatra Hita Wasana menyediakan solusi teknologi informasi terkini untuk kebutuhan bisnis Anda. Dari infrastruktur IT hingga transformasi digital."
-            badgeText="Solar Cell"
+            badgeText="Solar Cell Energy"
             badgeLabel="Terbaru"
             ctaButtons={[
               { text: "Hubungi Kami", href: "/contact", primary: true },
@@ -53,9 +54,9 @@ export default function Home() {
       <section className="bg-black text-white py-10 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="mb-5 text-center font-medium text-xl tracking-tight md:text-2xl">
-            <span className="text-muted-foreground">Bermitra dengan beragam perusahaan.</span>
+            <span className="text-muted-foreground">Kami Bermitra Dengan Beragam Perusahaan.</span>
             <br />
-            <span className="font-semibold">Dipercaya oleh berbagai institusi.</span>
+            <span className="font-semibold">Dipercaya Oleh Berbagai Institusi di Tanah Air.</span>
           </h2>
           <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
 
@@ -74,17 +75,24 @@ export default function Home() {
             </div>
             <div className="flex gap-4 pl-0 lg:pl-20 flex-col flex-1">
               <div className="flex gap-2 flex-col">
-                {/* TODO: PLACE ICON PLUS BADGE IN HERE */}
                 <BackedByICONPlus />
                 <h2 className="text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left mb-3">
                   Mitra Utama Kami
                 </h2>
-                <p className="leading-relaxed tracking-tight text-left mb-2">
-                  Sejak mulai berdiri 2003 sebagai badan hukum. PT. Gatra Hita Wasana telah bermitra dan melakukan kerjasama dengan banyak mitra baik perusahaan swasta dan perusahaan dalam negri salah satu nya adalah PT. Indonesia Comnets Plus sebagai salah satu perusahaan pengembang teknologi informasi.
+                <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-2">
+                  Sejak mulai berdiri 2003 sebagai badan hukum. PT. Gatra Hita Wasana telah bermitra dan melakukan kerjasama dengan banyak mitra baik perusahaan swasta dan perusahaan dalam negri salah satu nya adalah PT. Indonesia Comnets Plus sebagai salah satu perusahaan pengembang teknologi informasi terkemuka di Indonesia.
                 </p>
-                <p className="leading-relaxed tracking-tight text-left">
-                  PLN Icon Plus merupakan Entitas Anak PT PLN (Persero) yang berfokus di bidang industri jaringan telekomunikasi serta penyedia Solusi Teknologi Informasi terkemuka di Indonesia.
+                <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-4">
+                  PLN Icon Plus merupakan Entitas Anak PT PLN (Persero) yang berfokus di bidang industri jaringan telekomunikasi serta penyedia Solusi Teknologi Informasi. Selama lebih dari dua dekade telah mengembangkan dan melayani berbagai macam kebutuhan serta pelayanan yang diberikan baik entitas induk perusahaan ( PT. PLN Persero ) dan dengan berbagai macam perusahaan lainnya.
                 </p>
+                <div>
+                  <ShinyButton
+                    href="/about"
+                    className="text-muted-foreground hover:text-white rounded-2xl text-sm py-3"
+                  >
+                    Pelajari Lebih Lanjut
+                  </ShinyButton>
+                </div>
               </div>
             </div>
           </div>

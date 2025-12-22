@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, FileText } from "lucide-react"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -42,47 +42,47 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 font-semibold">
             <Link
               href="/"
-              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
               Beranda
             </Link>
             <Link
               href="/about"
-              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
               Tentang Kami
             </Link>
             <Link
               href="/business"
-              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
               Layanan Bisnis
             </Link>
             <Link
               href="/media"
-              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
               Media
             </Link>
           </div>
           <div className="hidden md:block">
-            <Link href="/contact">
-              <Button
-                size="sm"
-                className={`rounded-full px-6 transition-all ${isScrolled
-                  ? "bg-primary text-white hover:bg-primary/90"
-                  : "bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm"
-                  }`}
-              >
-                Hubungi Kami
-              </Button>
+            <Link
+              href="/files/manual-book-aplikasi-cusol.pdf"
+              target="_blank"
+              className={`flex items-center gap-2 rounded-sm border border-white/10 px-5 py-3 text-sm font-light text-white tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 backdrop-blur-sm ${isScrolled
+                ? "bg-primary hover:bg-primary/90"
+                : "bg-white/10 hover:bg-white/20"
+                }`}
+            >
+              <FileText className="w-4 h-4" />
+              Download
             </Link>
           </div>
 
@@ -97,44 +97,48 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-4 bg-white shadow-lg rounded-b-lg p-4">
-            <Link
-              href="/"
-              className="block text-sm font-medium transition-colors text-black hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="block text-sm font-medium transition-colors text-black hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/business"
-              className="block text-sm font-medium transition-colors text-black hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
-              Business
-            </Link>
-            <Link
-              href="/media"
-              className="block text-sm font-medium transition-colors text-black hover:text-primary"
-              onClick={() => setIsOpen(false)}
-            >
-              Media
-            </Link>
-            <Link href="/contact" className="block" onClick={() => setIsOpen(false)}>
-              <Button
-                size="sm"
-                className="rounded-full w-full bg-primary text-white hover:bg-primary/90"
+          <>
+            <div className="md:hidden pb-4 space-y-4 bg-white shadow-lg rounded-b-lg p-4 mb-4">
+              <Link
+                href="/"
+                className="block uppercase font-mono transition-colors text-black hover:text-primary"
+                onClick={() => setIsOpen(false)}
               >
-                Contact Us
-              </Button>
-            </Link>
-          </div>
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="block uppercase font-mono transition-colors text-black hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                About Us
+              </Link>
+              <Link
+                href="/business"
+                className="block uppercase font-mono transition-colors text-black hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Business
+              </Link>
+              <Link
+                href="/media"
+                className="block uppercase font-mono transition-colors text-black hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Media
+              </Link>
+              <div className="block">
+                <Link
+                  href="/files/manual-book-aplikasi-cusol.pdf"
+                  target="_blank"
+                  className="flex items-center gap-2 uppercase font-mono transition-colors text-black hover:text-primary"
+                >
+                  <FileText className="w-4 h-4" />
+                  Download Profil Perusahaan
+                </Link>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </nav>

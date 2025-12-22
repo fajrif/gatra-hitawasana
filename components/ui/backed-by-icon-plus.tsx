@@ -68,13 +68,17 @@ export const BackedByICONPlus = () => {
                         >
                             <ICONPlusMonogram className="h-4 w-4 text-black" />
                         </span>
-                        <span className="text-sm md:text-base font-medium tracking-wide text-neutral dark:text-white">
-                            PLN ICON Plus
-                        </span>
+                        <a href="https://plniconplus.co.id/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm md:text-base font-medium tracking-wide hover:opacity-70 transition-opacity"
+                        >
+                            PLN Icon Plus
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
