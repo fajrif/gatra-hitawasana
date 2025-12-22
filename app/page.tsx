@@ -4,6 +4,18 @@ import { ArrowRight, Server, Code, Users, Settings } from "lucide-react"
 import Link from "next/link"
 import { NeuralNetworkBackground } from "@/components/ui/neural-network-background"
 import { AnimatedHeroContent } from "@/components/ui/animated-hero-content"
+import { LogoCloud } from "@/components/ui/logo-cloud"
+import { BackedByICONPlus } from '@/components/ui/backed-by-icon-plus'
+
+const clientLogos = [
+  { src: "/images/clients/icon-green-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/icon-plus-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/kai-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/kemensos-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/kominfo-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/pertamina-logo.png", alt: "Our Clients" },
+  { src: "/images/clients/poltekkes-logo.png", alt: "Our Clients" },
+]
 
 export default function Home() {
   return (
@@ -36,6 +48,48 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
       </NeuralNetworkBackground>
+
+      {/* Logo Cloud Section */}
+      <section className="bg-black text-white py-10 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="mb-5 text-center font-medium text-xl tracking-tight md:text-2xl">
+            <span className="text-muted-foreground">Bermitra dengan beragam perusahaan.</span>
+            <br />
+            <span className="font-semibold">Dipercaya oleh berbagai institusi.</span>
+          </h2>
+          <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+
+          <LogoCloud logos={clientLogos} />
+
+          <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+        </div>
+        <div className="container mx-auto py-15">
+          <div className="flex flex-col-reverse lg:flex-row gap-10 lg:items-center">
+            <div className="bg-muted rounded-md w-full h-full flex-1">
+              <img
+                src="/images/pln-icon-plus-building.png"
+                alt="PLN Icon Plus Head Office"
+                className="w-full h-full grayscale hover:grayscale-50 transition-all duration-300 cursor-pointer object-cover rounded-md"
+              />
+            </div>
+            <div className="flex gap-4 pl-0 lg:pl-20 flex-col flex-1">
+              <div className="flex gap-2 flex-col">
+                {/* TODO: PLACE ICON PLUS BADGE IN HERE */}
+                <BackedByICONPlus />
+                <h2 className="text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left mb-3">
+                  Mitra Utama Kami
+                </h2>
+                <p className="leading-relaxed tracking-tight text-left mb-2">
+                  Sejak mulai berdiri 2003 sebagai badan hukum. PT. Gatra Hita Wasana telah bermitra dan melakukan kerjasama dengan banyak mitra baik perusahaan swasta dan perusahaan dalam negri salah satu nya adalah PT. Indonesia Comnets Plus sebagai salah satu perusahaan pengembang teknologi informasi.
+                </p>
+                <p className="leading-relaxed tracking-tight text-left">
+                  PLN Icon Plus merupakan Entitas Anak PT PLN (Persero) yang berfokus di bidang industri jaringan telekomunikasi serta penyedia Solusi Teknologi Informasi terkemuka di Indonesia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Services Grid */}
       <section className="py-20 px-4 bg-muted/30">
@@ -110,6 +164,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="bg-sk-sea-shade py-20 px-4">

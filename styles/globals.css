@@ -150,6 +150,10 @@
     background-color: oklch(0.23 0.08 256.95 / 1);
   }
 
+  .bg-sk-gold {
+    background-color: #f9f3e9;
+  }
+
   .border-sk-white-20 {
     border-color: rgba(255, 255, 255, .2);
   }

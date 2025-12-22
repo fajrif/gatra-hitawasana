@@ -25,8 +25,8 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white shadow-md"
-          : "bg-transparent"
+        ? "bg-sk-gold shadow-md"
+        : "bg-transparent"
         }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -45,28 +45,28 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/"
-              className={`text-sm font-medium transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
-              Home
+              Beranda
             </Link>
             <Link
               href="/about"
-              className={`text-sm font-medium transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
-              About Us
+              Tentang Kami
             </Link>
             <Link
               href="/business"
-              className={`text-sm font-medium transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
-              Business
+              Layanan Bisnis
             </Link>
             <Link
               href="/media"
-              className={`text-sm font-medium transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
+              className={`uppercase font-mono transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"
                 }`}
             >
               Media
@@ -77,11 +77,11 @@ export function Navigation() {
               <Button
                 size="sm"
                 className={`rounded-full px-6 transition-all ${isScrolled
-                    ? "bg-primary text-white hover:bg-primary/90"
-                    : "bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm"
+                  ? "bg-primary text-white hover:bg-primary/90"
+                  : "bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm"
                   }`}
               >
-                Contact Us
+                Hubungi Kami
               </Button>
             </Link>
           </div>
