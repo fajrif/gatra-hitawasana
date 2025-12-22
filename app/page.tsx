@@ -2,38 +2,40 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ArrowRight, Server, Code, Users, Settings } from "lucide-react"
 import Link from "next/link"
+import { NeuralNetworkBackground } from "@/components/ui/neural-network-background"
+import { AnimatedHeroContent } from "@/components/ui/animated-hero-content"
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5 -z-10" />
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-balance">
-              IT Solutions that
-              <span className="text-primary block mt-2">Transform Business</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              PT Gatra Hita Wasana delivers comprehensive IT infrastructure, digital solutions, and expert human
-              resources to drive your success.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link href="/contact">
-                <Button size="lg" className="rounded-full gap-2">
-                  Get Started <ArrowRight size={16} />
-                </Button>
-              </Link>
-              <Link href="/business">
-                <Button size="lg" variant="outline" className="rounded-full bg-transparent">
-                  Explore Services
-                </Button>
-              </Link>
-            </div>
-          </div>
+      {/* Hero Section with Neural Network Background */}
+      <NeuralNetworkBackground
+        colorScheme={{
+          primary: '#011b41',    // Deep blue (brand)
+          secondary: '#2775fd',  // Sky-blue
+          accent: '#fdaed1'      // pink-500
+        }}
+        intensity={0.6}
+      >
+        <div className="relative h-screen w-screen overflow-hidden">
+          <AnimatedHeroContent
+            title="Mitra Terpercaya dalam Solusi Digital dan Inovasi"
+            description="PT Gatra Hita Wasana menyediakan solusi teknologi informasi terkini untuk kebutuhan bisnis Anda. Dari infrastruktur IT hingga transformasi digital."
+            badgeText="Solar Cell"
+            badgeLabel="Terbaru"
+            ctaButtons={[
+              { text: "Hubungi Kami", href: "/contact", primary: true },
+              { text: "Lihat Layanan", href: "/business" }
+            ]}
+            microDetails={[
+              "Solusi Profesional",
+              "Tim Berpengalaman",
+              "Dukungan 24/7"
+            ]}
+          />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
-      </section>
+      </NeuralNetworkBackground>
 
       {/* Services Grid */}
       <section className="py-20 px-4 bg-muted/30">
