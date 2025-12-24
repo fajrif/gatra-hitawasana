@@ -1,117 +1,70 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --card: oklch(0.99 0 0);
-  --card-foreground: oklch(0.15 0.01 264);
-  --popover: oklch(0.99 0 0);
-  --popover-foreground: oklch(0.15 0.01 264);
-  --primary: oklch(0.23 0.08 256.95);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.2 0.03 264);
-  --secondary-foreground: oklch(0.99 0 0);
-  --muted: oklch(0.94 0.01 264);
-  --muted-foreground: oklch(0.58 0.02 264.02);
-  --accent: oklch(0.55 0.2 220);
-  --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.88 0.01 264);
-  --input: oklch(0.88 0.01 264);
-  --ring: oklch(0.23 0.08 256.95);
-  --chart-1: oklch(0.55 0.2 264);
-  --chart-2: oklch(0.6 0.18 220);
-  --chart-3: oklch(0.5 0.15 180);
-  --chart-4: oklch(0.65 0.2 140);
-  --chart-5: oklch(0.58 0.22 300);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.12 0.02 264);
-  --foreground: oklch(0.95 0.01 264);
-  --card: oklch(0.15 0.02 264);
-  --card-foreground: oklch(0.95 0.01 264);
-  --popover: oklch(0.15 0.02 264);
-  --popover-foreground: oklch(0.95 0.01 264);
-  --primary: oklch(0.65 0.2 264);
-  --primary-foreground: oklch(0.12 0.02 264);
-  --secondary: oklch(0.25 0.03 264);
-  --secondary-foreground: oklch(0.95 0.01 264);
-  --muted: oklch(0.2 0.02 264);
-  --muted-foreground: oklch(0.6 0.02 264);
-  --accent: oklch(0.55 0.2 220);
-  --accent-foreground: oklch(0.95 0.01 264);
-  --destructive: oklch(0.55 0.22 27);
-  --destructive-foreground: oklch(0.95 0.01 264);
-  --border: oklch(0.25 0.02 264);
-  --input: oklch(0.25 0.02 264);
-  --ring: oklch(0.65 0.2 264);
-  --chart-1: oklch(0.55 0.2 264);
-  --chart-2: oklch(0.6 0.18 220);
-  --chart-3: oklch(0.5 0.15 180);
-  --chart-4: oklch(0.65 0.2 140);
-  --chart-5: oklch(0.58 0.22 300);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Themeable Colors - Restored to Original Vibe */
+  --background: 210 11% 7%;
+  /* #0f1211 */
+  /*--foreground: #ffffff;*/
+  --foreground: 160 14% 93%;
+  /* #e7eceb */
+  --muted: 240 2% 16%;
+  /* #27272a */
+  --muted-foreground: 160 14% 93% / 0.7;
+  /* rgba(231, 236, 235, 0.7) */
+  --muted-foreground-light: 160 14% 93% / 0.5;
+  /* rgba(231, 236, 235, 0.5) */
+  --muted-foreground-dark: 160 14% 93% / 0.6;
+  /* rgba(231, 236, 235, 0.6) */
+  --card: 220 17% 98% / 0.01;
+  --card-foreground: 160 14% 93%;
+  --popover: 210 11% 7%;
+  --popover-foreground: 160 14% 93%;
+  /* Primary Accent Colors */
+  --primary: 165 96% 71%;
+  /* #78fcd6 */
+  --primary-foreground: 160 8% 6%;
+  /* #0d0f0e */
+  /* Secondary Accent Colors (for buttons, etc.) */
+  --secondary: 160 14% 93%;
+  /* #e7eceb */
+  --secondary-foreground: 165 14% 8%;
+  /* #141a18 */
+  --accent: 240 2% 25%;
+  /* #3f3f42 */
+  --accent-foreground: 240 2% 96%;
+  /* #f4f4f5 */
+  --border: 240 100% 100% / 0.08;
+  /* rgba(255, 255, 255, 0.08) */
+  --border-light: 210 17% 6% / 0.1;
+  /* rgba(16,24,40,0.1) */
+  --border-dark: 210 17% 6% / 0.05;
+  /* rgba(16,24,40,0.05) */
+  --ring: 165 96% 71%;
+  --radius: 0.5rem;
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-ring: hsl(var(--ring));
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: var(--font-geist), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --font-header: var(--font-host-grotesk), sans-serif;

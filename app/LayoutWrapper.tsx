@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
+import { CTASection } from '@/components/cta-section'
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
@@ -18,6 +19,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         <>
             <Navigation />
             {children}
+            <CTASection />
             <Footer />
         </>
     )
