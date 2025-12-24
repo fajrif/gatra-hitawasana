@@ -1,12 +1,9 @@
 "use client"
 
 import type React from "react"
-
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
+import { PageBanner } from "@/components/page-banner"
+import { AnimatedDiv } from "@/components/animated-div"
+import { Mail, Phone, MapPin, Linkedin, Clock, Send } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactPage() {
@@ -24,149 +21,189 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <section className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="max-w-3xl mx-auto space-y-6 mb-16 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              Get in <span className="text-primary">Touch</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed text-pretty">
-              Ready to start your project or have questions? We'd love to hear from you.
-            </p>
-          </div>
+    <div className="min-h-screen bg-black">
+      {/* Banner Section */}
+      <PageBanner
+        title="Hubungi Kami"
+        description="Siap memulai proyek Anda atau memiliki pertanyaan? Kami senang mendengar dari Anda."
+        breadcrumbs={[{ label: "Kontak" }]}
+      />
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {/* Contact Section */}
+      <section className="bg-black py-20 px-4">
+        <AnimatedDiv id="contact-section" className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
             <div className="space-y-6">
-              <Card className="p-6">
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+              <div>
+                <h2 className="text-2xl font-light text-white mb-6">Informasi Kontak</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="text-primary" size={20} />
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                      <Mail className="text-white/70" size={20} />
                     </div>
                     <div>
-                      <div className="font-medium mb-1">Email</div>
+                      <div className="text-white/50 text-sm mb-1">Email</div>
                       <a
                         href="mailto:info@ghw.co.id"
-                        className="text-muted-foreground hover:text-primary transition-colors"
+                        className="text-white font-light hover:text-white/80 transition-colors"
                       >
                         info@ghw.co.id
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                      <Phone className="text-accent" size={20} />
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                      <Phone className="text-white/70" size={20} />
                     </div>
                     <div>
-                      <div className="font-medium mb-1">Phone</div>
-                      <a href="tel:+622100000000" className="text-muted-foreground hover:text-accent transition-colors">
+                      <div className="text-white/50 text-sm mb-1">Telepon</div>
+                      <a href="tel:+622100000000" className="text-white font-light hover:text-white/80 transition-colors">
                         +62 21 xxxx xxxx
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-chart-2/10 flex items-center justify-center shrink-0">
-                      <MapPin className="text-chart-2" size={20} />
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                      <MapPin className="text-white/70" size={20} />
                     </div>
                     <div>
-                      <div className="font-medium mb-1">Office</div>
-                      <p className="text-muted-foreground">Jakarta, Indonesia</p>
+                      <div className="text-white/50 text-sm mb-1">Kantor</div>
+                      <p className="text-white font-light">Jakarta, Indonesia</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-chart-4/10 flex items-center justify-center shrink-0">
-                      <Linkedin className="text-chart-4" size={20} />
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                      <Linkedin className="text-white/70" size={20} />
                     </div>
                     <div>
-                      <div className="font-medium mb-1">LinkedIn</div>
-                      <a href="#" className="text-muted-foreground hover:text-chart-4 transition-colors">
+                      <div className="text-white/50 text-sm mb-1">LinkedIn</div>
+                      <a href="#" className="text-white font-light hover:text-white/80 transition-colors">
                         PT Gatra Hita Wasana
                       </a>
                     </div>
                   </div>
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-6 bg-gradient-to-br from-primary/10 via-background to-accent/5">
-                <h3 className="font-semibold mb-2">Business Hours</h3>
-                <p className="text-sm text-muted-foreground">
-                  Monday - Friday: 9:00 AM - 6:00 PM (WIB)
+              <div className="p-6 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                <div className="flex items-center gap-3 mb-3">
+                  <Clock className="text-white/60" size={20} />
+                  <h3 className="text-white font-light">Jam Operasional</h3>
+                </div>
+                <p className="text-white/60 font-light text-sm leading-relaxed">
+                  Senin - Jumat: 09:00 - 18:00 WIB
                   <br />
-                  Saturday - Sunday: Closed
+                  Sabtu - Minggu: Tutup
                 </p>
-              </Card>
+              </div>
             </div>
 
-            <Card className="p-6">
-              <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Contact Form */}
+            <div className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur">
+              <h2 className="text-2xl font-light text-white mb-6">Kirim Pesan</h2>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name *
+                  <label htmlFor="name" className="block text-sm font-light text-white/70 mb-2">
+                    Nama *
                   </label>
-                  <Input
+                  <input
                     id="name"
                     type="text"
-                    placeholder="Your name"
+                    placeholder="Nama Anda"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="email" className="block text-sm font-light text-white/70 mb-2">
                     Email *
                   </label>
-                  <Input
+                  <input
                     id="email"
                     type="email"
-                    placeholder="your.email@company.com"
+                    placeholder="email@perusahaan.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    Company
+                  <label htmlFor="company" className="block text-sm font-light text-white/70 mb-2">
+                    Perusahaan
                   </label>
-                  <Input
+                  <input
                     id="company"
                     type="text"
-                    placeholder="Your company name"
+                    placeholder="Nama perusahaan Anda"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
+                  <label htmlFor="message" className="block text-sm font-light text-white/70 mb-2">
+                    Pesan *
                   </label>
-                  <Textarea
+                  <textarea
                     id="message"
-                    placeholder="Tell us about your project or inquiry..."
+                    placeholder="Ceritakan tentang proyek atau pertanyaan Anda..."
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors resize-none"
                   />
                 </div>
 
-                <Button type="submit" className="w-full rounded-full">
-                  Send Message
-                </Button>
+                <button
+                  type="submit"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white text-black font-light hover:bg-white/90 transition-colors"
+                >
+                  <Send size={18} />
+                  Kirim Pesan
+                </button>
               </form>
-            </Card>
+            </div>
           </div>
-        </div>
+        </AnimatedDiv>
+      </section>
+
+      {/* Map or Additional CTA */}
+      <section className="bg-sk-sea-shade py-20 px-4">
+        <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.1}>
+          <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+            Mari Berdiskusi
+          </h2>
+          <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
+            Tim kami siap membantu Anda menemukan solusi terbaik untuk kebutuhan bisnis Anda
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:info@ghw.co.id"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/10 text-white font-light hover:bg-white/15 transition-colors"
+            >
+              <Mail size={18} />
+              Email Kami
+            </a>
+            <a
+              href="tel:+622100000000"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/10 text-white font-light hover:bg-white/15 transition-colors"
+            >
+              <Phone size={18} />
+              Telepon Kami
+            </a>
+          </div>
+        </AnimatedDiv>
       </section>
     </div>
   )

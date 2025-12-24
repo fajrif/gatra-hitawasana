@@ -5,7 +5,7 @@ interface TelcoInfraServicesProps {
 }
 
 const TelcoInfraServices: React.FC<TelcoInfraServicesProps> = ({ className = "" }) => {
-  const themeVars = {
+  const themeVars: Record<string, string> = {
     "--oci-primary-color": "hsl(var(--ptr-primary))",
     "--oci-background-color": "hsl(var(--background))",
     "--oci-foreground-color": "hsl(var(--foreground))",
@@ -14,7 +14,7 @@ const TelcoInfraServices: React.FC<TelcoInfraServicesProps> = ({ className = "" 
     "--oci-shadow-color": "rgba(0, 0, 0, 0.12)",
     "--oci-gradient-light-gray-start": "hsl(var(--foreground) / 0.2)",
     "--oci-gradient-light-gray-end": "transparent",
-  } as React.CSSProperties
+  }
 
   // Helper component for rendering each logo box
   const LogoBox: React.FC<{

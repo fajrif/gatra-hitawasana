@@ -1,119 +1,199 @@
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Shield, Clock, TrendingUp, Headphones } from "lucide-react"
+import { PageBanner } from "@/components/page-banner"
+import { AnimatedDiv } from "@/components/animated-div"
+import { Shield, Clock, TrendingUp, Headphones, Server, Eye, Wrench, FileCheck } from "lucide-react"
 import Link from "next/link"
+
+const services = [
+  {
+    icon: Clock,
+    title: "Monitoring 24/7",
+    description: "Pemantauan infrastruktur sepanjang waktu untuk mendeteksi dan menyelesaikan masalah secara proaktif.",
+    features: ["Pemantauan Performa Server", "Tracking Uptime Network", "Health Check Aplikasi", "Sistem Alert Otomatis"]
+  },
+  {
+    icon: Shield,
+    title: "Manajemen Keamanan",
+    description: "Layanan keamanan komprehensif untuk melindungi infrastruktur dan data Anda.",
+    features: ["Manajemen Firewall", "Patch Management", "Security Audit", "Threat Detection & Response"]
+  },
+  {
+    icon: TrendingUp,
+    title: "Optimisasi Performa",
+    description: "Optimisasi berkelanjutan untuk memastikan sistem Anda memberikan performa terbaik.",
+    features: ["Capacity Planning", "Performance Tuning", "Resource Optimization", "Scalability Planning"]
+  },
+  {
+    icon: Headphones,
+    title: "Dukungan Teknis",
+    description: "Dukungan ahli kapanpun Anda butuhkan, dengan jaminan waktu respons.",
+    features: ["Incident Response", "Problem Resolution", "Change Management", "Documentation & Reporting"]
+  },
+]
+
+const slaMetrics = [
+  { value: "99.9%", label: "Uptime Guarantee", icon: Server },
+  { value: "<15min", label: "Response Time", icon: Clock },
+  { value: "24/7", label: "Support Coverage", icon: Eye },
+]
 
 export default function ManagedServicePage() {
   return (
-    <div className="min-h-screen">
-      <section className="pt-32 pb-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="max-w-3xl space-y-6 mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              Managed <span className="text-primary">Service</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed text-pretty">
-              Comprehensive IT management and support services to keep your systems running at peak performance. Focus
-              on your business while we handle the technology.
+    <div className="min-h-screen bg-black">
+      {/* Banner Section */}
+      <PageBanner
+        title="Managed Service"
+        description="Layanan manajemen dan dukungan IT komprehensif untuk menjaga sistem Anda berjalan optimal. Fokus pada bisnis Anda, biarkan kami menangani teknologinya."
+        breadcrumbs={[
+          { label: "Layanan", href: "/business" },
+          { label: "Managed Service" }
+        ]}
+        badge={{ label: "24/7", text: "Support" }}
+      />
+
+      {/* Services Grid */}
+      <section className="bg-black py-20 px-4">
+        <AnimatedDiv id="services-grid" className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-6">
+            {services.map((service, index) => {
+              const Icon = service.icon
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+                    <Icon className="text-white/80" size={24} />
+                  </div>
+                  <h3 className="text-xl font-light text-white mb-3">{service.title}</h3>
+                  <p className="text-white/60 font-light leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-white/50">
+                        <span className="w-1 h-1 rounded-full bg-white/40" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
+          </div>
+        </AnimatedDiv>
+      </section>
+
+      {/* SLA Section */}
+      <section className="bg-sk-sea-shade py-20 px-4">
+        <AnimatedDiv id="sla-section" className="container mx-auto max-w-6xl" delay={0.1}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+              Service Level Agreement
+            </h2>
+            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
+              Komitmen kami untuk kualitas layanan terbaik
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <Card className="p-6">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <Clock className="text-primary" size={24} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">24/7 Monitoring</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Round-the-clock infrastructure monitoring to detect and resolve issues proactively.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Server performance monitoring</li>
-                <li>• Network uptime tracking</li>
-                <li>• Application health checks</li>
-                <li>• Automated alert systems</li>
-              </ul>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-6">
+            {slaMetrics.map((metric, index) => {
+              const Icon = metric.icon
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur text-center"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6 mx-auto">
+                    <Icon className="text-white/70" size={24} />
+                  </div>
+                  <div className="text-4xl font-extralight text-white mb-2">{metric.value}</div>
+                  <p className="text-white/50 font-light text-sm">{metric.label}</p>
+                </div>
+              )
+            })}
+          </div>
+        </AnimatedDiv>
+      </section>
 
-            <Card className="p-6">
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                <Shield className="text-accent" size={24} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Security Management</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Comprehensive security services to protect your infrastructure and data.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Firewall management</li>
-                <li>• Patch management</li>
-                <li>• Security audits</li>
-                <li>• Threat detection & response</li>
-              </ul>
-            </Card>
-
-            <Card className="p-6">
-              <div className="w-12 h-12 rounded-lg bg-chart-2/10 flex items-center justify-center mb-4">
-                <TrendingUp className="text-chart-2" size={24} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Performance Optimization</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Continuous optimization to ensure your systems deliver peak performance.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Capacity planning</li>
-                <li>• Performance tuning</li>
-                <li>• Resource optimization</li>
-                <li>• Scalability planning</li>
-              </ul>
-            </Card>
-
-            <Card className="p-6">
-              <div className="w-12 h-12 rounded-lg bg-chart-4/10 flex items-center justify-center mb-4">
-                <Headphones className="text-chart-4" size={24} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Technical Support</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Expert support when you need it, with guaranteed response times.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Incident response</li>
-                <li>• Problem resolution</li>
-                <li>• Change management</li>
-                <li>• Documentation & reporting</li>
-              </ul>
-            </Card>
+      {/* Service Packages */}
+      <section className="bg-black py-20 px-4">
+        <AnimatedDiv id="packages-section" className="container mx-auto max-w-6xl" delay={0.2}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+              Paket Layanan
+            </h2>
+            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
+              Pilih paket yang sesuai dengan kebutuhan infrastruktur Anda
+            </p>
           </div>
 
-          <Card className="p-8 bg-gradient-to-br from-primary/10 via-background to-accent/5 mb-12">
-            <h2 className="text-2xl font-bold mb-6">Service Level Agreements</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">99.9%</div>
-                <p className="text-sm text-muted-foreground">Uptime Guarantee</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-accent mb-2">&lt;15min</div>
-                <p className="text-sm text-muted-foreground">Response Time</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-chart-2 mb-2">24/7</div>
-                <p className="text-sm text-muted-foreground">Support Coverage</p>
-              </div>
-            </div>
-          </Card>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Essential",
+                description: "Untuk bisnis kecil dengan kebutuhan dasar",
+                features: ["Monitoring 8x5", "Email Support", "Monthly Report", "Basic Security"],
+                icon: Wrench
+              },
+              {
+                name: "Professional",
+                description: "Untuk bisnis menengah dengan kebutuhan lebih kompleks",
+                features: ["Monitoring 24/7", "Phone & Email Support", "Weekly Report", "Advanced Security"],
+                highlight: true,
+                icon: Server
+              },
+              {
+                name: "Enterprise",
+                description: "Untuk enterprise dengan kebutuhan kritis",
+                features: ["Monitoring 24/7", "Dedicated Support Team", "Real-time Dashboard", "Full Security Suite"],
+                icon: FileCheck
+              },
+            ].map((pkg, index) => {
+              const Icon = pkg.icon
+              return (
+                <div
+                  key={index}
+                  className={`rounded-2xl border p-8 backdrop-blur ${pkg.highlight
+                    ? 'border-white/40 bg-[rgba(231,236,235,0.12)]'
+                    : 'border-white/20 bg-[rgba(231,236,235,0.08)]'
+                    }`}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+                    <Icon className="text-white/70" size={24} />
+                  </div>
+                  <h3 className="text-xl font-light text-white mb-2">{pkg.name}</h3>
+                  <p className="text-white/50 font-light text-sm mb-6">{pkg.description}</p>
+                  <ul className="space-y-3">
+                    {pkg.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-sm text-white/60">
+                        <span className="w-1 h-1 rounded-full bg-white/40" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
+          </div>
+        </AnimatedDiv>
+      </section>
 
-          <Card className="p-8 bg-gradient-to-br from-primary/10 via-background to-accent/5">
-            <div className="text-center space-y-4">
-              <h2 className="text-2xl font-bold">Let Us Manage Your IT</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                Contact us to learn more about our managed service packages
-              </p>
-              <Link href="/contact">
-                <Button className="rounded-full">Get Started</Button>
-              </Link>
-            </div>
-          </Card>
-        </div>
+      {/* CTA */}
+      <section className="bg-sk-gold py-20 px-4">
+        <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.3}>
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 tracking-tight">
+            Biarkan Kami Kelola IT Anda
+          </h2>
+          <p className="text-gray-600 font-light text-lg mb-8 max-w-xl mx-auto">
+            Hubungi kami untuk mengetahui lebih lanjut tentang paket managed service kami
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block rounded-full bg-gray-900 px-8 py-4 text-white font-light hover:bg-gray-800 transition-colors"
+          >
+            Mulai Sekarang
+          </Link>
+        </AnimatedDiv>
       </section>
     </div>
   )

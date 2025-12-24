@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { format } from 'date-fns'
+import { id } from 'date-fns/locale'
+import Link from 'next/link'
+import { ChevronRight, Calendar, Clock, ArrowLeft } from 'lucide-react'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -31,46 +34,134 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
     }
 
     return (
-        <article className="min-h-screen bg-gray-50 py-12">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {article.image && (
-                        <img
-                            src={article.image}
-                            alt={article.title}
-                            className="w-full h-96 object-cover"
-                        />
-                    )}
+        <div className="min-h-screen bg-black">
+            {/* Banner Section */}
+            <div className="relative overflow-hidden">
+                {/* Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/90 to-black" />
 
-                    <div className="p-8">
-                        <div className="mb-4">
-                            <span className="text-sm font-semibold text-primary">
-                                {article.category.name}
-                            </span>
-                            {article.published_date && (
-                                <span className="text-sm text-gray-500 ml-4">
-                                    {format(new Date(article.published_date), 'MMMM dd, yyyy')}
-                                </span>
-                            )}
-                        </div>
+                {/* Noise Texture Overlay */}
+                <div
+                    className="absolute inset-0 opacity-30 mix-blend-overlay"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                    }}
+                />
 
-                        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                            {article.title}
-                        </h1>
+                {/* Subtle Glow */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/5 blur-[100px] rounded-full" />
 
-                        {article.short_description && (
-                            <p className="text-xl text-gray-600 mb-8">
-                                {article.short_description}
-                            </p>
+                {/* Content */}
+                <div className="relative mx-auto max-w-4xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
+                    {/* Breadcrumbs */}
+                    <div className="flex items-center gap-1 text-sm font-light text-white/60 mb-6">
+                        <Link href="/" className="hover:text-white/80 transition-colors">
+                            Home
+                        </Link>
+                        <ChevronRight className="w-3 h-3" />
+                        <Link href="/media" className="hover:text-white/80 transition-colors">
+                            Media
+                        </Link>
+                        <ChevronRight className="w-3 h-3" />
+                        <span className="text-white/80 truncate max-w-[200px]">{article.title}</span>
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="mb-6">
+                        <span className="inline-block px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-white/70">
+                            {article.category.name}
+                        </span>
+                    </div>
+
+                    {/* Title */}
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight leading-tight tracking-tight text-white mb-6">
+                        {article.title}
+                    </h1>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-6 text-sm text-white/50">
+                        {article.published_date && (
+                            <div className="flex items-center gap-2">
+                                <Calendar size={16} />
+                                <span>{format(new Date(article.published_date), 'd MMMM yyyy', { locale: id })}</span>
+                            </div>
                         )}
-
-                        <div
-                            className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-primary prose-strong:text-gray-900"
-                            dangerouslySetInnerHTML={{ __html: article.content || '' }}
-                        />
+                        <div className="flex items-center gap-2">
+                            <Clock size={16} />
+                            <span>5 min read</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </article>
+
+            {/* Article Content */}
+            <article className="bg-black py-16 px-4">
+                <div className="max-w-3xl mx-auto">
+                    {/* Featured Image */}
+                    {article.image && (
+                        <div className="mb-12 rounded-2xl overflow-hidden border border-white/10">
+                            <img
+                                src={article.image}
+                                alt={article.title}
+                                className="w-full h-auto object-cover"
+                            />
+                        </div>
+                    )}
+
+                    {/* Description */}
+                    {article.short_description && (
+                        <p className="text-xl font-light text-white/70 leading-relaxed mb-10 pb-10 border-b border-white/10">
+                            {article.short_description}
+                        </p>
+                    )}
+
+                    {/* Content */}
+                    <div
+                        className="prose prose-invert max-w-none
+                            prose-headings:font-light prose-headings:text-white prose-headings:tracking-tight
+                            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+                            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                            prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed
+                            prose-a:text-white prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-white/80
+                            prose-strong:text-white prose-strong:font-medium
+                            prose-ul:text-white/70 prose-ol:text-white/70
+                            prose-li:font-light prose-li:marker:text-white/40
+                            prose-blockquote:border-white/20 prose-blockquote:text-white/60 prose-blockquote:font-light
+                            prose-code:text-white/80 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                            prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10"
+                        dangerouslySetInnerHTML={{ __html: article.content || '' }}
+                    />
+
+                    {/* Back to Media */}
+                    <div className="mt-16 pt-8 border-t border-white/10">
+                        <Link
+                            href="/media"
+                            className="inline-flex items-center gap-2 text-white/60 font-light hover:text-white transition-colors"
+                        >
+                            <ArrowLeft size={18} />
+                            Kembali ke Media
+                        </Link>
+                    </div>
+                </div>
+            </article>
+
+            {/* Related or CTA Section */}
+            <section className="bg-sk-sea-shade py-20 px-4">
+                <div className="container mx-auto max-w-4xl text-center">
+                    <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+                        Butuh Solusi IT?
+                    </h2>
+                    <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
+                        Hubungi kami untuk mendiskusikan kebutuhan teknologi bisnis Anda
+                    </p>
+                    <Link
+                        href="/contact"
+                        className="inline-block rounded-full bg-white px-8 py-4 text-black font-light hover:bg-white/90 transition-colors"
+                    >
+                        Hubungi Kami
+                    </Link>
+                </div>
+            </section>
+        </div>
     )
 }

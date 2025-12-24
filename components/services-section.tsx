@@ -4,7 +4,7 @@ import HumanResourceServices from "./services/human-resources"
 import ManagedServices from "./services/managed-services"
 import { ShinyButton } from "./ui/shiny-button"
 
-const BentoCard = ({ title, description, Component }) => (
+const BentoCard = ({ title, description, Component }: { title: string; description: string; Component: React.ComponentType }) => (
   <div className="overflow-hidden rounded-2xl border border-white/20 flex flex-col justify-start items-start relative">
     {/* Background with blur effect */}
     <div
