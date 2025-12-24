@@ -4,6 +4,7 @@ import { ClientsCloud } from "@/components/clients-cloud"
 import { ClientPrimary } from "@/components/client-primary"
 import { AnimatedDiv } from "@/components/animated-div"
 import { ServicesSection } from "@/components/services-section"
+import { StatsSection } from "@/components/stats-section"
 
 export default function Home() {
   return (
@@ -52,6 +53,9 @@ export default function Home() {
           <ServicesSection />
         </AnimatedDiv>
       </section>
+
+      {/* Stats Section */}
+      <StatsSection />
 
     </div>
   )

@@ -2,13 +2,13 @@ import { LogoCloud } from "@/components/ui/logo-cloud"
 
 export function ClientsCloud() {
     const clientLogos = [
-        { src: "/images/clients/icon-green-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/icon-plus-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kai-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kemensos-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kominfo-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/pertamina-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/poltekkes-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/icon-green-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/icon-green-logo.png" },
+        { src: "/images/clients/icon-plus-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/icon-plus-logo.png" },
+        { src: "/images/clients/kai-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kai-logo.png" },
+        { src: "/images/clients/kemensos-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kemensos-logo.png" },
+        { src: "/images/clients/kominfo-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kominfo-logo.png" },
+        { src: "/images/clients/pertamina-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/pertamina-logo.png" },
+        { src: "/images/clients/poltekkes-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/poltekkes-logo.png" },
     ]
 
     return (
@@ -18,9 +18,7 @@ export function ClientsCloud() {
                 <br />
                 <span className="font-semibold">Dipercaya Oleh Berbagai Institusi di Tanah Air.</span>
             </h2>
-            <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
             <LogoCloud logos={clientLogos} />
-            <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
         </>
     )
 }

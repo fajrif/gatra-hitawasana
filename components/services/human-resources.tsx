@@ -24,7 +24,7 @@ const HumanResourceServices: React.FC<HumanResourceServicesProps> = ({ className
     "--pca-background-glass": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-start": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-end": "transparent",
-    "--pca-text-primary": "hsl(var(--ptr-primary))",
+    "--pca-text-primary": "var(--ptr-primary-light)",
     "--pca-text-secondary": "hsl(var(--muted-foreground))",
     "--pca-border-color": "hsl(var(--border))",
     "--pca-border-main": "hsl(var(--border))",

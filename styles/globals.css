@@ -30,6 +30,7 @@
   --ptr-primary: 165 96% 71%;
   /* #78fcd6 */
   --ptr-primary-foreground: 160 8% 6%;
+  --ptr-primary-light: oklch(0.93 0.1 176.45);
   /* #0d0f0e */
   /* Secondary Accent Colors (for buttons, etc.) */
   --secondary: 160 14% 93%;

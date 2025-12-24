@@ -34,7 +34,7 @@ export function ClientPrimary() {
                                     '--shiny-cta-highlight-subtle': '#ffed4e'
                                 } as React.CSSProperties}
                             >
-                                Pelajari Lebih Lanjut
+                                Tentang Kami
                             </ShinyButton>
                         </div>
                     </div>

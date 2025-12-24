@@ -1,6 +1,8 @@
 import TelcoInfraServices from "./services/telco-infra"
 import DigitalSolutionServices from "./services/digital-solution"
 import HumanResourceServices from "./services/human-resources"
+import ManagedServices from "./services/managed-services"
+import { ShinyButton } from "./ui/shiny-button"
 
 const BentoCard = ({ title, description, Component }) => (
   <div className="overflow-hidden rounded-2xl border border-white/20 flex flex-col justify-start items-start relative">
@@ -52,8 +54,8 @@ export function ServicesSection() {
   return (
     <div className="w-full px-5 flex flex-col justify-center items-center overflow-visible bg-transparent">
       <div className="w-full py-8 md:py-16 relative flex flex-col justify-start items-start gap-6">
-        <div className="w-[547px] h-[938px] absolute top-[614px] left-[80px] origin-top-left rotate-[-33.39deg] bg-primary/10 blur-[130px] z-0" />
-        <div className="self-stretch py-8 md:py-14 flex flex-col justify-center items-center gap-2 z-10">
+        <div className="w-[547px] h-[938px] absolute top-[614px] left-[80px] origin-top-left rotate-[-33.39deg] bg-primary/10 blur-[130px] z-0 pointer-events-none" />
+        <div className="self-stretch pb-8 md:pb-14 flex flex-col justify-center items-center gap-2 z-10">
           <div className="flex flex-col justify-start items-center gap-4">
             <h2 className="w-full max-w-[655px] text-center text-white text-3xl md:text-5xl font-semibold leading-tight md:leading-[66px]">
               Layanan Bisnis Teknologi
@@ -67,6 +69,25 @@ export function ServicesSection() {
           {cards.map((card) => (
             <BentoCard key={card.title} {...card} />
           ))}
+        </div>
+
+        {/* Full-width Managed Services Card */}
+        <div className="self-stretch max-w-4xl mx-auto mt-6 z-10">
+          <BentoCard
+            title="Managed Services"
+            description="Layanan pengelolaan infrastruktur IT profesional dengan monitoring 24/7, maintenance rutin, dan dukungan teknis berkelanjutan untuk menjaga sistem Anda tetap optimal."
+            Component={ManagedServices}
+          />
+        </div>
+
+        {/* CTA Button */}
+        <div className="self-stretch flex justify-center items-center mt-8 z-10">
+          <ShinyButton
+            href="/business"
+            className="text-muted-foreground hover:text-white rounded-2xl text-sm py-3"
+          >
+            Lihat Semua Layanan
+          </ShinyButton>
         </div>
       </div>
     </div>
