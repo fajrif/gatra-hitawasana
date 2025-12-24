@@ -20,11 +20,11 @@ const HumanResourceServices: React.FC<HumanResourceServicesProps> = ({ className
 
   // Theme-based CSS variables using global theme
   const themeVars = {
-    "--pca-background-color": "hsl(var(--background))",
+    "--pca-background-color": "hsl(var(--ptr-background))",
     "--pca-background-glass": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-start": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-end": "transparent",
-    "--pca-text-primary": "hsl(var(--foreground))",
+    "--pca-text-primary": "hsl(var(--ptr-primary))",
     "--pca-text-secondary": "hsl(var(--muted-foreground))",
     "--pca-border-color": "hsl(var(--border))",
     "--pca-border-main": "hsl(var(--border))",

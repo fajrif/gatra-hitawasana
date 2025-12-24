@@ -30,7 +30,7 @@ const DigitalSolutionServices: React.FC<DigitalSolutionServicesProps> = ({ class
           transform: "translate(-50%, calc(-50% + 24px))",
           width: "345px",
           height: "277px",
-          background: "linear-gradient(180deg, hsl(var(--background)) 0%, transparent 100%)",
+          background: "linear-gradient(180deg, hsl(var(--ptr-background)) 0%, transparent 100%)",
           backdropFilter: "blur(16px)",
           borderRadius: "9.628px",
           border: "0.802px solid hsl(var(--border))",
@@ -124,7 +124,7 @@ const DigitalSolutionServices: React.FC<DigitalSolutionServicesProps> = ({ class
               {tech.ready && (
                 <div
                   style={{
-                    background: "hsl(var(--primary) / 0.08)",
+                    background: "hsl(var(--ptr-primary) / 0.08)",
                     padding: "1.318px 5.272px",
                     borderRadius: "3.295px",
                     display: "flex",
@@ -137,7 +137,7 @@ const DigitalSolutionServices: React.FC<DigitalSolutionServicesProps> = ({ class
                       fontFamily: "'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                       fontSize: "9.583px",
                       lineHeight: "15.333px",
-                      color: "hsl(var(--primary))",
+                      color: "hsl(var(--ptr-primary))",
                       fontWeight: 500,
                       whiteSpace: "nowrap",
                     }}

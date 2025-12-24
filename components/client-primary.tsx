@@ -28,6 +28,11 @@ export function ClientPrimary() {
                             <ShinyButton
                                 href="/about"
                                 className="text-muted-foreground hover:text-white rounded-2xl text-sm py-3"
+                                style={{
+                                    '--shiny-cta-bg-subtle': 'rgba(255,245,72,0.24)',
+                                    '--shiny-cta-highlight': '#fff548',
+                                    '--shiny-cta-highlight-subtle': '#ffed4e'
+                                } as React.CSSProperties}
                             >
                                 Pelajari Lebih Lanjut
                             </ShinyButton>
