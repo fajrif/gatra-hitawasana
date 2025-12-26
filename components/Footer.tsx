@@ -44,7 +44,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/about/career"
+                  href="/career"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Karir
@@ -63,7 +63,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/business/telco-hardware"
+                  href="/business/telco-infra"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Telekomunikasi & IT Infrastruktur

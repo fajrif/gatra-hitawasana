@@ -5,8 +5,35 @@ import { ClientPrimary } from "@/components/client-primary"
 import { AnimatedDiv } from "@/components/animated-div"
 import { ServicesSection } from "@/components/services-section"
 import { StatsSection } from "@/components/stats-section"
+import TelcoInfraServices from "@/components/services/telco-infra"
+import DigitalSolutionServices from "@/components/services/digital-solution"
+import HumanResourceServices from "@/components/services/human-resources"
+import ManagedServices from "@/components/services/managed-services"
 
 export default function Home() {
+  const cards = [
+    {
+      title: "Telekomunikasi & IT Infrastruktur",
+      description: "Penyediaan perangkat telekomunikasi dan infrastruktur jaringan yang andal untuk mendukung konektivitas dan operasional bisnis secara optimal.",
+      Component: TelcoInfraServices,
+    },
+    {
+      title: "Solusi Digital & Inovasi",
+      description: "Pengembangan aplikasi dan solusi digital yang inovatif untuk meningkatkan efisiensi, produktivitas, dan daya saing bisnis.",
+      Component: DigitalSolutionServices,
+    },
+    {
+      title: "Human Resource Management",
+      description: "Penyediaan dan pengelolaan SDM profesional yang kompeten dan siap mendukung kebutuhan bisnis Anda.",
+      Component: HumanResourceServices,
+    },
+    {
+      title: "Managed Services",
+      description: "Layanan pengelolaan infrastruktur IT profesional dengan monitoring 24/7, maintenance rutin, dan dukungan teknis berkelanjutan untuk menjaga sistem Anda tetap optimal.",
+      Component: ManagedServices,
+    },
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Neural Network Background */}
@@ -50,7 +77,7 @@ export default function Home() {
 
       <section id="features-section" className="bg-sk-sea-shade">
         <AnimatedDiv id="features-section-div" className="relative z-10 max-w-[1320px] mx-auto" delay={0.3}>
-          <ServicesSection />
+          <ServicesSection cards={cards} />
         </AnimatedDiv>
       </section>
 
