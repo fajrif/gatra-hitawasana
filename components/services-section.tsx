@@ -2,35 +2,8 @@ import TelcoInfraServices from "./services/telco-infra"
 import DigitalSolutionServices from "./services/digital-solution"
 import HumanResourceServices from "./services/human-resources"
 import ManagedServices from "./services/managed-services"
+import { BentoCard } from "./ui/bento-card"
 import { ShinyButton } from "./ui/shiny-button"
-
-const BentoCard = ({ title, description, Component }: { title: string; description: string; Component: React.ComponentType }) => (
-  <div className="overflow-hidden rounded-2xl border border-white/20 flex flex-col justify-start items-start relative">
-    {/* Background with blur effect */}
-    <div
-      className="absolute inset-0 rounded-2xl"
-      style={{
-        background: "rgba(231, 236, 235, 0.08)",
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
-      }}
-    />
-    {/* Additional subtle gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl" />
-
-    <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2 relative z-10">
-      <div className="self-stretch flex flex-col justify-start items-start gap-1.5">
-        <p className="self-stretch text-white text-lg font-normal leading-7">
-          {title} <br />
-          <span className="text-muted-foreground">{description}</span>
-        </p>
-      </div>
-    </div>
-    <div className="self-stretch h-72 relative -mt-0.5 z-10">
-      <Component />
-    </div>
-  </div>
-)
 
 export function ServicesSection() {
   const cards = [
@@ -57,10 +30,10 @@ export function ServicesSection() {
         <div className="w-[547px] h-[938px] absolute top-[614px] left-[80px] origin-top-left rotate-[-33.39deg] bg-primary/10 blur-[130px] z-0 pointer-events-none" />
         <div className="self-stretch pb-8 md:pb-14 flex flex-col justify-center items-center gap-2 z-10">
           <div className="flex flex-col justify-start items-center gap-4">
-            <h2 className="w-full max-w-[655px] text-center text-white text-3xl md:text-5xl font-semibold leading-tight md:leading-[66px]">
+            <h2 className="w-full max-w-[655px] text-center text-white text-3xl md:text-5xl font-extralight uppercase leading-tight md:leading-[66px]">
               Layanan Bisnis Teknologi
             </h2>
-            <p className="w-full max-w-[600px] text-center text-muted-foreground text-lg md:text-lg font-medium">
+            <p className="w-full max-w-[600px] text-center text-muted-foreground text-lg md:text-lg">
               Kami menghadirkan solusi `end-to-end` mulai dari penyediaan infrastruktur telekomunikasi dan jaringan, pengembangan aplikasi bisnis, hingga penyediaan tenaga ahli profesional.
             </p>
           </div>
@@ -85,8 +58,13 @@ export function ServicesSection() {
           <ShinyButton
             href="/business"
             className="text-muted-foreground hover:text-white rounded-2xl text-sm py-3"
+            style={{
+                '--shiny-cta-bg-subtle': 'rgba(120,252,214,0.24)',
+                '--shiny-cta-highlight': '#78fcd6',
+                '--shiny-cta-highlight-subtle': '#78f5d1'
+            } as React.CSSProperties}
           >
-            Lihat Semua Layanan
+            Lihat Layanan
           </ShinyButton>
         </div>
       </div>

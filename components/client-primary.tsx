@@ -15,7 +15,7 @@ export function ClientPrimary() {
                 <div className="flex gap-4 pl-0 lg:pl-20 flex-col flex-1">
                     <div className="flex gap-2 flex-col">
                         <BackedByICONPlus />
-                        <h2 className="text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular text-left mb-3">
+                        <h2 className="text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-extralight uppercase text-left mb-3">
                             Mitra Utama Kami
                         </h2>
                         <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-2">

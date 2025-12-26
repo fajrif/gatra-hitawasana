@@ -16,7 +16,7 @@ export function Footer() {
       />
 
       {/* Content */}
-      <div className="flex flex-col justify-between relative container min-h-screen mx-auto px-4">
+      <div className="flex flex-col justify-between relative container min-h-[620px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:px-8 py-15 border-t border-sk-white-20">
           <div>
             {/* Logo Image */}

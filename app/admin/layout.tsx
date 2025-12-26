@@ -47,7 +47,7 @@ function AdminLayoutContent({
     }
 
     return (
-        <div className="admin-layout min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50">
             <Sidebar />
             {/* Main content */}
             <div className="lg:pl-64">

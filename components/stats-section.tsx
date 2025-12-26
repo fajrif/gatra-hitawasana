@@ -13,7 +13,7 @@ export function StatsSection() {
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-center">
                     {/* Column 1: First stat */}
                     <div className="text-center md:text-right">
-                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight">
+                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-medium text-gray-900 leading-tight">
                             92% Klien kami menyatakan puas dengan layanan kami
                         </h3>
                     </div>
@@ -23,8 +23,8 @@ export function StatsSection() {
 
                     {/* Column 3: Second stat */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight">
-                            100+ Proyek berhasil dan terimplementasi dengan baik
+                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-medium text-gray-900 leading-tight">
+                            100+ Proyek berhasil dikembangkan dan terimplementasi dengan baik
                         </h3>
                     </div>
                 </div>

@@ -169,7 +169,7 @@ export function PageBanner({
                 {/* Title */}
                 <h1
                     ref={headerRef}
-                    className="max-w-3xl text-4xl font-extralight leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
+                    className="max-w-3xl text-4xl font-extralight uppercase leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
                 >
                     {title}
                 </h1>

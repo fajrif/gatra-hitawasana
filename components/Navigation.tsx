@@ -41,7 +41,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 font-semibold">
+          <div className="hidden md:flex items-center gap-8 font-medium">
             <Link
               href="/"
               className={`uppercase transition-colors ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-white/80"

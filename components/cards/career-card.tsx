@@ -3,16 +3,16 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 
-interface HumanResourceServicesProps {
+interface CareerCardProps {
   className?: string
 }
 
-const HumanResourceServices: React.FC<HumanResourceServicesProps> = ({ className = "" }) => {
+const CareerCard: React.FC<CareerCardProps> = ({ className = "" }) => {
   const [asciiArt, setAsciiArt] = useState<string>("")
 
   // Load ASCII art from public file
   useEffect(() => {
-    fetch("/ascii-art.txt")
+    fetch("/ascii-art-career.txt")
       .then((response) => response.text())
       .then((text) => setAsciiArt(text))
       .catch((error) => console.error("Failed to load ASCII art:", error))
@@ -24,7 +24,7 @@ const HumanResourceServices: React.FC<HumanResourceServicesProps> = ({ className
     "--pca-background-glass": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-start": "hsl(var(--card) / 0.2)",
     "--pca-background-gradient-end": "transparent",
-    "--pca-text-primary": "#fff",
+    "--pca-text-primary": "hsl(var(--ptr-primary))",
     "--pca-text-secondary": "hsl(var(--muted-foreground))",
     "--pca-border-color": "hsl(var(--border))",
     "--pca-border-main": "hsl(var(--border))",
@@ -68,4 +68,4 @@ const HumanResourceServices: React.FC<HumanResourceServicesProps> = ({ className
   )
 }
 
-export default HumanResourceServices
+export default CareerCard

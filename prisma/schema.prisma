@@ -37,6 +37,18 @@ enum ArticleStatus {
   PUBLISHED
 }
 
+enum CareerStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+}
+
 model Article {
   id                String        @id @default(uuid())
   title             String        @unique
@@ -56,4 +68,27 @@ model Article {
 
   @@index([slug])
   @@map("articles")
+}
+
+model Career {
+  id                String         @id @default(uuid())
+  title             String         @unique
+  slug              String         @unique
+  department        String
+  location          String
+  employment_type   EmploymentType @default(FULL_TIME)
+  short_description String?
+  content           String?        @db.Text
+  requirements      String?        @db.Text
+  benefits          String?        @db.Text
+  salary_range      String?
+  published_date    DateTime?
+  status            CareerStatus   @default(DRAFT)
+  meta_title        String?
+  meta_description  String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@index([slug])
+  @@map("careers")
 }
