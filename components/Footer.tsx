@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/media" className="text-sm text-gray-300 hover:text-white transition-colors">
-                  Media & Wawasan
+                  Media & Insights
                 </Link>
               </li>
             </ul>

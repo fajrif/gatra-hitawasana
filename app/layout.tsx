@@ -8,7 +8,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: '--font-geist-mono'
 const hostGrotesk = Host_Grotesk({ subsets: ["latin"], variable: '--font-host-grotesk' })
 
 export const metadata: Metadata = {
-    title: "PT Gatra Hita Wasana - IT Konsultan & Inovasi Digital",
+    title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
     description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
     icons: {
         icon: [

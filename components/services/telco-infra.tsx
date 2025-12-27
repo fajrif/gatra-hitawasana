@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import * as Icons from "@/components/ui/custom-icons"
 
@@ -19,9 +21,9 @@ const TelcoInfraServices: React.FC<TelcoInfraServicesProps> = ({ className = "" 
 
   // Helper component for rendering each logo box
   const LogoBox: React.FC<{
-    logoSvg?: React.ReactNode
+    LogoComponent?: React.FC<React.SVGProps<SVGSVGElement>>
     isGradientBg?: boolean
-  }> = ({ logoSvg, isGradientBg }) => {
+  }> = ({ LogoComponent, isGradientBg }) => {
     const boxStyle: React.CSSProperties = {
       width: "60px",
       height: "60px",
@@ -52,68 +54,76 @@ const TelcoInfraServices: React.FC<TelcoInfraServicesProps> = ({ className = "" 
       boxStyle.padding = "6px 8px"
     }
 
-    return <div style={boxStyle}>{logoSvg && <div style={innerContentStyle}>{logoSvg}</div>}</div>
+    return (
+      <div style={boxStyle}>
+        {LogoComponent && (
+          <div style={innerContentStyle}>
+            <LogoComponent width={36} height={36} />
+          </div>
+        )}
+      </div>
+    )
   }
 
   // Define the grid items with their respective logos and properties
   const gridItems = Array(40)
     .fill(null)
     .map((_, i) => {
-      const item: { logoSvg?: React.ReactNode; isGradientBg?: boolean } = {}
+      const item: { LogoComponent?: React.FC<React.SVGProps<SVGSVGElement>>; isGradientBg?: boolean } = {}
       const row = Math.floor(i / 10)
       const col = i % 10
 
       // Assign logos to specific positions
       if (row === 0 && col === 3) {
-        item.logoSvg = Icons.MikrotikLogo
+        item.LogoComponent = Icons.MikrotikLogo
         item.isGradientBg = true
       } else if (row === 0 && col === 2) {
-        item.logoSvg = Icons.GarminLogo
+        item.LogoComponent = Icons.GarminLogo
         item.isGradientBg = true
       } else if (row === 1 && col === 4) {
-        item.logoSvg = Icons.HPLogo
+        item.LogoComponent = Icons.HPLogo
         item.isGradientBg = true
       } else if (row === 1 && col === 5) {
-        item.logoSvg = Icons.FortinetLogo
+        item.LogoComponent = Icons.FortinetLogo
         item.isGradientBg = true
       } else if (row === 0 && col === 6) {
-        item.logoSvg = Icons.APCLogo
+        item.LogoComponent = Icons.APCLogo
         item.isGradientBg = true
       } else if (row === 0 && col === 8) {
-        item.logoSvg = Icons.HPLogo
+        item.LogoComponent = Icons.HPLogo
         item.isGradientBg = true
       } else if (row === 1 && col === 2) {
-        item.logoSvg = Icons.LenovoLogo
+        item.LogoComponent = Icons.LenovoLogo
         item.isGradientBg = true
       } else if (row === 2 && col === 3) {
-        item.logoSvg = Icons.TPLinkLogo
+        item.LogoComponent = Icons.TPLinkLogo
         item.isGradientBg = true
       } else if (row === 2 && col === 4) {
-        item.logoSvg = Icons.IBMLogo
+        item.LogoComponent = Icons.IBMLogo
         item.isGradientBg = true
       } else if (row === 1 && col === 7) {
-        item.logoSvg = Icons.CiscoLogo
+        item.LogoComponent = Icons.CiscoLogo
         item.isGradientBg = true
       } else if (row === 3 && col === 3) {
-        item.logoSvg = Icons.HPLogo
+        item.LogoComponent = Icons.HPLogo
         item.isGradientBg = true
       } else if (row === 3 && col === 5) {
-        item.logoSvg = Icons.OpenNebulaLogo
+        item.LogoComponent = Icons.OpenNebulaLogo
         item.isGradientBg = true
       } else if (row === 2 && col === 6) {
-        item.logoSvg = Icons.VMWareLogo
+        item.LogoComponent = Icons.VMWareLogo
         item.isGradientBg = true
       } else if (row === 2 && col === 7) {
-        item.logoSvg = Icons.HuaweiLogo
+        item.LogoComponent = Icons.HuaweiLogo
         item.isGradientBg = true
       } else if (row === 1 && col === 9) {
-        item.logoSvg = Icons.VMWareLogo
+        item.LogoComponent = Icons.VMWareLogo
         item.isGradientBg = true
       } else if (row === 3 && col === 5) {
-        item.logoSvg = Icons.GarminLogo
+        item.LogoComponent = Icons.GarminLogo
         item.isGradientBg = true
       } else if (row === 3 && col === 9) {
-        item.logoSvg = Icons.OpenNebulaLogo
+        item.LogoComponent = Icons.OpenNebulaLogo
         item.isGradientBg = true
       }
       return item

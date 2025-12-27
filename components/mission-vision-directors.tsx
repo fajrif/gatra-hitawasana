@@ -48,7 +48,7 @@ export function MissionVisionDirectors() {
     </div>
     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-center">
       <div className="text-left md:text-center">
-        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight mb-2">
+        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight uppercase mb-2">
           Visi
         </h3>
         <p>
@@ -58,7 +58,7 @@ export function MissionVisionDirectors() {
       </div>
       <div className="hidden md:block w-px h-24 bg-gray-300" />
       <div className="text-left md:text-center">
-        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight mb-2">
+        <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight uppercase mb-2">
           Misi
         </h3>
         <p>
