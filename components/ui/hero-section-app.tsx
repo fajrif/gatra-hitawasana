@@ -132,7 +132,7 @@ const HeroSectionApp = React.forwardRef<HTMLDivElement, HeroSectionAppProps>(
                                     alt="Application preview"
                                     width={1200}
                                     height={800}
-                                    className="w-full h-auto shadow-lg rounded-lg border border-gray-800"
+                                    className="w-full h-auto shadow-lg rounded-lg border border-[rgba(1,120,172,0.4)]"
                                     priority={false}
                                 />
                             </div>
