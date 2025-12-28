@@ -140,7 +140,7 @@ export function AnimatedHeroContent({
             {/* Title */}
             <h1
                 ref={headerRef}
-                className="max-w-2xl text-left text-5xl font-extralight uppercase leading-[1.05] tracking-tight text-white sm:text-6xl md:text-6xl"
+                className="max-w-2xl text-left text-3xl font-extralight uppercase leading-[1.05] tracking-tight text-white sm:text-6xl md:text-6xl"
             >
                 {title}
             </h1>

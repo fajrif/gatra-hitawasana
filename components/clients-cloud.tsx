@@ -18,7 +18,7 @@ export function ClientsCloud({ title = true }: ClientsCloudProps) {
     return (
         <>
           {title && 
-            <h2 className="mb-5 text-center font-medium text-xl tracking-tight md:text-2xl">
+            <h2 className="mb-5 text-center font-medium text-lg tracking-tight md:text-2xl">
                 <span className="text-muted-foreground">Kami Bermitra Dengan Beragam Industri.</span>
                 <br />
                 <span className="font-semibold">Dipercaya Oleh Berbagai Institusi di Tanah Air.</span>

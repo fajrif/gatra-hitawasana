@@ -29,9 +29,9 @@ export function InfrastructureSection() {
 
     return (
         <>
-            <div className="grid lg:grid-cols-2 gap-12 items-start py-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-start py-4 md:py-12">
                 {/* Lottie Animation */}
-                <div className="sticky top-24 space-y-4 text-white">
+                <div className="md:sticky md:top-24 space-y-4 text-white">
                     <div className="flex items-center justify-center">
                         <LottiePlayer
                             animationPath="/lottie/networking.json"
@@ -44,12 +44,12 @@ export function InfrastructureSection() {
 
                 {/* Scope List */}
                 <div className="space-y-6 pl-0 md:pl-10">
-                    <h2 className="text-xl md:text-2xl tracking-tighter lg:max-w-xl font-light uppercase text-left mb-3">Scope</h2>
+                    <h2 className="text-xl md:text-2xl tracking-tighter lg:max-w-xl font-medium uppercase text-left mb-3">Scope</h2>
                     <div className="space-y-6">
                         {infraScope.map((item, idx) => (
                             <div key={idx} className="mb-8">
-                                <h3 className="text-lg font-regular text-white mb-2">{item.title}:</h3>
-                                <p className="text-white/80 font-light w-90 mb-4">{item.description}</p>
+                                <h3 className="text-lg font-regular text-white uppercase mb-2">{item.title}:</h3>
+                                <p className="text-white/80 font-light w-80 md:w-90 mb-4">{item.description}</p>
                                 <ul className="space-y-3">
                                     {item.features.map((feature, index) => (
                                         <li key={index} className="flex items-start gap-3">

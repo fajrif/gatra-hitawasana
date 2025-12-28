@@ -4,7 +4,7 @@ import { ShinyButton } from '@/components/ui/shiny-button'
 export function ClientPrimary() {
     return (
         <>
-            <div className="flex flex-col-reverse lg:flex-row gap-10 lg:items-center">
+            <div className="flex flex-col lg:flex-row gap-10 lg:items-center">
                 <div className="bg-muted rounded-md w-full h-full flex-1">
                     <img
                         src="/images/pln-icon-plus-building.png"
@@ -12,16 +12,16 @@ export function ClientPrimary() {
                         className="w-full h-full grayscale hover:grayscale-50 transition-all duration-300 cursor-pointer object-cover rounded-md"
                     />
                 </div>
-                <div className="flex gap-4 pl-0 lg:pl-20 flex-col flex-1">
-                    <div className="flex gap-2 flex-col">
+                <div className="flex flex-col flex-1 gap-4 pl-0 lg:pl-20">
+                    <div className="flex gap-2 flex-col items-center md:items-start text-center md:text-left">
                         <BackedByICONPlus />
-                        <h2 className="text-xl md:text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-extralight uppercase text-left mb-3">
+                        <h2 className="text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-extralight uppercase mb-3">
                             Mitra Utama Kami
                         </h2>
-                        <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-2">
+                        <p className="text-muted-foreground leading-relaxed tracking-tight mb-2">
                             Sejak mulai berdiri 2003 sebagai badan hukum. PT. Gatra Hita Wasana telah bermitra dan melakukan kerjasama dengan banyak mitra baik perusahaan swasta dan perusahaan dalam negeri salah satu nya adalah PT. Indonesia Comnets Plus sebagai salah satu perusahaan pengembang teknologi informasi terkemuka di Indonesia.
                         </p>
-                        <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-4">
+                        <p className="text-muted-foreground leading-relaxed tracking-tight mb-4">
                             PLN Icon Plus merupakan Entitas Anak PT PLN (Persero) yang berfokus di bidang industri jaringan telekomunikasi serta penyedia Solusi Teknologi Informasi. Selama lebih dari dua dekade telah mengembangkan dan melayani berbagai macam kebutuhan serta pelayanan untuk induk perusahaan ( PT. PLN Persero ) ataupun untuk berbagai macam perusahaan lainnya.
                         </p>
                         <div>

@@ -23,7 +23,6 @@ export function ServicesSection({ hideTitle = false, hideAllButton = false, card
   return (
     <div className="w-full px-5 flex flex-col justify-center items-center overflow-visible bg-transparent">
       <div className="w-full py-8 md:py-16 relative flex flex-col justify-start items-start gap-6">
-        <div className="w-[547px] h-[938px] absolute top-[614px] left-[80px] origin-top-left rotate-[-33.39deg] bg-primary/10 blur-[130px] z-0 pointer-events-none" />
         {!hideTitle && (
           <div className="self-stretch pb-8 md:pb-14 flex flex-col justify-center items-center gap-2 z-10">
             <div className="flex flex-col justify-start items-center gap-4">

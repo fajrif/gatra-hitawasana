@@ -4,23 +4,23 @@ import { Linkedin, Mail, Phone } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="relative bg-sk-sea-shade text-white overflow-hidden">
+    <footer className="relative font-mono bg-sk-sea-shade text-white overflow-hidden">
       {/* Background Wave SVG */}
       <Image
         src="/images/footer_wave_desktop.svg"
         alt="Footer background"
         width={2000}
         height={686}
-        className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[686px] w-[2000px] max-w-none -translate-x-1/2 select-none md:block"
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[686px] w-[2000px] max-w-none -translate-x-1/2 select-none"
         priority={false}
       />
 
       {/* Content */}
-      <div className="flex flex-col justify-between relative container min-h-[620px] mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:px-8 py-15 border-t border-sk-white-20">
+      <div className="flex flex-col justify-between relative container min-h-[500px] md:min-h-[620px] mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-10 lg:px-8 md:py-15 border-t border-sk-white-20 text-center md:text-left">
           <div>
             {/* Logo Image */}
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col items-center md:items-start">
               <Image
                 src="/images/logo-white.png"
                 alt="PT Gatra Hita Wasana"
@@ -29,7 +29,7 @@ export function Footer() {
                 className="h-12 w-auto"
               />
             </div>
-            <p className="text-gray-300">
+            <p className="hidden md:block font-host-grotesk text-gray-300">
               Mitra terpercaya Anda dalam Solusi Digital dan Inovasi.
             </p>
           </div>
@@ -98,7 +98,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold mb-4 text-white uppercase">Kontak Kami</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex flex-col items-center md:items-start">
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <Mail size={16} />
                 <span>admin@gatrahitawasana.com</span>
@@ -116,9 +116,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between border-t border-sk-white-20 py-6 text-sm text-white">
-          <p>&copy; 2025 PT Gatra Hita Wasana. All rights reserved.</p>
-          <p>PT Gatra Hita Wasana.</p>
+        <div className="flex justify-between border-t border-sk-white-20 py-6 text-xs md:text-sm text-white">
+          <p className="text-center md:text-left">&copy; 2025 PT Gatra Hita Wasana. All rights reserved.</p>
+          <p className="hidden md:block">PT Gatra Hita Wasana.</p>
         </div>
       </div>
     </footer>

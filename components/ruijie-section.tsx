@@ -28,8 +28,8 @@ const ruijieSlides: SlideData[] = [
 
 export function RuijieSection() {
     return (
-        <>
-            <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-12">
+        <section id="ruijie-section">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-12">
                 <div className="bg-muted rounded-md w-full flex-1">
                     <ImageSlider slides={ruijieSlides} className="aspect-video" />
                 </div>
@@ -43,7 +43,7 @@ export function RuijieSection() {
                             Kami telah menjalin kemitraan dengan Ruijie Networks — vendor global terdepan dalam solusi jaringan dan infrastruktur IT. Dengan dukungan teknologi andal dari Ruijie, kami mampu menyediakan solusi jaringan yang optimal, aman, dan mudah diintegrasikan untuk enterprise, data center, dan lingkungan infrastruktur modern.
                         </p>
                         <p className="text-muted-foreground leading-relaxed tracking-tight text-left mb-4">
-                            Ruijie Networks (瑞捷网络) adalah perusahaan teknologi asal Tiongkok yang bergerak di bidang solusi jaringan dan infrastruktur TI kelas enterprise. Sejak didirikan pada tahun 2000, Ruijie telah berkembang menjadi salah satu vendor jaringan terkemuka di Asia dan global, dengan produk yang digunakan oleh organisasi besar, kampus universitas, instansi publik, dan perusahaan enterprise di berbagai industri.
+                            Ruijie Networks (瑞捷网络) adalah perusahaan teknologi asal Tiongkok yang bergerak di bidang solusi jaringan dan infrastruktur IT kelas enterprise. Sejak didirikan pada tahun 2000, Ruijie telah berkembang menjadi salah satu vendor jaringan terkemuka di Asia dan global, dengan produk yang digunakan oleh organisasi besar, kampus universitas, instansi publik, dan perusahaan enterprise di berbagai industri.
                         </p>
                         <div>
                             <ShinyButton
@@ -61,6 +61,6 @@ export function RuijieSection() {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }

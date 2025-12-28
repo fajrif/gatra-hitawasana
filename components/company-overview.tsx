@@ -6,7 +6,7 @@ export function CompanyOverview() {
     <>
       <div className="grid lg:grid-cols-2 gap-12 items-center mb-10">
         <div className="space-y-6">
-          <h2 className="text-3xl md:text-4xl font-extralight text-white tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extralight text-white tracking-tight uppercase">
             Mitra Teknologi Terpercaya
           </h2>
           <p className="text-white/70 font-light leading-relaxed">

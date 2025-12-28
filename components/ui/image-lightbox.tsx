@@ -65,6 +65,11 @@ export function ImageLightbox({
         <DialogPrimitive.Content
           className="fixed inset-0 z-50 flex items-center justify-center outline-none"
         >
+          {/* Visually hidden title for accessibility */}
+          <DialogPrimitive.Title className="sr-only">
+            {currentImage.alt || `Image ${currentIndex + 1} of ${images.length}`}
+          </DialogPrimitive.Title>
+
           {/* Close button */}
           <DialogPrimitive.Close
             className="absolute top-4 right-4 z-10 rounded-full bg-black/50 p-2 text-white/80 transition-colors hover:bg-black/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/20"

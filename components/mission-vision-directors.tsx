@@ -26,14 +26,14 @@ export function MissionVisionDirectors() {
       </div>
       {/* Quote */}
       <div className="space-y-6">
-        <blockquote className="relative">
+        <blockquote className="relative pl-4 md:pl-0 border-l-2 md:border-l-0 border-[rgba(237,30,38,1)]">
           <p className="text-xl font-light leading-relaxed">
             &ldquo;Kami percaya bahwa teknologi adalah kunci untuk membuka potensi bisnis yang tak terbatas.
             Dengan dedikasi dan inovasi, kami berkomitmen untuk menjadi mitra terpercaya dalam
             perjalanan transformasi digital Anda.&rdquo;
           </p>
         </blockquote>
-        <div className="pt-4 border-t border-white/20">
+        <div className="pt-4 pl-4 md:pl-0">
           <p className="text-xl font-medium">Ganef Setyantoro</p>
           <p className="text-sm text-gray-500">Direktur Utama</p>
         </div>
@@ -47,7 +47,7 @@ export function MissionVisionDirectors() {
       </p>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 items-center">
-      <div className="text-left md:text-center">
+      <div className="text-center">
         <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight uppercase mb-2">
           Visi
         </h3>
@@ -57,7 +57,7 @@ export function MissionVisionDirectors() {
         </p>
       </div>
       <div className="hidden md:block w-px h-24 bg-gray-300" />
-      <div className="text-left md:text-center">
+      <div className="text-center">
         <h3 className="text-2xl md:text-3xl lg:text-3xl font-bold text-gray-900 leading-tight uppercase mb-2">
           Misi
         </h3>

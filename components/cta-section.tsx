@@ -19,11 +19,11 @@ export function CTASection() {
                             borderGlow: "rgba(255, 255, 255, 1)" // Pink border glow #ce94e7
                         }}
                     >
-                        <div className="text-center space-y-6 flex flex-col items-center justify-center h-full py-8">
-                            <h2 className="text-3xl md:text-3xl font-medium text-white mb-3">
+                        <div className="text-center space-y-6 flex flex-col items-center justify-center h-full p-4 md:p-8">
+                            <h2 className="text-2xl md:text-3xl font-medium text-white mb-3">
                                 Siap Mendukung Transformasi Digital Perusahaan Anda
                             </h2>
-                            <p className="text-lg mx-auto text-muted-foreground">
+                            <p className="text-base md:text-lg mx-auto text-muted-foreground mb-4">
                                 Diskusikan kebutuhan IT Anda bersama tim profesional kami untuk merancang solusi yang sesuai dengan standar dan kebutuhan organisasi Anda.
                             </p>
                             <div className="pt-4">
