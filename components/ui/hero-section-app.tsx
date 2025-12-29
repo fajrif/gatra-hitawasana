@@ -108,7 +108,7 @@ const HeroSectionApp = React.forwardRef<HTMLDivElement, HeroSectionAppProps>(
                                     {subtitle.gradient}
                                 </span>
                             </h2>
-                            <p className="max-w-2xl mx-auto text-gray-300">
+                            <p className="max-w-2xl mx-auto text-sm md:text-base text-gray-300 leading-relaxed">
                                 {description}
                             </p>
                             <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
@@ -126,7 +126,7 @@ const HeroSectionApp = React.forwardRef<HTMLDivElement, HeroSectionAppProps>(
                             </div>
                         </div>
                         {bottomImage && (
-                            <div className="mt-32 mx-10 relative z-10">
+                            <div className="mt-8 md:mt-32 md:mx-10 relative z-10">
                                 <Image
                                     src="/images/sample-app-dark-id.png"
                                     alt="Application preview"

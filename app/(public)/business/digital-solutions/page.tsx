@@ -38,7 +38,7 @@ export default function DigitalSolutionsPage() {
       />
 
       {/* Digital Solutions Overview */}
-      <section className="bg-black py-20 px-4">
+      <section className="bg-black py-10 md:py-20 px-4">
         <AnimatedDiv id="digital-solutions-overview" className="container mx-auto max-w-6xl" delay={0.1}>
           <DigitalSolutionOverview />
         </AnimatedDiv>
@@ -47,7 +47,7 @@ export default function DigitalSolutionsPage() {
       {/* Application Architecture */}
       <section className="bg-sk-gold">
         <Features
-          title="Arsitektur Anda menentukan ketahanan Sistem Anda"
+          title="Arsitektur menentukan ketahanan Sistem Anda"
           subTitle="Terdapat banyak pilihan model arsitektur"
           primaryColor="sky-500"
           progressGradientLight="bg-gradient-to-r from-sky-400 to-sky-500"

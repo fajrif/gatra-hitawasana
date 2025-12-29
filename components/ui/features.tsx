@@ -84,7 +84,7 @@ export function Features({
                                 {subTitle}
                             </p>
                         )}
-                        <h2 className="text-4xl md:text-5xl font-extralight uppercase text-black mt-4 mb-6">
+                        <h2 className="text-2xl md:text-4xl font-medium uppercase text-black mt-4 mb-6">
                             {title}
                         </h2>
                     </div>
@@ -93,7 +93,7 @@ export function Features({
                     {/* Left Side - Features with Progress Lines */}
                     <div
                         ref={containerRef}
-                        className="lg:space-y-8 md:space-x-6 lg:space-x-0 overflow-x-auto overflow-hidden no-scrollbar lg:overflow-visible flex lg:flex lg:flex-col flex-row order-1 pb-4 scroll-smooth"
+                        className="lg:space-y-8 md:space-x-6 lg:space-x-0 overflow-x-auto overflow-hidden no-scrollbar lg:overflow-visible flex lg:flex lg:flex-col flex-row order-2 lg:order-1 pb-4 scroll-smooth"
                     >
                         {features.map((feature, index) => {
                             const Icon = feature.icon;
@@ -105,15 +105,15 @@ export function Features({
                                     ref={(el) => {
                                         featureRefs.current[index] = el;
                                     }}
-                                    className="relative cursor-pointer flex-shrink-0"
+                                    className="relative cursor-pointer flex-shrink-0 w-full"
                                     onClick={() => handleFeatureClick(index)}
                                 >
                                     {/* Feature Content */}
                                     <div
                                         className={`
-                    flex lg:flex-row flex-col items-start space-x-4 p-3 max-w-sm md:max-w-sm lg:max-w-2xl transition-all duration-300
+                    flex lg:flex-row flex-col items-start lg:space-x-4 space-x-0 p-4 md:p-6 w-full lg:max-w-2xl transition-all duration-300
                     ${isActive
-                                                ? " bg-white/95 md:shadow-xl rounded-xl md:border border-primary/20 "
+                                                ? " bg-white/95 shadow-lg md:shadow-xl rounded-xl border border-primary/20 "
                                                 : " "
                                             }
                     `}
@@ -136,10 +136,10 @@ export function Features({
                                         )}
 
                                         {/* Content */}
-                                        <div className="flex-1">
+                                        <div className="flex-1 w-full">
                                             <h3
                                                 className={`
-                        text-lg md:mt-4 lg:mt-0 font-semibold mb-2 transition-colors duration-300
+                        text-base md:text-lg lg:mt-0 font-semibold mb-2 transition-colors duration-300
                         ${isActive
                                                         ? "text-black"
                                                         : "text-black/70"
@@ -177,7 +177,7 @@ export function Features({
                     </div>
 
                     {/* Right Side - Image Display */}
-                    <div className="relative order-1 max-w-lg mx-auto lg:order-2">
+                    <div className="relative order-1 lg:order-2 w-full">
                         <motion.div
                             key={currentFeature}
                             initial={{ opacity: 0, y: 50 }}
@@ -187,7 +187,7 @@ export function Features({
                             className="relative"
                         >
                             {features[currentFeature].diagram ? (
-                                <div className="rounded-lg shadow-xl bg-black p-6 overflow-hidden">
+                                <div className="rounded-lg shadow-xl bg-black p-3 sm:p-4 md:p-6 overflow-hidden">
                                     {features[currentFeature].diagram}
                                 </div>
                             ) : features[currentFeature].image ? (

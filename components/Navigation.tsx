@@ -46,7 +46,7 @@ export function Navigation() {
               alt="PT Gatra Hita Wasana"
               width={180}
               height={50}
-              className="h-12 w-auto transition-opacity duration-300"
+              className="h-10 md:h-12 w-auto transition-opacity duration-300"
             />
           </Link>
 
