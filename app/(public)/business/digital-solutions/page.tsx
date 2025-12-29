@@ -4,8 +4,7 @@ import { HeroSectionApp } from "@/components/ui/hero-section-app"
 import { AnimatedDiv } from "@/components/animated-div"
 import { DigitalSolutionOverview } from "@/components/digital-solutions-overview"
 import { Features } from "@/components/ui/features"
-import { Globe, Smartphone, Database, Cloud, Code, Layers, Cpu, LineChart, Building2, Server, Network } from "lucide-react"
-import Link from "next/link"
+import { Building2, Server, Network } from "lucide-react"
 
 const architectureFeatures = [
   {
@@ -39,7 +38,7 @@ export default function DigitalSolutionsPage() {
         title="Solusi Digital & Inovasi"
         subtitle={{
           regular: "Wujudkan visi digital Anda dengan ",
-          gradient: "pengembangan perangkat lunak kustom"
+          gradient: "pengembangan kustom perangkat lunak"
         }}
         description="Kami menyediakan solusi digital lengkap untuk transformasi bisnis Anda, dari pengembangan aplikasi web dan mobile hingga integrasi sistem enterprise dengan teknologi terdepan."
         ctaText="Konsultasi Gratis"

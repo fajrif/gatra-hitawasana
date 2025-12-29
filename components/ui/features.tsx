@@ -11,7 +11,8 @@ interface FeaturesProps {
         icon: React.ElementType;
         title: string;
         description: string;
-        image: string;
+        image?: string;
+        diagram?: React.ReactNode;
     }[];
     primaryColor?: string;
     progressGradientLight?: string;
@@ -174,13 +175,19 @@ export function Features({
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             className="relative"
                         >
-                            <Image
-                                className="rounded-2xl border border-primary/20 shadow-xl"
-                                src={features[currentFeature].image}
-                                alt={features[currentFeature].title}
-                                width={600}
-                                height={400}
-                            />
+                            {features[currentFeature].diagram ? (
+                                <div className="rounded-2xl border border-primary/20 shadow-xl bg-white overflow-hidden">
+                                    {features[currentFeature].diagram}
+                                </div>
+                            ) : features[currentFeature].image ? (
+                                <Image
+                                    className="rounded-2xl border border-primary/20 shadow-xl"
+                                    src={features[currentFeature].image}
+                                    alt={features[currentFeature].title}
+                                    width={600}
+                                    height={400}
+                                />
+                            ) : null}
                         </motion.div>
                     </div>
                 </div>

@@ -128,7 +128,7 @@ const HeroSectionApp = React.forwardRef<HTMLDivElement, HeroSectionAppProps>(
                         {bottomImage && (
                             <div className="mt-32 mx-10 relative z-10">
                                 <Image
-                                    src="/images/sample-app-dark.png"
+                                    src="/images/sample-app-dark-id.png"
                                     alt="Application preview"
                                     width={1200}
                                     height={800}
