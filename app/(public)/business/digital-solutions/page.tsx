@@ -5,6 +5,7 @@ import { AnimatedDiv } from "@/components/animated-div"
 import { DigitalSolutionOverview } from "@/components/digital-solutions-overview"
 import { Features } from "@/components/ui/features"
 import SmallScaleArchitecture from "@/components/architectures/small-scale"
+import { StatsSection } from "@/components/stats-section"
 
 const architectureFeatures = [
   {
@@ -45,7 +46,7 @@ export default function DigitalSolutionsPage() {
       </section>
 
       {/* Application Architecture */}
-      <section className="bg-sk-gold">
+      <section className="bg-black">
         <Features
           title="Arsitektur menentukan ketahanan Sistem Anda"
           subTitle="Terdapat banyak pilihan model arsitektur"
@@ -56,6 +57,7 @@ export default function DigitalSolutionsPage() {
         />
       </section>
 
+      <StatsSection />
     </div>
   )
 }

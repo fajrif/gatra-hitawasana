@@ -80,11 +80,11 @@ export function Features({
                 {title && (
                     <div className="text-center max-w-3xl mx-auto mb-12">
                         {subTitle && (
-                            <p className="text-sm md:text-base text-muted font-medium uppercase">
+                            <p className="text-sm md:text-base text-muted-foreground font-medium uppercase">
                                 {subTitle}
                             </p>
                         )}
-                        <h2 className="text-2xl md:text-4xl font-medium uppercase text-black mt-4 mb-6">
+                        <h2 className="text-2xl md:text-4xl font-medium uppercase text-white mt-4 mb-6">
                             {title}
                         </h2>
                     </div>
@@ -113,7 +113,7 @@ export function Features({
                                         className={`
                     flex lg:flex-row flex-col items-start lg:space-x-4 space-x-0 p-4 md:p-6 w-full lg:max-w-2xl transition-all duration-300
                     ${isActive
-                                                ? " bg-white/95 shadow-lg md:shadow-xl rounded-xl border border-primary/20 "
+                                                ? " bg-sk-gold shadow-lg md:shadow-xl rounded-lg border border-primary/20 "
                                                 : " "
                                             }
                     `}
