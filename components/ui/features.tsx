@@ -8,12 +8,14 @@ import Image from "next/image";
 interface FeaturesProps {
     features: {
         id: number;
-        icon: React.ElementType;
+        icon?: React.ElementType;
         title: string;
         description: string;
         image?: string;
         diagram?: React.ReactNode;
     }[];
+    title?: string;
+    subTitle?: string;
     primaryColor?: string;
     progressGradientLight?: string;
     progressGradientDark?: string;
@@ -21,6 +23,8 @@ interface FeaturesProps {
 
 export function Features({
     features,
+    title,
+    subTitle,
     primaryColor,
     progressGradientLight,
     progressGradientDark,
@@ -73,15 +77,18 @@ export function Features({
         <div className="min-h-screen py-16 px-4">
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
-                <div className="text-center max-w-3xl mx-auto mb-12">
-                    <p className="text-sm md:text-base text-muted font-medium uppercase">
-                        Terdapat banyak pilihan model arsitektur
-                    </p>
-                    <h2 className="text-4xl md:text-5xl font-extralight uppercase text-black mt-4 mb-6">
-                        Arsitektur Anda menentukan ketahanan Sistem Anda
-                    </h2>
-                </div>
-
+                {title && (
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        {subTitle && (
+                            <p className="text-sm md:text-base text-muted font-medium uppercase">
+                                {subTitle}
+                            </p>
+                        )}
+                        <h2 className="text-4xl md:text-5xl font-extralight uppercase text-black mt-4 mb-6">
+                            {title}
+                        </h2>
+                    </div>
+                )}
                 <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 items-center">
                     {/* Left Side - Features with Progress Lines */}
                     <div
@@ -109,20 +116,24 @@ export function Features({
                                                 ? " bg-white/95 md:shadow-xl rounded-xl md:border border-primary/20 "
                                                 : " "
                                             }
-                  `}
+                    `}
                                     >
                                         {/* Icon */}
-                                        <div
-                                            className={`
+                                        {Icon && (
+                                            <div
+                                                className={`
                       p-3 hidden md:block rounded-lg transition-all duration-300
                       ${isActive
-                                                    ? "bg-primary text-white"
-                                                    : "bg-primary/10 text-primary"
-                                                }
+                                                        ? "bg-primary text-white"
+                                                        : "bg-primary/10 text-primary"
+                                                    }
                     `}
-                                        >
-                                            <Icon size={24} />
-                                        </div>
+                                            >
+                                                <Icon size={24}
+                                                />
+                                            </div>
+
+                                        )}
 
                                         {/* Content */}
                                         <div className="flex-1">
@@ -176,7 +187,7 @@ export function Features({
                             className="relative"
                         >
                             {features[currentFeature].diagram ? (
-                                <div className="rounded-2xl border border-primary/20 shadow-xl bg-white overflow-hidden">
+                                <div className="rounded-lg shadow-xl bg-black p-6 overflow-hidden">
                                     {features[currentFeature].diagram}
                                 </div>
                             ) : features[currentFeature].image ? (
