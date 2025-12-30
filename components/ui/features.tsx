@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 interface FeaturesProps {
@@ -16,8 +16,6 @@ interface FeaturesProps {
     title?: string;
     subTitle?: string;
     primaryColor?: string;
-    progressGradientLight?: string;
-    progressGradientDark?: string;
 }
 
 export function Features({
@@ -25,30 +23,10 @@ export function Features({
     title,
     subTitle,
     primaryColor,
-    progressGradientLight,
-    progressGradientDark,
 }: FeaturesProps) {
     const [currentFeature, setCurrentFeature] = useState(0);
-    const [progress, setProgress] = useState(0);
     const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
-        }, 100);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        if (progress >= 100) {
-            setTimeout(() => {
-                setCurrentFeature((prev) => (prev + 1) % features.length);
-                setProgress(0);
-            }, 200);
-        }
-    }, [progress, features.length]);
 
     useEffect(() => {
         const activeFeatureElement = featureRefs.current[currentFeature];
@@ -69,7 +47,6 @@ export function Features({
 
     const handleFeatureClick = (index: number) => {
         setCurrentFeature(index);
-        setProgress(0);
     };
 
     return (
@@ -88,11 +65,11 @@ export function Features({
                         </h2>
                     </div>
                 )}
-                <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 items-center">
-                    {/* Left Side - Features with Progress Lines */}
+                <div className="grid lg:grid-cols-2 lg:gap-16 gap-8 items-start">
+                    {/* Left Side - Features List */}
                     <div
                         ref={containerRef}
-                        className="lg:space-y-8 md:space-x-6 lg:space-x-0 overflow-x-auto overflow-hidden no-scrollbar lg:overflow-visible flex lg:flex lg:flex-col flex-row order-2 lg:order-1 pb-4 scroll-smooth"
+                        className="lg:space-y-4 md:space-x-6 lg:space-x-0 overflow-x-auto overflow-hidden no-scrollbar lg:overflow-visible flex lg:flex lg:flex-col flex-row order-2 lg:order-1 py-8 scroll-smooth"
                     >
                         {features.map((feature, index) => {
                             const Icon = feature.icon;
@@ -110,64 +87,52 @@ export function Features({
                                     {/* Feature Content */}
                                     <div
                                         className={`
-                    flex lg:flex-row flex-col items-start lg:space-x-4 space-x-0 p-4 md:p-6 w-full lg:max-w-2xl transition-all duration-300
-                    ${isActive
-                                                ? " bg-sk-gold shadow-lg md:shadow-xl rounded-lg border border-primary/20 "
-                                                : " "
+                                            flex lg:flex-row flex-col items-start lg:space-x-4 space-x-0 p-4 md:p-6 w-full lg:max-w-2xl transition-all duration-300 rounded-lg border
+                                            ${isActive
+                                                ? "bg-sk-gold border-primary/20 shadow-lg"
+                                                : "bg-white/5 border-white/10 hover:bg-white/8 hover:border-white/20"
                                             }
-                    `}
+                                        `}
                                     >
                                         {/* Icon */}
                                         {Icon && (
                                             <div
                                                 className={`
-                      p-3 hidden md:block rounded-lg transition-all duration-300
-                      ${isActive
+                                                    p-3 hidden md:block rounded-lg transition-all duration-300
+                                                    ${isActive
                                                         ? "bg-primary text-white"
-                                                        : "bg-primary/10 text-primary"
+                                                        : "bg-white/10 text-white/50"
                                                     }
-                    `}
+                                                `}
                                             >
-                                                <Icon size={24}
-                                                />
+                                                <Icon size={24} />
                                             </div>
-
                                         )}
 
                                         {/* Content */}
                                         <div className="flex-1 w-full">
                                             <h3
                                                 className={`
-                        text-base md:text-lg lg:mt-0 font-semibold mb-2 transition-colors duration-300
-                        ${isActive
+                                                    text-base md:text-lg lg:mt-0 font-semibold mb-2 transition-colors duration-300
+                                                    ${isActive
                                                         ? "text-black"
-                                                        : "text-black/70"
+                                                        : "text-white/60"
                                                     }
-                      `}
+                                                `}
                                             >
                                                 {feature.title}
                                             </h3>
                                             <p
                                                 className={`
-                        transition-colors duration-300 text-sm
-                        ${isActive
+                                                    transition-colors duration-300 text-sm
+                                                    ${isActive
                                                         ? "text-black/70"
-                                                        : "text-black/50"
+                                                        : "text-white/40"
                                                     }
-                      `}
+                                                `}
                                             >
                                                 {feature.description}
                                             </p>
-                                            <div className="mt-4 bg-black/10 rounded-sm h-1 overflow-hidden">
-                                                {isActive && (
-                                                    <motion.div
-                                                        className="h-full bg-primary"
-                                                        initial={{ width: 0 }}
-                                                        animate={{ width: `${progress}%` }}
-                                                        transition={{ duration: 0.1, ease: "linear" }}
-                                                    />
-                                                )}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -177,28 +142,30 @@ export function Features({
 
                     {/* Right Side - Image Display */}
                     <div className="relative order-1 lg:order-2 w-full">
-                        <motion.div
-                            key={currentFeature}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -50 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            className="relative"
-                        >
-                            {features[currentFeature].diagram ? (
-                                <div className="rounded-lg shadow-xl bg-black p-3 sm:p-4 md:p-6 overflow-hidden">
-                                    {features[currentFeature].diagram}
-                                </div>
-                            ) : features[currentFeature].image ? (
-                                <Image
-                                    className="rounded-2xl border border-primary/20 shadow-xl"
-                                    src={features[currentFeature].image}
-                                    alt={features[currentFeature].title}
-                                    width={600}
-                                    height={400}
-                                />
-                            ) : null}
-                        </motion.div>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentFeature}
+                                initial={{ opacity: 0, scale: 0.98 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.98 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                className="relative"
+                            >
+                                {features[currentFeature].diagram ? (
+                                    <div className="rounded-lg shadow-xl bg-black p-3 sm:p-4 md:p-6 overflow-hidden">
+                                        {features[currentFeature].diagram}
+                                    </div>
+                                ) : features[currentFeature].image ? (
+                                    <Image
+                                        className="rounded-2xl border border-primary/20 shadow-xl"
+                                        src={features[currentFeature].image}
+                                        alt={features[currentFeature].title}
+                                        width={600}
+                                        height={400}
+                                    />
+                                ) : null}
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>

@@ -65,19 +65,21 @@ export function AnimationPath({
     const getTransform = () => {
         const transforms: string[] = [];
         if (direction === 'up') transforms.push('scaleY(-1)');
-        if (flip) transforms.push('scaleX(-1)');
+        if (flip) transforms.push('scaleY(-1)');
         return transforms.length > 0 ? transforms.join(' ') : undefined;
     };
 
     const transform = getTransform();
+    // Reverse animation when flipped or direction is up
+    const shouldReverse = flip || direction === 'up';
 
     return (
         <>
             <style dangerouslySetInnerHTML={{
                 __html: `
                     @keyframes beam-animation-${uniqueId.replace(/:/g, '')} {
-                        0% { offset-distance: 0%; }
-                        100% { offset-distance: 100%; }
+                        0% { offset-distance: ${shouldReverse ? '100%' : '0%'}; }
+                        100% { offset-distance: ${shouldReverse ? '0%' : '100%'}; }
                     }
                 `
             }} />

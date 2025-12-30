@@ -5,6 +5,7 @@ import { AnimatedDiv } from "@/components/ui/animated-div"
 import { DigitalSolutionOverview } from "@/components/digital-solutions-overview"
 import { Features } from "@/components/ui/features"
 import SmallScaleArchitecture from "@/components/architectures/small-scale"
+import MediumComplexityArchitecture from "@/components/architectures/medium-complexity"
 import { StatsSection } from "@/components/stats-section"
 
 const architectureFeatures = [
@@ -13,6 +14,12 @@ const architectureFeatures = [
     title: "Small-Scale Architecture",
     description: "Arsitektur monolitik yang ideal untuk startup dan bisnis kecil. Deployment sederhana, biaya efektif, dan mudah dikelola dengan satu database terpusat.",
     diagram: <SmallScaleArchitecture />,
+  },
+  {
+    id: 2,
+    title: "Medium-Complexity Architecture",
+    description: "Arsitektur modular untuk perusahaan berkembang. Integrasi API yang kuat, skalabilitas horizontal, dan pemisahan layanan untuk performa optimal. Ideal untuk SaaS, Marketplace, Traffic menengah-besar",
+    diagram: <MediumComplexityArchitecture />,
   },
 ];
 
@@ -50,9 +57,6 @@ export default function DigitalSolutionsPage() {
         <Features
           title="Arsitektur menentukan ketahanan Sistem Anda"
           subTitle="Terdapat banyak pilihan model arsitektur"
-          primaryColor="sky-500"
-          progressGradientLight="bg-gradient-to-r from-sky-400 to-sky-500"
-          progressGradientDark="bg-gradient-to-r from-sky-300 to-sky-400"
           features={architectureFeatures}
         />
       </section>
