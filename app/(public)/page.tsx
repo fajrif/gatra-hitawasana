@@ -2,7 +2,7 @@ import { NeuralNetworkBackground } from "@/components/ui/neural-network-backgrou
 import { AnimatedHeroContent } from "@/components/ui/animated-hero-content"
 import { ClientsCloud } from "@/components/clients-cloud"
 import { ClientPrimary } from "@/components/client-primary"
-import { AnimatedDiv } from "@/components/animated-div"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { ServicesSection } from "@/components/services-section"
 import { StatsSection } from "@/components/stats-section"
 import TelcoInfraServices from "@/components/services/telco-infra"

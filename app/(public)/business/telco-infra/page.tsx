@@ -1,5 +1,5 @@
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Shield, ShieldCheck, Zap, PlugZap } from "lucide-react"
 import VendorLogo from "@/components/vendor-logo"
 import { RuijieSection } from "@/components/ruijie-section"

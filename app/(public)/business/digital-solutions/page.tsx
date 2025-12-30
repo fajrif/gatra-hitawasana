@@ -1,7 +1,7 @@
 "use client"
 
 import { HeroSectionApp } from "@/components/ui/hero-section-app"
-import { AnimatedDiv } from "@/components/animated-div"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { DigitalSolutionOverview } from "@/components/digital-solutions-overview"
 import { Features } from "@/components/ui/features"
 import SmallScaleArchitecture from "@/components/architectures/small-scale"

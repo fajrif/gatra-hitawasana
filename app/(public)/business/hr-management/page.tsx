@@ -1,5 +1,5 @@
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Users, Code2, Network, Wrench, GraduationCap, Award, Clock, CheckCircle } from "lucide-react"
 import Link from "next/link"
 

@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Mail, Phone, MapPin, Linkedin, Clock, Send } from "lucide-react"
 import { useState } from "react"
 

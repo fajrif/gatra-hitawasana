@@ -1,5 +1,5 @@
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { CompanyOverview } from "@/components/company-overview"
 import { MissionVisionDirectors } from "@/components/mission-vision-directors"
 import { ShowCaseGallery } from "@/components/show-case-gallery"

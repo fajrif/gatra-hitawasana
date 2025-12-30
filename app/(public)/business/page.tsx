@@ -1,5 +1,5 @@
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { ServicesSection } from "@/components/services-section"
 import { StatsSection } from "@/components/stats-section"
 import TelcoInfraServices from "@/components/services/telco-infra"

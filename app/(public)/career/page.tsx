@@ -1,5 +1,5 @@
-import { PageBanner } from "@/components/page-banner"
-import { AnimatedDiv } from "@/components/animated-div"
+import { PageBanner } from "@/components/ui/page-banner"
+import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Briefcase, MapPin, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
