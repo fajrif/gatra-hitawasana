@@ -1,8 +1,7 @@
 import React from 'react';
 import { Monitor, Smartphone, Server, Database } from 'lucide-react';
 import { KotlinLogo, SwiftLogo, ViteLogo, ReactLogo, VueLogo, NodejsLogo, GolangLogo, RailsLogo, PostgreSQLLogo, MariaDBLogo, MySQLLogo } from '@/components/ui/custom-icons';
-import { AnimationPathTopBottom } from './animation-path-top-bottom';
-import { AnimationPathTopBottomTwo } from './animation-path-top-bottom-two';
+import { AnimationPath } from '@/components/ui/animation-path';
 import AnimatedGlowingBox from '@/components/ui/animated-glowing-box';
 
 export default function SmallScaleArchitecture() {
@@ -51,7 +50,7 @@ export default function SmallScaleArchitecture() {
                     </div>
                 </AnimatedGlowingBox>
             </div>
-            <AnimationPathTopBottom />
+            <AnimationPath lineCount={4} />
             {/* Backend API */}
             <AnimatedGlowingBox>
                 <div className="rounded-lg py-4 sm:py-6 px-3 sm:px-4 bg-black border-1 border-white/20 transition-all duration-300">
@@ -72,7 +71,7 @@ export default function SmallScaleArchitecture() {
                     </div>
                 </div>
             </AnimatedGlowingBox>
-            <AnimationPathTopBottomTwo />
+            <AnimationPath lineCount={2} animationDelay={4} />
             {/* Database */}
             <AnimatedGlowingBox>
                 <div className="rounded-lg py-4 sm:py-6 px-3 sm:px-4 bg-black border-1 border-white/20 transition-all duration-300">
