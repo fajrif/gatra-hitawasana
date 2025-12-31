@@ -6,6 +6,9 @@ import { prisma } from "@/lib/prisma"
 import { format } from "date-fns"
 import { id } from "date-fns/locale"
 
+// Force dynamic rendering to avoid database calls during build
+export const dynamic = 'force-dynamic'
+
 export default async function MediaPage() {
   // Fetch published articles from database
   const articles = await prisma.article.findMany({

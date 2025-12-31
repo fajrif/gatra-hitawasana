@@ -4,6 +4,9 @@ import { Briefcase, MapPin, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 
+// Force dynamic rendering to avoid database calls during build
+export const dynamic = 'force-dynamic'
+
 const employmentTypeLabels: Record<string, string> = {
   FULL_TIME: "Full-time",
   PART_TIME: "Part-time",
