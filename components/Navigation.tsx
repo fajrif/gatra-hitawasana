@@ -174,7 +174,7 @@ export function Navigation() {
           </NavigationMenu>
           <div className="hidden md:block">
             <Link
-              href="/files/manual-book-aplikasi-cusol.pdf"
+              href="/files/Company-Profile-PT-Gatra-Hita-Wasana-2025.pdf"
               target="_blank"
               className={cn(
                 "flex items-center gap-2 rounded-sm border border-white/10 px-5 text-sm font-light text-white tracking-tight transition-all focus:outline-none duration-300 backdrop-blur-sm",
@@ -260,9 +260,23 @@ export function Navigation() {
               >
                 Media
               </Link>
-              <div className="block pt-2 border-t border-gray-200">
+              <Link
+                href="/career"
+                className="block uppercase transition-colors hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Karir
+              </Link>
+              <Link
+                href="/contact"
+                className="block uppercase transition-colors hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Kontak Kami
+              </Link>
+              <div className="block py-4 border-t border-gray-200">
                 <Link
-                  href="/files/manual-book-aplikasi-cusol.pdf"
+                  href="/files/Company-Profile-PT-Gatra-Hita-Wasana-2025.pdf"
                   target="_blank"
                   className="flex items-center gap-2 text-sm transition-colors hover:text-primary"
                 >

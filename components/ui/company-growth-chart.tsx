@@ -12,15 +12,15 @@ import {
 } from "recharts"
 
 const growthData = [
-  { year: 2003, projects: 5, activeProjects: 3, resources: 8, revenue: 0.5 },
-  { year: 2006, projects: 12, activeProjects: 5, resources: 15, revenue: 1.5 },
-  { year: 2009, projects: 25, activeProjects: 10, resources: 25, revenue: 3.5 },
-  { year: 2012, projects: 45, activeProjects: 15, resources: 40, revenue: 6.0 },
-  { year: 2015, projects: 80, activeProjects: 25, resources: 55, revenue: 10.0 },
-  { year: 2018, projects: 120, activeProjects: 35, resources: 75, revenue: 15.0 },
-  { year: 2021, projects: 160, activeProjects: 40, resources: 90, revenue: 20.0 },
-  { year: 2024, projects: 200, activeProjects: 45, resources: 100, revenue: 25.0 },
-  { year: 2025, projects: 220, activeProjects: 50, resources: 110, revenue: 28.0 },
+  { year: 2003, projects: 5, activeProjects: 3, resources: 8, vendors: 3 },
+  { year: 2006, projects: 12, activeProjects: 5, resources: 15, vendors: 4 },
+  { year: 2009, projects: 25, activeProjects: 10, resources: 25, vendors: 5 },
+  { year: 2012, projects: 45, activeProjects: 15, resources: 40, vendors: 6 },
+  { year: 2015, projects: 80, activeProjects: 25, resources: 55, vendors: 10 },
+  { year: 2018, projects: 120, activeProjects: 35, resources: 75, vendors: 15 },
+  { year: 2021, projects: 160, activeProjects: 40, resources: 90, vendors: 20 },
+  { year: 2024, projects: 200, activeProjects: 45, resources: 100, vendors: 25 },
+  { year: 2025, projects: 220, activeProjects: 50, resources: 110, vendors: 28 },
 ]
 
 interface CustomTooltipProps {
@@ -48,9 +48,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
             />
             <span className="text-white/60">{entry.name}:</span>
             <span className="text-white">
-              {entry.name === "Revenue (B IDR)"
-                ? `${entry.value}B`
-                : entry.value}
+              {entry.value}
             </span>
           </div>
         ))}
@@ -84,7 +82,7 @@ export function CompanyGrowthChart() {
                 <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
                 <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
               </linearGradient>
-              <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="colorVendors" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
                 <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
               </linearGradient>
@@ -146,11 +144,11 @@ export function CompanyGrowthChart() {
             />
             <Area
               type="monotone"
-              dataKey="revenue"
-              name="Revenue (B IDR)"
+              dataKey="vendors"
+              name="Total Vendor"
               stroke="#f59e0b"
               strokeWidth={2}
-              fill="url(#colorRevenue)"
+              fill="url(#colorVendors)"
               dot={false}
               activeDot={{ r: 4, fill: "#f59e0b" }}
             />

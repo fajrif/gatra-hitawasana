@@ -59,8 +59,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-white/50 text-sm mb-1">Telepon</div>
-                      <a href="tel:+622181993333" className="text-white font-light hover:text-white/80 transition-colors">
-                        +62 21 8199 3333
+                      <a href="tel:+6281110127970" className="text-white font-light hover:text-white/80 transition-colors">
+                        +62 811 1012 7970
                       </a>
                     </div>
                   </div>

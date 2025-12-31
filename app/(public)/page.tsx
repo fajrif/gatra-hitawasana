@@ -49,8 +49,7 @@ export default function Home() {
           <AnimatedHeroContent
             title="Mitra Terpercaya dalam Solusi Digital dan Inovasi"
             description="PT Gatra Hita Wasana menyediakan solusi teknologi informasi terkini untuk kebutuhan bisnis Anda. Dari infrastruktur IT hingga transformasi digital."
-            badgeText="Solar Cell Energy"
-            badgeLabel="Terbaru"
+            badgeText="PT. Gatra Hita Wasana"
             ctaButtons={[
               { text: "Hubungi Kami", href: "/contact", primary: true },
               { text: "Lihat Layanan", href: "/business" }

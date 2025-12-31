@@ -88,7 +88,7 @@ export function Footer() {
                   href="/business/hr-management"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Manajemen Sumber Daya Manusia
+                  Human Resource Management
                 </Link>
               </li>
               <li>
@@ -96,7 +96,7 @@ export function Footer() {
                   href="/business/managed-service"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Penyedia Layanan Terkelola
+                  Managed Service
                 </Link>
               </li>
             </ul>
@@ -113,7 +113,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <Phone size={16} />
-                <span>+62 21 8199 3333</span>
+                <a href="tel:+6281110127970">
+                  +62 811 1012 7970
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <a href="https://www.linkedin.com/in/maratul-khoerul-ummah-s-h-895ab5261/" className="text-gray-300 hover:text-white transition-colors">

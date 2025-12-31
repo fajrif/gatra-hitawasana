@@ -5,28 +5,24 @@ import { Gallery } from "@/components/ui/gallery"
 
 export function ShowCaseGallery() {
   const showcaseImages = [
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-1.jpeg", alt: "PLN Contact Center 123 - Foto 1" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-2.jpeg", alt: "PLN Contact Center 123 - Foto 2" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-3.jpeg", alt: "PLN Contact Center 123 - Foto 3" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-4.jpeg", alt: "PLN Contact Center 123 - Foto 4" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-5.jpeg", alt: "PLN Contact Center 123 - Foto 5" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-6.jpeg", alt: "PLN Contact Center 123 - Foto 6" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-7.jpeg", alt: "PLN Contact Center 123 - Foto 7" },
-    { src: "/images/show-cases/plncc123-sumbar/plncc123-sumbar-8.jpeg", alt: "PLN Contact Center 123 - Foto 8" },
+    { src: "/images/show-cases/plncc-sumbar/pic-cc-sumbar1.jpeg", alt: "PLN Command Center - Foto 1" },
+    { src: "/images/show-cases/plncc-sumbar/pic-cc-sumbar2.jpeg", alt: "PLN Command Center - Foto 2" },
+    { src: "/images/show-cases/plncc-sumbar/pic-cc-sumbar3.jpeg", alt: "PLN Command Center - Foto 3" },
+    { src: "/images/show-cases/plncc-sumbar/pic-cc-sumbar4.jpeg", alt: "PLN Command Center - Foto 4" },
   ]
 
   const showcaseScope = [
-    "Pembangunan tempat termasuk Dekorasi Contact Center 123",
+    "Pembangunan tempat termasuk Dekorasi Command Center",
     "Pengembangan Aplikasi Monitoring Regu Gangguan yang terintegrasi dengan aplikasi lainnya (APKT & AP2T)",
     "Pengembangan Aplikasi Mobile untuk regu gangguan",
     "Penyediaan GPS tracking untuk regu gangguan",
-    "Penyediaan SDM Call Center 123",
+    "Penyediaan SDM Call Center ",
   ]
 
   const showcaseInfo = [
     {
       label: "Klien",
-      value: "PT. PLN (Persero) Wilayah Sumatera Barat",
+      value: "PT. PLN (Persero) Unit Induk Distribusi Sumatera Barat",
     },
     {
       label: "Tahun",
@@ -49,8 +45,9 @@ export function ShowCaseGallery() {
           Show Case
         </p>
         <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-          Pembangunan dan Implementasi<br />
-          <span className="text-white">Contact Center 123 PLN Sumatera Barat</span>
+          Pemeliharaan Aplikasi Monitoring Yantek<br />
+          Command Center PT. PLN (Persero) Unit Induk<br />
+          Distribusi Sumatera Barat
         </h2>
       </div>
 
@@ -59,7 +56,7 @@ export function ShowCaseGallery() {
         <div className="space-y-6">
           <p className="text-white/70 font-light leading-relaxed">
             Pada proyek ini PT. Gatra Hita Wasana dipercaya oleh PLN Icon Plus untuk menyediakan seluruh infrastruktur
-            sarana dan pra-sarana pada proyek pembangunan dan layanan PLN Contact Center 123 di Sumatera Barat.
+            sarana dan pra-sarana pada proyek pembangunan dan layanan PLN Command Center di Sumatera Barat.
           </p>
 
           <div className="space-y-4">

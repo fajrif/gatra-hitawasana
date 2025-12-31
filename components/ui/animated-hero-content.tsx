@@ -25,8 +25,8 @@ interface AnimatedHeroContentProps {
 export function AnimatedHeroContent({
     title,
     description,
-    badgeText = 'New Feature',
-    badgeLabel = 'New',
+    badgeText,
+    badgeLabel,
     ctaButtons = [],
     microDetails = [],
     className = '',
@@ -129,10 +129,14 @@ export function AnimatedHeroContent({
                     ref={badgeRef}
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm"
                 >
-                    <span className="text-[10px] font-light uppercase tracking-[0.08em] text-white/70">
-                        {badgeLabel}
-                    </span>
-                    <span className="h-1 w-1 rounded-full bg-white/40" />
+                    {badgeLabel && (
+                        <>
+                            <span className="text-[10px] font-light uppercase tracking-[0.08em] text-white/70">
+                                {badgeLabel}
+                            </span>
+                            <span className="h-1 w-1 rounded-full bg-white/40" />
+                        </>
+                    )}
                     <span className="text-xs font-light tracking-tight text-white/80">{badgeText}</span>
                 </div>
             )}
