@@ -4,8 +4,8 @@ import Link from "next/link"
 type BentoCardProps = {
   title: string
   description: string
-  link_href: string
-  link_label: string
+  link_href?: string
+  link_label?: string
   Component: React.ComponentType
 }
 

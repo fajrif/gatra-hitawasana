@@ -8,7 +8,7 @@ import { ChevronDown } from "lucide-react";
 interface FeaturesProps {
     features: {
         id: number;
-        icon?: React.ElementType;
+        icon?: React.ComponentType<{ size?: number | string }>;
         title: string;
         description: string;
         image?: string;

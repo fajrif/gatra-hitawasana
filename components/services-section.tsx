@@ -16,9 +16,12 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ hideTitle = false, hideAllButton = false, cards }: ServicesSectionProps) {
 
-  if(cards.length === 0) return null
+  if (cards.length === 0) return null
 
-  const lastCard = cards.pop()
+  // Create a copy to avoid mutating the original array
+  const cardsCopy = [...cards]
+  const lastCard = cardsCopy.pop()!
+  const remainingCards = cardsCopy
 
   return (
     <div className="w-full px-5 flex flex-col justify-center items-center overflow-visible bg-transparent">
@@ -36,7 +39,7 @@ export function ServicesSection({ hideTitle = false, hideAllButton = false, card
           </div>
         )}
         <div className="self-stretch grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 z-10">
-          {cards.map((card) => (
+          {remainingCards.map((card) => (
             <BentoCard key={card.title} {...card} />
           ))}
         </div>
