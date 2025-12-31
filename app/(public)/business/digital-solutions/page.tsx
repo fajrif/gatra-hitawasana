@@ -6,6 +6,7 @@ import { DigitalSolutionOverview } from "@/components/digital-solutions-overview
 import { Features } from "@/components/ui/features"
 import SmallScaleArchitecture from "@/components/architectures/small-scale"
 import MediumComplexityArchitecture from "@/components/architectures/medium-complexity"
+import EventDrivenArchitecture from "@/components/architectures/event-driven"
 import { StatsSection } from "@/components/stats-section"
 
 const architectureFeatures = [
@@ -21,6 +22,12 @@ const architectureFeatures = [
     description: "Arsitektur modular untuk perusahaan berkembang. Integrasi API yang kuat, skalabilitas horizontal, dan pemisahan layanan untuk performa optimal. Ideal untuk SaaS, Marketplace, Traffic menengah-besar",
     diagram: <MediumComplexityArchitecture />,
   },
+  {
+    id: 3,
+    title: "Event-Driven Architecture",
+    description: "Arsitektur sistem dimana komponen saling berkomunikasi melalui events, membuat sistem lebih fleksibel dan scalable, lebih tahan akan kegagalan (resilient) dan sangat ideal untuk sistem besar & high growth",
+    diagram: <EventDrivenArchitecture />,
+  },
 ];
 
 export default function DigitalSolutionsPage() {
@@ -34,7 +41,7 @@ export default function DigitalSolutionsPage() {
           gradient: "pengembangan kustom perangkat lunak"
         }}
         description="Kami menyediakan solusi digital lengkap untuk transformasi bisnis Anda, dari pengembangan aplikasi web dan mobile hingga integrasi sistem enterprise dengan teknologi terdepan."
-        ctaText="Konsultasi Gratis"
+        ctaText="Konsultasi Sekarang"
         ctaHref="#digital-solutions-overview"
         gridOptions={{
           angle: 65,

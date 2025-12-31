@@ -6,7 +6,7 @@ import AnimatedGlowingBox from '@/components/ui/animated-glowing-box';
 
 export default function SmallScaleArchitecture() {
     return (
-        <div className="md:p-6 md:rounded-xl md:border-2 md:border-dashed md:border-white/40">
+        <div className="md:p-6 md:rounded-xl md:border-2 md:border-white/10 bg-white/5">
             {/* Top Row: Web Client and Mobile App side by side on larger screens */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Web Client */}
@@ -59,7 +59,7 @@ export default function SmallScaleArchitecture() {
                             <Server className="w-8 h-8 sm:w-10 sm:h-10 text-white/70 flex-shrink-0" strokeWidth={1} />
                             <div className="text-start flex-1">
                                 <h3 className="text-sm sm:text-base font-regular text-white">Backend API</h3>
-                                <p className="text-xs text-gray-400">Node.js / Golang / Ruby on Rails</p>
+                                <p className="text-xs text-gray-400">Node.js / Golang / Rails</p>
                             </div>
                         </div>
                         {/* Tech Stack Container */}
@@ -80,7 +80,7 @@ export default function SmallScaleArchitecture() {
                             <Database className="w-8 h-8 sm:w-10 sm:h-10 text-white/70 flex-shrink-0" strokeWidth={1} />
                             <div className="text-start flex-1">
                                 <h3 className="text-sm sm:text-base font-regular text-white">Database</h3>
-                                <p className="text-xs text-gray-400">PostgreSQL / MySQL</p>
+                                <p className="text-xs text-gray-400">PostgreSQL / MySQL / MariaDB</p>
                             </div>
                         </div>
                         {/* Tech Stack Container */}

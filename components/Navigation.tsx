@@ -39,14 +39,20 @@ export function Navigation() {
         }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className={cn(
+          "flex items-center justify-between transition-all duration-300",
+          isScrolled ? "h-16" : "h-20"
+        )}>
           <Link href="/" className="flex items-center gap-3">
             <Image
               src={isScrolled ? "/images/logo.png" : "/images/logo-white.png"}
               alt="PT Gatra Hita Wasana"
               width={180}
               height={50}
-              className="h-10 md:h-12 w-auto transition-opacity duration-300"
+              className={cn(
+                "w-auto transition-all duration-300",
+                isScrolled ? "h-8 md:h-10" : "h-10 md:h-12"
+              )}
             />
           </Link>
 
@@ -60,8 +66,8 @@ export function Navigation() {
                     className={cn(
                       "uppercase transition-all font-medium px-3 py-2 rounded-md",
                       isScrolled
-                        ? "text-black hover:text-primary hover:bg-black/5"
-                        : "text-white hover:text-white/80 hover:bg-white/10"
+                        ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
+                        : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
                     )}
                   >
                     Beranda
@@ -76,8 +82,8 @@ export function Navigation() {
                     className={cn(
                       "uppercase transition-all font-medium px-3 py-2 rounded-md",
                       isScrolled
-                        ? "text-black hover:text-primary hover:bg-black/5"
-                        : "text-white hover:text-white/80 hover:bg-white/10"
+                        ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
+                        : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
                     )}
                   >
                     Tentang Kami
@@ -90,8 +96,8 @@ export function Navigation() {
                   className={cn(
                     "uppercase transition-all font-medium px-3 py-2 rounded-md bg-transparent",
                     isScrolled
-                      ? "text-black hover:text-primary hover:bg-black/5 data-[state=open]:bg-black/5"
-                      : "text-white hover:text-white/80 hover:bg-white/10 data-[state=open]:bg-white/10"
+                      ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5 data-[state=open]:bg-black/5"
+                      : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10 data-[state=open]:bg-white/10"
                   )}
                 >
                   Layanan Bisnis
@@ -156,8 +162,8 @@ export function Navigation() {
                     className={cn(
                       "uppercase transition-all font-medium px-3 py-2 rounded-md",
                       isScrolled
-                        ? "text-black hover:text-primary hover:bg-black/5"
-                        : "text-white hover:text-white/80 hover:bg-white/10"
+                        ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
+                        : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
                     )}
                   >
                     Media
@@ -170,10 +176,12 @@ export function Navigation() {
             <Link
               href="/files/manual-book-aplikasi-cusol.pdf"
               target="_blank"
-              className={`flex items-center gap-2 rounded-sm border border-white/10 px-5 py-3 text-sm font-light text-white tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 backdrop-blur-sm ${isScrolled
-                ? "bg-primary hover:bg-primary/90"
-                : "bg-white/10 hover:bg-white/20"
-                }`}
+              className={cn(
+                "flex items-center gap-2 rounded-sm border border-white/10 px-5 text-sm font-light text-white tracking-tight transition-all focus:outline-none duration-300 backdrop-blur-sm",
+                isScrolled
+                  ? "bg-primary hover:bg-primary/90 focus:bg-primary/90 py-2"
+                  : "bg-white/10 hover:bg-white/20 focus:bg-white/20 py-3"
+              )}
             >
               <FileText className="w-4 h-4" />
               Download
