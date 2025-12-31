@@ -57,20 +57,27 @@ export const GradientCard: React.FC<GradientCardProps> = ({
     return (
         <motion.div
             ref={cardRef}
-            className={`relative rounded-[32px] overflow-hidden ${className}`}
+            className={`relative isolate ${className}`}
             style={{
                 width,
                 height,
-                transformStyle: "preserve-3d",
+                borderRadius: "32px",
+                WebkitBorderRadius: "32px",
+                overflow: "hidden",
                 backgroundColor: "#0e131f",
                 boxShadow: "0 -10px 100px 10px rgba(78, 99, 255, 0.25), 0 0 10px 0 rgba(0, 0, 0, 0.5)",
-            }}
+                // Safari-specific fixes for rounded corners with overflow:hidden
+                WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+                maskImage: "radial-gradient(white, black)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+                willChange: "transform",
+            } as React.CSSProperties}
             initial={{ y: 0 }}
             animate={{
                 y: isHovered ? -5 : 0,
                 rotateX: rotation.x,
                 rotateY: rotation.y,
-                perspective: 1000,
             }}
             transition={{
                 type: "spring",
@@ -87,12 +94,13 @@ export const GradientCard: React.FC<GradientCardProps> = ({
                 style={{
                     background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 80%, rgba(255,255,255,0.05) 100%)",
                     backdropFilter: "blur(2px)",
+                    WebkitBackdropFilter: "blur(2px)",
+                    borderRadius: "inherit",
                 }}
                 animate={{
                     opacity: isHovered ? 0.7 : 0.5,
                     rotateX: -rotation.x * 0.2,
                     rotateY: -rotation.y * 0.2,
-                    z: 1,
                 }}
                 transition={{
                     duration: 0.4,

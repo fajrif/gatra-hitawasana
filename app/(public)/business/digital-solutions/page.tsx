@@ -63,7 +63,7 @@ export default function DigitalSolutionsPage() {
       <section className="bg-black">
         <Features
           title="Arsitektur menentukan ketahanan Sistem Anda"
-          subTitle="Terdapat banyak pilihan model arsitektur"
+          subTitle="Menyediakan banyak pilihan model arsitektur"
           features={architectureFeatures}
         />
       </section>

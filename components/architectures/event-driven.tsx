@@ -6,7 +6,7 @@ import AnimatedGlowingBox from '@/components/ui/animated-glowing-box';
 
 export default function EventDrivenArchitecture() {
     return (
-        <div className="md:p-6 md:rounded-xl md:border-2 md:border-white/10 bg-white/5">
+        <div className="md:p-6 md:rounded-xl md:border-2 md:border-white/10 md:bg-white/5">
             {/* Top Row: Web Client and Mobile App side by side on larger screens */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Web Client */}
