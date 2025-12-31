@@ -117,13 +117,13 @@ export default function HRManagementPage() {
       </section>
 
       {/* Engagement Models */}
-      <section className="bg-black py-20 px-4">
+      <section className="bg-sk-gold py-20 px-4">
         <AnimatedDiv id="models-section" className="container mx-auto max-w-6xl" delay={0.2}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extralight text-gray-900 mb-4 tracking-tight">
               Model Kerjasama
             </h2>
-            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 font-light text-lg max-w-2xl mx-auto">
               Pilih model yang sesuai dengan kebutuhan proyek Anda
             </p>
           </div>
@@ -136,11 +136,11 @@ export default function HRManagementPage() {
             ].map((model, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur"
+                className="rounded-2xl border border-gray-900/20 bg-white/40 p-8 backdrop-blur"
               >
-                <h3 className="text-xl font-light text-white mb-3">{model.title}</h3>
-                <p className="text-white/60 font-light leading-relaxed mb-4">{model.desc}</p>
-                <div className="inline-block px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-white/50">
+                <h3 className="text-xl font-light text-gray-900 mb-3">{model.title}</h3>
+                <p className="text-gray-600 font-light leading-relaxed mb-4">{model.desc}</p>
+                <div className="inline-block px-3 py-1 rounded-full border border-gray-900/20 bg-gray-900/10 text-xs text-gray-700">
                   {model.duration}
                 </div>
               </div>
@@ -149,23 +149,6 @@ export default function HRManagementPage() {
         </AnimatedDiv>
       </section>
 
-      {/* CTA */}
-      <section className="bg-sk-gold py-20 px-4">
-        <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.3}>
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 tracking-tight">
-            Butuh Talenta Teknis?
-          </h2>
-          <p className="text-gray-600 font-light text-lg mb-8 max-w-xl mx-auto">
-            Ceritakan kebutuhan Anda dan kami akan mencocokkan dengan talenta yang tepat
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block rounded-full bg-gray-900 px-8 py-4 text-white font-light hover:bg-gray-800 transition-colors"
-          >
-            Request Resources
-          </Link>
-        </AnimatedDiv>
-      </section>
     </div>
   )
 }

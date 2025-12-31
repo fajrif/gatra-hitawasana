@@ -145,23 +145,6 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
                 </div>
             </article>
 
-            {/* Related or CTA Section */}
-            <section className="bg-sk-sea-shade py-20 px-4">
-                <div className="container mx-auto max-w-4xl text-center">
-                    <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-                        Butuh Solusi IT?
-                    </h2>
-                    <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
-                        Hubungi kami untuk mendiskusikan kebutuhan teknologi bisnis Anda
-                    </p>
-                    <Link
-                        href="/contact"
-                        className="inline-block rounded-full bg-white px-8 py-4 text-black font-light hover:bg-white/90 transition-colors"
-                    >
-                        Hubungi Kami
-                    </Link>
-                </div>
-            </section>
         </div>
     )
 }

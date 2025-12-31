@@ -3,7 +3,7 @@
 import type React from "react"
 import { PageBanner } from "@/components/ui/page-banner"
 import { AnimatedDiv } from "@/components/ui/animated-div"
-import { Mail, Phone, MapPin, Linkedin, Clock, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactPage() {
@@ -45,10 +45,10 @@ export default function ContactPage() {
                     <div>
                       <div className="text-white/50 text-sm mb-1">Email</div>
                       <a
-                        href="mailto:info@ghw.co.id"
+                        href="mailto:admin@gatrahitawasana.com"
                         className="text-white font-light hover:text-white/80 transition-colors"
                       >
-                        info@ghw.co.id
+                        admin@gatrahitawasana.com
                       </a>
                     </div>
                   </div>
@@ -59,8 +59,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-white/50 text-sm mb-1">Telepon</div>
-                      <a href="tel:+622100000000" className="text-white font-light hover:text-white/80 transition-colors">
-                        +62 21 xxxx xxxx
+                      <a href="tel:+622181993333" className="text-white font-light hover:text-white/80 transition-colors">
+                        +62 21 8199 3333
                       </a>
                     </div>
                   </div>
@@ -71,19 +71,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-white/50 text-sm mb-1">Kantor</div>
-                      <p className="text-white font-light">Jakarta, Indonesia</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                      <Linkedin className="text-white/70" size={20} />
-                    </div>
-                    <div>
-                      <div className="text-white/50 text-sm mb-1">LinkedIn</div>
-                      <a href="#" className="text-white font-light hover:text-white/80 transition-colors">
-                        PT Gatra Hita Wasana
-                      </a>
+                      <p className="text-white font-light">Gedung Aditarina Lt.2 Jl. Bangka Raya Jakarta Selatan</p>
                     </div>
                   </div>
                 </div>
@@ -178,33 +166,6 @@ export default function ContactPage() {
         </AnimatedDiv>
       </section>
 
-      {/* Map or Additional CTA */}
-      <section className="bg-sk-sea-shade py-20 px-4">
-        <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.1}>
-          <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-            Mari Berdiskusi
-          </h2>
-          <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
-            Tim kami siap membantu Anda menemukan solusi terbaik untuk kebutuhan bisnis Anda
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:info@ghw.co.id"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/10 text-white font-light hover:bg-white/15 transition-colors"
-            >
-              <Mail size={18} />
-              Email Kami
-            </a>
-            <a
-              href="tel:+622100000000"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/10 text-white font-light hover:bg-white/15 transition-colors"
-            >
-              <Phone size={18} />
-              Telepon Kami
-            </a>
-          </div>
-        </AnimatedDiv>
-      </section>
     </div>
   )
 }

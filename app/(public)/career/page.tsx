@@ -31,7 +31,6 @@ export default async function CareerPage() {
       {/* Careers Grid */}
       <section className="bg-black py-20 px-4">
         <AnimatedDiv id="careers-grid" className="container mx-auto max-w-6xl">
-          <h2 className="text-2xl font-light text-white mb-8">Posisi Terbuka</h2>
           {careers.length > 0 ? (
             <div className="space-y-4">
               {careers.map((career: typeof careers[0]) => (
@@ -72,7 +71,7 @@ export default async function CareerPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)]">
+            <div className="text-center py-20">
               <p className="text-white/50 font-light text-lg">
                 Belum ada posisi terbuka saat ini. Silakan cek kembali nanti!
               </p>
@@ -81,23 +80,6 @@ export default async function CareerPage() {
         </AnimatedDiv>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-sk-sea-shade py-20 px-4">
-        <AnimatedDiv id="career-cta-section" className="container mx-auto max-w-4xl text-center" delay={0.1}>
-          <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-            Tidak Menemukan Posisi yang Cocok?
-          </h2>
-          <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
-            Kirimkan CV Anda dan kami akan menghubungi Anda jika ada posisi yang sesuai dengan profil Anda
-          </p>
-          <a
-            href="mailto:career@gatrahs.com"
-            className="inline-flex px-6 py-3 rounded-full bg-white text-black font-light hover:bg-white/90 transition-colors"
-          >
-            Kirim CV
-          </a>
-        </AnimatedDiv>
-      </section>
     </div>
   )
 }

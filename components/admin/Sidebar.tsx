@@ -9,6 +9,7 @@ import {
   X
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -33,7 +34,13 @@ export default function Sidebar() {
           <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl">
             <div className="flex h-full flex-col">
               <div className="flex h-16 items-center justify-between border-b bg-white px-4">
-                <h1 className="text-xl font-bold text-blue-600">Admin Panel</h1>
+                <Image
+                  src="/images/logo.png"
+                  alt="PT Gatra Hita Wasana"
+                  width={140}
+                  height={40}
+                  className="h-8 w-auto"
+                />
                 <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
                   <X className="h-6 w-6" />
                 </Button>
@@ -73,7 +80,13 @@ export default function Sidebar() {
       <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
         <div className="flex min-h-0 flex-1 flex-col bg-white border-r border-gray-200">
           <div className="flex h-16 items-center justify-center border-b bg-white px-4">
-            <h1 className="text-xl font-bold text-blue-600">Admin Panel</h1>
+            <Image
+              src="/images/logo.png"
+              alt="PT Gatra Hita Wasana"
+              width={140}
+              height={40}
+              className="h-8 w-auto"
+            />
           </div>
           <div className="flex flex-1 flex-col overflow-y-auto">
             <nav className="flex-1 space-y-1 px-2 py-4">

@@ -23,7 +23,7 @@ export default async function MediaPage() {
         title="Media & Insights"
         description="Tetap terinformasi dengan tren terbaru, best practices, dan insights dari dunia IT dan teknologi digital."
         breadcrumbs={[{ label: "Media" }]}
-        badge={{ label: "Blog", text: "Terbaru" }}
+        badge={{ label: "MEDIA", text: "Terbaru" }}
       />
 
       {/* Articles Grid */}
@@ -83,27 +83,6 @@ export default async function MediaPage() {
         </AnimatedDiv>
       </section>
 
-      {/* Subscribe/CTA Section */}
-      <section className="bg-sk-sea-shade py-20 px-4">
-        <AnimatedDiv id="subscribe-section" className="container mx-auto max-w-4xl text-center" delay={0.1}>
-          <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-            Tetap Update
-          </h2>
-          <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
-            Dapatkan insights terbaru tentang teknologi dan solusi digital langsung di inbox Anda
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Email Anda"
-              className="flex-1 px-4 py-3 rounded-full border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
-            />
-            <button className="px-6 py-3 rounded-full bg-white text-black font-light hover:bg-white/90 transition-colors whitespace-nowrap">
-              Subscribe
-            </button>
-          </div>
-        </AnimatedDiv>
-      </section>
     </div>
   )
 }

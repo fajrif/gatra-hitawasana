@@ -200,24 +200,6 @@ export default async function CareerDetailPage({ params }: { params: Promise<{ s
                 </div>
             </article>
 
-            {/* CTA Section */}
-            <section className="bg-sk-sea-shade py-20 px-4">
-                <div className="container mx-auto max-w-4xl text-center">
-                    <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-                        Siap Bergabung dengan Tim Kami?
-                    </h2>
-                    <p className="text-white/60 font-light text-lg mb-8 max-w-xl mx-auto">
-                        Kirimkan lamaran Anda dan jadilah bagian dari tim kami yang terus berkembang.
-                    </p>
-                    <a
-                        href="mailto:career@gatrahs.com"
-                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-light hover:bg-white/90 transition-colors"
-                    >
-                        <Mail size={18} />
-                        Lamar Posisi Ini
-                    </a>
-                </div>
-            </section>
         </div>
     )
 }

@@ -115,84 +115,15 @@ export default function ManagedServicePage() {
         </AnimatedDiv>
       </section>
 
-      {/* Service Packages */}
-      <section className="bg-black py-20 px-4">
-        <AnimatedDiv id="packages-section" className="container mx-auto max-w-6xl" delay={0.2}>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-              Paket Layanan
-            </h2>
-            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
-              Pilih paket yang sesuai dengan kebutuhan infrastruktur Anda
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Essential",
-                description: "Untuk bisnis kecil dengan kebutuhan dasar",
-                features: ["Monitoring 8x5", "Email Support", "Monthly Report", "Basic Security"],
-                icon: Wrench
-              },
-              {
-                name: "Professional",
-                description: "Untuk bisnis menengah dengan kebutuhan lebih kompleks",
-                features: ["Monitoring 24/7", "Phone & Email Support", "Weekly Report", "Advanced Security"],
-                highlight: true,
-                icon: Server
-              },
-              {
-                name: "Enterprise",
-                description: "Untuk enterprise dengan kebutuhan kritis",
-                features: ["Monitoring 24/7", "Dedicated Support Team", "Real-time Dashboard", "Full Security Suite"],
-                icon: FileCheck
-              },
-            ].map((pkg, index) => {
-              const Icon = pkg.icon
-              return (
-                <div
-                  key={index}
-                  className={`rounded-2xl border p-8 backdrop-blur ${pkg.highlight
-                    ? 'border-white/40 bg-[rgba(231,236,235,0.12)]'
-                    : 'border-white/20 bg-[rgba(231,236,235,0.08)]'
-                    }`}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
-                    <Icon className="text-white/70" size={24} />
-                  </div>
-                  <h3 className="text-xl font-light text-white mb-2">{pkg.name}</h3>
-                  <p className="text-white/50 font-light text-sm mb-6">{pkg.description}</p>
-                  <ul className="space-y-3">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-white/60">
-                        <span className="w-1 h-1 rounded-full bg-white/40" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            })}
-          </div>
-        </AnimatedDiv>
-      </section>
-
       {/* CTA */}
       <section className="bg-sk-gold py-20 px-4">
         <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.3}>
           <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 tracking-tight">
-            Biarkan Kami Kelola IT Anda
+            Percayakan Kepada Kami untuk Mengelola IT Anda
           </h2>
-          <p className="text-gray-600 font-light text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-gray-600 font-light text-lg max-w-xl mx-auto">
             Hubungi kami untuk mengetahui lebih lanjut tentang paket managed service kami
           </p>
-          <Link
-            href="/contact"
-            className="inline-block rounded-full bg-gray-900 px-8 py-4 text-white font-light hover:bg-gray-800 transition-colors"
-          >
-            Mulai Sekarang
-          </Link>
         </AnimatedDiv>
       </section>
     </div>

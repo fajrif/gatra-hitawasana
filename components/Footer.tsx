@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Linkedin, Mail, Phone } from "lucide-react"
+import { Mail, Phone } from "lucide-react"
+import { LinkedInLogo } from "@/components/ui/custom-icons"
 
 export function Footer() {
   return (
@@ -55,6 +56,11 @@ export function Footer() {
                   Media & Insights
                 </Link>
               </li>
+              <li>
+                <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">
+                  Kontak Kami
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -99,17 +105,19 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-white uppercase">Kontak Kami</h3>
             <ul className="space-y-3 flex flex-col items-center md:items-start">
-              <li className="flex items-center gap-2 text-sm text-gray-300">
-                <Mail size={16} />
-                <span>admin@gatrahitawasana.com</span>
+              <li>
+                <a href="mailto:admin@gatrahitawasana.com" className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+                  <Mail size={16} />
+                  <span>admin@gatrahitawasana.com</span>
+                </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-gray-300">
                 <Phone size={16} />
                 <span>+62 21 8199 3333</span>
               </li>
               <li className="flex items-center gap-2">
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  <Linkedin size={20} />
+                <a href="https://www.linkedin.com/in/maratul-khoerul-ummah-s-h-895ab5261/" className="text-gray-300 hover:text-white transition-colors">
+                  <LinkedInLogo width={30} height={30} />
                 </a>
               </li>
             </ul>
