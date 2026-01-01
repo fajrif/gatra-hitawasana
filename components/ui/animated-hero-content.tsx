@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import SplitType from 'split-type'
+import { ShinyButton } from './shiny-button'
 
 gsap.registerPlugin(useGSAP)
 
@@ -144,7 +145,7 @@ export function AnimatedHeroContent({
             {/* Title */}
             <h1
                 ref={headerRef}
-                className="max-w-2xl text-left text-3xl font-extralight uppercase leading-[1.05] tracking-tight text-white sm:text-6xl md:text-6xl"
+                className="max-w-2xl text-left text-3xl font-extralight uppercase leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl"
             >
                 {title}
             </h1>
@@ -152,7 +153,7 @@ export function AnimatedHeroContent({
             {/* Description */}
             <p
                 ref={paraRef}
-                className="max-w-xl text-left text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg"
+                className="max-w-xl text-left text-base font-light leading-relaxed tracking-tight text-white sm:text-lg"
             >
                 {description}
             </p>
@@ -161,16 +162,23 @@ export function AnimatedHeroContent({
             {ctaButtons.length > 0 && (
                 <div ref={ctaRef} className="flex flex-wrap items-center gap-3 pt-2">
                     {ctaButtons.map((button, index) => (
+                      button.primary ? (
+                        <ShinyButton
+                            key={index}
+                            href={button.href}
+                            className="text-white rounded-2xl text-sm py-3"
+                        >
+                           {button.text} 
+                        </ShinyButton>
+                      ) : (
                         <a
                             key={index}
                             href={button.href}
-                            className={`rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 ${button.primary
-                                ? 'bg-white/10 text-white backdrop-blur-sm hover:bg-white/20'
-                                : 'text-white/80 hover:bg-white/5'
-                                }`}
+                            className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
                         >
                             {button.text}
                         </a>
+                      )
                     ))}
                 </div>
             )}
@@ -179,7 +187,7 @@ export function AnimatedHeroContent({
             {microDetails.length > 0 && (
                 <ul
                     ref={microRef}
-                    className="mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white/60"
+                    className="mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white"
                 >
                     {microDetails.map((detail, index) => (
                         <li key={index} className="flex items-center gap-2">

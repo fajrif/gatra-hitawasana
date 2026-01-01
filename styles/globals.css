@@ -148,10 +148,10 @@
 
   .shiny-cta {
     --shiny-cta-bg: #000000;
-    --shiny-cta-bg-subtle: #1a1818;
+    --shiny-cta-bg-subtle: #7f78fc3d;
     --shiny-cta-fg: #ffffff;
-    --shiny-cta-highlight: oklch(0.23 0.08 256.95);
-    --shiny-cta-highlight-subtle: #5959fc;
+    --shiny-cta-highlight: #78a3fc;
+    --shiny-cta-highlight-subtle: #7884f5;
     --animation: gradient-angle linear infinite;
     --duration: 3s;
     --shadow-size: 2px;
