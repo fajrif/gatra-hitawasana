@@ -16,9 +16,9 @@ export function MissionVisionDirectors() {
             <div className="relative w-64 h-64 rounded-2xl overflow-hidden border-2 border-white/20">
               <Image
                 src="/images/umar.jpg"
-                alt="Umar Balbeid - Direktur Utama"
+                alt="Umar Salim Balbeid - Direktur Utama"
                 fill
-                className="object-cover grayscale"
+                className="object-cover"
                 sizes="256px"
               />
             </div>
@@ -34,7 +34,7 @@ export function MissionVisionDirectors() {
             </p>
           </blockquote>
           <div className="pt-4 pl-4 md:pl-0">
-            <p className="text-xl font-medium">Umar Balbeid</p>
+            <p className="text-xl font-medium">Umar Salim Balbeid, BBS</p>
             <p className="text-sm text-gray-500">Direktur Utama</p>
           </div>
         </div>
