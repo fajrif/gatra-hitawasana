@@ -1,4 +1,5 @@
 import { PageBanner } from "@/components/ui/page-banner"
+import { HRManagementBackground } from "@/components/ui/hr-management-background"
 import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Users, Code2, Network, Wrench, GraduationCap, Award, Clock, CheckCircle } from "lucide-react"
 
@@ -48,8 +49,16 @@ export default function HRManagementPage() {
           { label: "HR Management" }
         ]}
         badge={{ label: "Talent", text: "Outsourcing" }}
-        image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
-        imageAlt="HR Management"
+        ctaButtons={[
+          { text: "Hire Sekarang", href: "/contact", primary: true },
+          { text: "Lihat Layanan", href: "/business" }
+        ]}
+        microDetails={[
+          "Talent Terverifikasi",
+          "Talent Berpengalaman",
+          "Siap Bekerja"
+        ]}
+        backgroundComponent={<HRManagementBackground />}
       />
 
       {/* Talent Categories */}

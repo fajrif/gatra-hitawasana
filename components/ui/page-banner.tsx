@@ -7,6 +7,7 @@ import SplitType from 'split-type'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
+import { ShinyButton } from './shiny-button'
 
 gsap.registerPlugin(useGSAP)
 
@@ -27,6 +28,16 @@ interface PageBannerProps {
     image?: string
     /** Alt text for the background image */
     imageAlt?: string
+    /** Optional custom background component */
+    backgroundComponent?: React.ReactNode
+    /** CTA buttons */
+    ctaButtons?: Array<{
+        text: string
+        href: string
+        primary?: boolean
+    }>
+    /** Micro details list */
+    microDetails?: Array<string>
     className?: string
     animate?: boolean
 }
@@ -38,6 +49,9 @@ export function PageBanner({
     badge,
     image,
     imageAlt = 'Banner image',
+    backgroundComponent,
+    ctaButtons = [],
+    microDetails = [],
     className = '',
     animate = true,
 }: PageBannerProps) {
@@ -46,6 +60,8 @@ export function PageBanner({
     const descRef = useRef<HTMLParagraphElement | null>(null)
     const badgeRef = useRef<HTMLDivElement | null>(null)
     const breadcrumbRef = useRef<HTMLDivElement | null>(null)
+    const ctaRef = useRef<HTMLDivElement | null>(null)
+    const microRef = useRef<HTMLUListElement | null>(null)
 
     useGSAP(
         () => {
@@ -73,6 +89,13 @@ export function PageBanner({
                 }
                 if (breadcrumbRef.current) {
                     gsap.set(breadcrumbRef.current, { autoAlpha: 0, y: -4 })
+                }
+                if (ctaRef.current) {
+                    gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 })
+                }
+                if (microRef.current) {
+                    const microItems = microRef.current.querySelectorAll('li')
+                    gsap.set(microItems, { autoAlpha: 0, y: 6 })
                 }
 
                 const tl = gsap.timeline({
@@ -107,6 +130,17 @@ export function PageBanner({
                 if (descRef.current) {
                     tl.to(descRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.4')
                 }
+
+                // CTA buttons
+                if (ctaRef.current) {
+                    tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35')
+                }
+
+                // Micro details
+                if (microRef.current) {
+                    const microItems = microRef.current.querySelectorAll('li')
+                    tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25')
+                }
             })
         },
         { scope: sectionRef, dependencies: [animate] }
@@ -117,11 +151,23 @@ export function PageBanner({
             ref={sectionRef}
             className={`relative overflow-hidden ${className}`}
         >
-            {/* Background Layer - Image or Gradient */}
-            {image ? (
+            {/* Background Layer - Component, Image, or Gradient */}
+            {backgroundComponent ? (
+                <>
+                    {/* Custom Background Component */}
+                    <div className="absolute inset-0">
+                        {backgroundComponent}
+                    </div>
+                    {/* Gradient Overlay for Custom Background */}
+                    <div
+                        aria-hidden
+                        className="absolute z-[1] inset-0 bg-gradient-to-r from-black from-35%"
+                    />
+                </>
+            ) : image ? (
                 <>
                     {/* Hero Image Background */}
-                    <div className="absolute inset-0 mx-auto max-w-6xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
+                    <div className="absolute inset-0">
                         <Image
                             src={image}
                             alt={imageAlt}
@@ -155,7 +201,7 @@ export function PageBanner({
             )}
 
             {/* Content */}
-            <div className="relative z-10 mx-auto max-w-6xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
+            <div className={`relative z-10 mx-auto max-w-6xl px-4 pt-32 ${backgroundComponent ? 'md:pb-[300px]' : 'pb-16'} sm:px-4 md:px-0`}>
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
                     <div
@@ -212,6 +258,45 @@ export function PageBanner({
                     >
                         {description}
                     </p>
+                )}
+
+                {/* CTA Buttons */}
+                {ctaButtons.length > 0 && (
+                    <div ref={ctaRef} className="flex flex-wrap items-center gap-3 mt-8">
+                        {ctaButtons.map((button, index) => (
+                            button.primary ? (
+                                <ShinyButton
+                                    key={index}
+                                    href={button.href}
+                                    className="text-white rounded-2xl text-sm py-3"
+                                >
+                                    {button.text}
+                                </ShinyButton>
+                            ) : (
+                                <a
+                                    key={index}
+                                    href={button.href}
+                                    className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                                >
+                                    {button.text}
+                                </a>
+                            )
+                        ))}
+                    </div>
+                )}
+
+                {/* Micro Details */}
+                {microDetails.length > 0 && (
+                    <ul
+                        ref={microRef}
+                        className="mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white"
+                    >
+                        {microDetails.map((detail, index) => (
+                            <li key={index} className="flex items-center gap-2">
+                                <span className="h-1 w-1 rounded-full bg-white/40" /> {detail}
+                            </li>
+                        ))}
+                    </ul>
                 )}
             </div>
         </div>
