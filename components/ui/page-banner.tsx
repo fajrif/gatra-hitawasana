@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import SplitType from 'split-type'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 
 gsap.registerPlugin(useGSAP)
@@ -22,6 +23,10 @@ interface PageBannerProps {
         label: string
         text: string
     }
+    /** Optional background image URL */
+    image?: string
+    /** Alt text for the background image */
+    imageAlt?: string
     className?: string
     animate?: boolean
 }
@@ -31,6 +36,8 @@ export function PageBanner({
     description,
     breadcrumbs = [],
     badge,
+    image,
+    imageAlt = 'Banner image',
     className = '',
     animate = true,
 }: PageBannerProps) {
@@ -110,22 +117,45 @@ export function PageBanner({
             ref={sectionRef}
             className={`relative overflow-hidden ${className}`}
         >
-            {/* Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/90 to-black" />
+            {/* Background Layer - Image or Gradient */}
+            {image ? (
+                <>
+                    {/* Hero Image Background */}
+                    <div className="absolute inset-0 mx-auto max-w-6xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
+                        <Image
+                            src={image}
+                            alt={imageAlt}
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                    </div>
+                    {/* Gradient Overlay for Image */}
+                    <div
+                        aria-hidden
+                        className="absolute z-[1] inset-0 bg-gradient-to-r from-black from-35%"
+                    />
+                </>
+            ) : (
+                <>
+                    {/* Gradient Background */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/90 to-black" />
 
-            {/* Noise Texture Overlay */}
-            <div
-                className="absolute inset-0 opacity-30 mix-blend-overlay"
-                style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                }}
-            />
+                    {/* Noise Texture Overlay */}
+                    <div
+                        className="absolute inset-0 opacity-30 mix-blend-overlay"
+                        style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+                        }}
+                    />
 
-            {/* Subtle Glow */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/5 blur-[100px] rounded-full" />
+                    {/* Subtle Glow */}
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-white/5 blur-[100px] rounded-full" />
+                </>
+            )}
 
             {/* Content */}
-            <div className="relative mx-auto max-w-6xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto max-w-6xl px-4 pt-32 pb-16 sm:px-6 lg:px-8">
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
                     <div
@@ -169,7 +199,7 @@ export function PageBanner({
                 {/* Title */}
                 <h1
                     ref={headerRef}
-                    className="max-w-3xl text-4xl font-extralight uppercase leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
+                    className="max-w-3xl text-3xl font-extralight uppercase leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl"
                 >
                     {title}
                 </h1>
