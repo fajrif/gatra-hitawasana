@@ -54,6 +54,11 @@ export default function Home() {
               { text: "Hubungi Kami", href: "/contact", primary: true },
               { text: "Lihat Layanan", href: "/business" }
             ]}
+            images={[
+              { src: "/images/jakarta-city.jpg", alt: "Jakarta City" },
+              { src: "/images/team-collaboration.jpg", alt: "Team Collaboration", grayscale: true },
+              { src: "/images/smart-microchip.jpg", alt: "Smart Microchip" }
+            ]}
             microDetails={[
               "Solusi Profesional",
               "Tim Berpengalaman",
