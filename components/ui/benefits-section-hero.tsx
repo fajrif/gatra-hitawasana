@@ -63,10 +63,10 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
             subtitle: '',
             featureTitle: '',
             featureDesc: 'text-gray-600',
-            iconBg: 'bg-gray-900/10',
+            iconBg: 'bg-[#dedede]',
             iconColor: 'text-gray-900',
             hoverBg: 'hover:bg-gray-900/5',
-            ctaBg: 'bg-gray-900 hover:bg-gray-800',
+            ctaBg: 'bg-[#dedede] hover:bg-gray-900',
             ctaText: 'text-white',
             accentBar: 'bg-gray-900/30',
         }
@@ -105,6 +105,7 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
                 initial="hidden"
                 animate={isVisible ? "visible" : "hidden"}
                 variants={containerVariants}
+                className="md:pl-14 lg:pl-20"
             >
 
                 <motion.div variants={itemVariants} className="flex justify-center md:justify-start">
@@ -113,12 +114,12 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
                         alt="PT Gatra Hita Wasana"
                         width={150}
                         height={40}
-                        className="mb-6 h-12 w-auto"
+                        className="mb-8 h-12 w-auto"
                     />
                 </motion.div>
 
                 <motion.h2
-                    className={`text-2xl font-bold leading-tight md:text-3xl lg:text-4xl ${c.title} mb-6 md:mb-12`}
+                    className={`text-2xl font-regular uppercase leading-tight md:text-3xl lg:text-4xl ${c.title} mb-6 md:mb-10`}
                     variants={itemVariants}
                 >
                     {title}
@@ -150,7 +151,7 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
                                     <Icon className={`h-5 w-5 ${c.iconColor}`} />
                                 </div>
                                 <div>
-                                    <h3 className={`text-sm md:text-base font-semibold ${c.featureTitle}`}>{feature.title}</h3>
+                                    <h3 className={`text-sm md:text-base font-medium ${c.featureTitle}`}>{feature.title}</h3>
                                     <p className={`text-sm ${c.featureDesc}`}>{feature.description}</p>
                                 </div>
                             </motion.div>
@@ -162,7 +163,7 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
                     <motion.div className="mt-8 flex justify-center md:justify-start" variants={itemVariants}>
                         <a
                             href={ctaButton.href}
-                            className="inline-flex items-center gap-2 rounded-2xl bg-gray-900/10 px-6 py-3 text-sm font-medium transition-colors hover:bg-gray-900/20"
+                            className="inline-flex items-center gap-2 rounded-2xl bg-[#dedede] px-6 py-3 text-sm font-medium transition-colors hover:bg-gray-900/20"
                         >
                             {ctaButton.text}
                         </a>
