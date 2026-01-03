@@ -146,7 +146,7 @@ export function HRManagementBackground() {
                                     src="/images/square/pic4.jpg"
                                     alt="Project"
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                    className="object-cover group-hover:scale-105 grayscale brightness-50 md:grayscale-0 md:brightness-100 transition-all duration-300"
                                 />
                             </div>
                         </div>

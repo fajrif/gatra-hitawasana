@@ -35,6 +35,7 @@ interface PageBannerProps {
         text: string
         href: string
         primary?: boolean
+        hideOnMobile?: boolean
     }>
     /** Micro details list */
     microDetails?: Array<string>
@@ -201,7 +202,7 @@ export function PageBanner({
             )}
 
             {/* Content */}
-            <div className={`relative z-10 mx-auto max-w-6xl px-4 pt-32 ${backgroundComponent ? 'md:pb-[300px]' : 'pb-16'} sm:px-4 md:px-0`}>
+            <div className={`relative z-10 mx-auto max-w-6xl px-4 pt-32 ${backgroundComponent ? 'pb-[100px] md:pb-[250px]' : 'pb-16'} sm:px-4 md:px-0`}>
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
                     <div
@@ -268,7 +269,7 @@ export function PageBanner({
                                 <ShinyButton
                                     key={index}
                                     href={button.href}
-                                    className="text-white rounded-2xl text-sm py-3"
+                                    className={`text-white rounded-2xl text-sm py-3 ${button.hideOnMobile ? 'hidden md:inline-flex' : ''}`}
                                 >
                                     {button.text}
                                 </ShinyButton>
@@ -276,7 +277,7 @@ export function PageBanner({
                                 <a
                                     key={index}
                                     href={button.href}
-                                    className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                                    className={`rounded-2xl border border-white/10 px-5 py-3 text-sm font-light tracking-tight transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 ${button.hideOnMobile ? 'hidden md:inline-flex' : ''}`}
                                 >
                                     {button.text}
                                 </a>

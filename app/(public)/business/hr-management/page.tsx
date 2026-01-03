@@ -1,40 +1,42 @@
+'use client'
+
 import { PageBanner } from "@/components/ui/page-banner"
 import { HRManagementBackground } from "@/components/ui/hr-management-background"
 import { AnimatedDiv } from "@/components/ui/animated-div"
-import { Users, Code2, Network, Wrench, GraduationCap, Award, Clock, CheckCircle } from "lucide-react"
+import { StatsSection } from "@/components/stats-section"
+import { BenefitsSectionHero } from "@/components/ui/benefits-section-hero"
+import { GraduationCap, Award, Clock, CheckCircle } from "lucide-react"
 
-const talents = [
-  {
-    icon: Code2,
-    title: "Software Developer",
-    description: "Developer full-stack, frontend, dan backend yang mahir dalam framework modern.",
-    skills: ["Next.js / React Developer", "Node.js Engineer", "Mobile App Developer", "Database Specialist"]
-  },
-  {
-    icon: Network,
-    title: "Infrastructure Expert",
-    description: "System administrator dan network engineer untuk manajemen infrastruktur.",
-    skills: ["Linux/Windows Admin", "Network Engineer", "DevOps Specialist", "Security Expert"]
-  },
-  {
-    icon: Users,
-    title: "Project Manager",
-    description: "IT project manager berpengalaman untuk memimpin inisiatif teknologi Anda.",
-    skills: ["Agile/Scrum Master", "Technical PM", "Business Analyst", "Product Owner"]
-  },
-  {
-    icon: Wrench,
-    title: "Technical Support",
-    description: "Profesional help desk dan technical support untuk bantuan end-user.",
-    skills: ["IT Support Specialist", "Help Desk Technician", "Technical Trainer", "Documentation Specialist"]
-  },
-]
+const titleOverview1 = "Solusi Penyediaan "
+const titleOverview2 = "Tenaga Kerja Profesional"
+const overviewDescription1 = (
+  <>
+    Perusahaan kami menyediakan beragam talenta profesional yang siap ditempatkan untuk mendukung kebutuhan bisnis klien kami di berbagai sektor industri. Dengan fokus pada penyediaan tenaga kerja terampil, baik <span className="font-bold text-white">teknis</span> maupun <span className="font-bold text-white">non-teknis</span>, kami memastikan setiap individu yang direkrut telah melalui proses seleksi yang ketat berdasarkan kompetensi, pengalaman, dan etika kerja. Talenta yang kami sediakan mencakup <span className="font-bold text-white">Software Developer</span> yang andal dalam pengembangan aplikasi modern, <span className="font-bold text-white">Infrastructure Expert</span> yang berpengalaman dalam pengelolaan sistem dan jaringan, hingga <span className="font-bold text-white">Technical Support</span> yang sigap dalam memberikan dukungan teknis kepada end-user.
+  </>
+)
+const overviewDescription2 = "Melalui pendekatan yang fleksibel dan berorientasi pada kualitas, kami berkomitmen menjadi mitra strategis dalam pemenuhan kebutuhan sumber daya manusia bagi perusahaan Anda. Kami memahami bahwa setiap organisasi memiliki tantangan dan kebutuhan yang berbeda, oleh karena itu kami menghadirkan solusi tenaga kerja yang tepat guna dan siap kerja, untuk membantu meningkatkan efisiensi operasional serta mendorong pertumbuhan bisnis jangka panjang."
 
 const benefits = [
-  { icon: GraduationCap, title: "Talent Terverifikasi", desc: "Proses seleksi ketat untuk memastikan kualitas" },
-  { icon: Award, title: "Berpengalaman", desc: "Profesional dengan track record terbukti" },
-  { icon: Clock, title: "Cepat Tersedia", desc: "Resource siap deploy dalam waktu singkat" },
-  { icon: CheckCircle, title: "Fleksibel", desc: "Model kontrak sesuai kebutuhan proyek" },
+  {
+    icon: GraduationCap,
+    title: "Talent Terverifikasi",
+    description: "Proses seleksi ketat untuk memastikan kualitas"
+  },
+  {
+    icon: Award,
+    title: "Berpengalaman",
+    description: "Profesional dengan track record terbukti"
+  },
+  {
+    icon: Clock,
+    title: "Cepat Tersedia",
+    description: "Resource siap deploy dalam waktu singkat"
+  },
+  {
+    icon: CheckCircle,
+    title: "Fleksibel",
+    description: "Model kontrak sesuai kebutuhan proyek"
+  },
 ]
 
 export default function HRManagementPage() {
@@ -51,7 +53,7 @@ export default function HRManagementPage() {
         badge={{ label: "Talent", text: "Outsourcing" }}
         ctaButtons={[
           { text: "Hire Sekarang", href: "/contact", primary: true },
-          { text: "Lihat Layanan", href: "/business" }
+          { text: "Lihat Layanan", href: "/business", hideOnMobile: true }
         ]}
         microDetails={[
           "Talent Terverifikasi",
@@ -61,104 +63,47 @@ export default function HRManagementPage() {
         backgroundComponent={<HRManagementBackground />}
       />
 
-      {/* Talent Categories */}
-      <section className="bg-black py-20 px-4">
-        <AnimatedDiv id="talent-grid" className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-6">
-            {talents.map((talent, index) => {
-              const Icon = talent.icon
-              return (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
-                    <Icon className="text-white/80" size={24} />
-                  </div>
-                  <h3 className="text-xl font-light text-white mb-3">{talent.title}</h3>
-                  <p className="text-white/60 font-light leading-relaxed mb-6">
-                    {talent.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {talent.skills.map((skill, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-white/50">
-                        <span className="w-1 h-1 rounded-full bg-white/40" />
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            })}
+      {/* HR Overview */}
+      <section className="bg-black">
+        <AnimatedDiv id="hr-management-overview" className="container mx-auto max-w-2xl md:max-w-3xl">
+          <div className="text-center mb-12 px-4 md:px-0">
+            <h2 className="max-w-2xl text-2xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-5xl bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] uppercase mb-4">
+              {titleOverview1}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-orange-200">
+                {titleOverview2}
+              </span>
+            </h2>
+            <p className="mx-auto text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+              {overviewDescription1}
+            </p>
+            <p className="mx-auto text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+              {overviewDescription2}
+            </p>
           </div>
         </AnimatedDiv>
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-sk-sea-shade py-20 px-4">
-        <AnimatedDiv id="benefits-section" className="container mx-auto max-w-6xl" delay={0.1}>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
-              Mengapa Memilih Kami
-            </h2>
-            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
-              Keunggulan layanan talent management kami
-            </p>
-          </div>
+      <BenefitsSectionHero
+        title={
+          <>
+            Mengapa Memilih <br />
+            Layanan Kami
+          </>
+        }
+        subtitle="Keunggulan layanan talent management kami dalam menyediakan tenaga kerja profesional untuk kebutuhan bisnis Anda."
+        features={benefits}
+        backgroundImage="/images/square/pic2.jpg"
+        ctaButton={{
+          text: "Hubungi Kami",
+          href: "/contact"
+        }}
+        className="bg-sk-gold"
+        variant="light"
+      />
 
-          <div className="grid md:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
-              return (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-6 backdrop-blur text-center"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 mx-auto">
-                    <Icon className="text-white/70" size={24} />
-                  </div>
-                  <h3 className="text-lg font-light text-white mb-2">{benefit.title}</h3>
-                  <p className="text-white/50 font-light text-sm">{benefit.desc}</p>
-                </div>
-              )
-            })}
-          </div>
-        </AnimatedDiv>
-      </section>
-
-      {/* Engagement Models */}
-      <section className="bg-sk-gold py-20 px-4">
-        <AnimatedDiv id="models-section" className="container mx-auto max-w-6xl" delay={0.2}>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extralight text-gray-900 mb-4 tracking-tight">
-              Model Kerjasama
-            </h2>
-            <p className="text-gray-600 font-light text-lg max-w-2xl mx-auto">
-              Pilih model yang sesuai dengan kebutuhan proyek Anda
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Staff Augmentation", desc: "Tambahkan tenaga ahli ke tim existing Anda untuk periode tertentu", duration: "3-12 Bulan" },
-              { title: "Project-Based", desc: "Tim dedicated untuk menyelesaikan proyek spesifik dari awal hingga akhir", duration: "Sesuai Proyek" },
-              { title: "Managed Team", desc: "Tim lengkap yang dikelola sepenuhnya untuk kebutuhan operasional", duration: "Ongoing" },
-            ].map((model, index) => (
-              <div
-                key={index}
-                className="rounded-2xl border border-gray-900/20 bg-white/40 p-8 backdrop-blur"
-              >
-                <h3 className="text-xl font-light text-gray-900 mb-3">{model.title}</h3>
-                <p className="text-gray-600 font-light leading-relaxed mb-4">{model.desc}</p>
-                <div className="inline-block px-3 py-1 rounded-full border border-gray-900/20 bg-gray-900/10 text-xs text-gray-700">
-                  {model.duration}
-                </div>
-              </div>
-            ))}
-          </div>
-        </AnimatedDiv>
-      </section>
-
+      <StatsSection />
     </div>
   )
 }
+
