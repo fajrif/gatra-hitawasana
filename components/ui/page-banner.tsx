@@ -39,6 +39,7 @@ interface PageBannerProps {
     }>
     /** Micro details list */
     microDetails?: Array<string>
+    hideMicroDetailsOnMobile?: boolean
     className?: string
     animate?: boolean
 }
@@ -53,7 +54,8 @@ export function PageBanner({
     backgroundComponent,
     ctaButtons = [],
     microDetails = [],
-    className = '',
+    hideMicroDetailsOnMobile = false,
+    className = 'pb-16',
     animate = true,
 }: PageBannerProps) {
     const sectionRef = useRef<HTMLDivElement | null>(null)
@@ -202,7 +204,7 @@ export function PageBanner({
             )}
 
             {/* Content */}
-            <div className={`relative z-10 mx-auto max-w-6xl px-4 pt-32 ${backgroundComponent ? 'pb-[100px] md:pb-[250px]' : 'pb-16'} sm:px-4 md:px-0`}>
+            <div className={`relative z-10 mx-auto max-w-6xl px-4 pt-32 ${backgroundComponent ? 'pb-[100px] md:pb-[200px]' : ''} sm:px-4 md:px-0`}>
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
                     <div
@@ -290,7 +292,7 @@ export function PageBanner({
                 {microDetails.length > 0 && (
                     <ul
                         ref={microRef}
-                        className="mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white"
+                        className={`mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white ${hideMicroDetailsOnMobile ? 'hidden md:flex' : ''}`}
                     >
                         {microDetails.map((detail, index) => (
                             <li key={index} className="flex items-center gap-2">

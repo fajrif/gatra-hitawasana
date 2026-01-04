@@ -13,13 +13,13 @@ export function CTASection() {
                         height="auto"
                         className="max-w-4xl"
                         gradientColors={{
-                            primary: "rgba(255, 255, 255, 1)",   // Blue from footer #096FFF
-                            secondary: "rgba(20, 114, 254, 1)",  // Light blue
-                            accent: "rgba(9, 111, 255, 0.85)",   // Deeper blue
-                            borderGlow: "rgba(255, 255, 255, 1)" // Pink border glow #ce94e7
+                            primary: "rgba(255, 255, 255, 1)",
+                            secondary: "rgba(20, 114, 254, 1)",
+                            accent: "rgba(9, 111, 255, 0.85)",
+                            borderGlow: "rgba(255, 255, 255, 1)"
                         }}
                     >
-                        <div className="text-center space-y-6 flex flex-col items-center justify-center h-full p-4 md:p-8">
+                        <div className="text-center space-y-6 flex flex-col items-center justify-center h-full p-0 md:p-8">
                             <h2 className="text-2xl md:text-3xl font-medium text-white mb-3">
                                 Siap Mendukung Transformasi Digital Perusahaan Anda
                             </h2>
@@ -29,8 +29,8 @@ export function CTASection() {
                             <div className="pt-4">
                                 <Link href="/contact">
                                     <Button size="lg"
-                                      className="rounded-2xl gap-2 bg-white text-black hover:bg-gray-100 text-sm py-3 cursor-pointer"
-                                      >
+                                        className="rounded-2xl gap-2 bg-white text-black hover:bg-gray-100 text-sm py-3 cursor-pointer"
+                                    >
                                         Hubungi Tim Kami
                                     </Button>
                                 </Link>

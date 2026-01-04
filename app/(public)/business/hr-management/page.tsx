@@ -30,7 +30,7 @@ const benefits = [
   {
     icon: Clock,
     title: "Cepat Tersedia",
-    description: "Resource siap deploy dalam waktu singkat"
+    description: "Resource siap kerja dalam waktu singkat"
   },
   {
     icon: CheckCircle,
@@ -45,12 +45,12 @@ export default function HRManagementPage() {
       {/* Banner Section */}
       <PageBanner
         title="Manajemen Sumber Daya Manusia"
-        description="Akses ke talenta teknis terbaik untuk proyek Anda. Kami menyediakan profesional terampil di berbagai bidang IT untuk memperkuat tim atau memberikan solusi lengkap."
+        description="Akses ke talenta teknis terbaik untuk proyek Anda. Kami menyediakan tenaga profesional terampil di berbagai bidang untuk memperkuat tim atau memberikan solusi lengkap."
         breadcrumbs={[
           { label: "Layanan", href: "/business" },
           { label: "HR Management" }
         ]}
-        badge={{ label: "Talent", text: "Outsourcing" }}
+        badge={{ label: "Company", text: "Resources" }}
         ctaButtons={[
           { text: "Hire Sekarang", href: "/contact", primary: true },
           { text: "Lihat Layanan", href: "/business", hideOnMobile: true }
@@ -60,13 +60,14 @@ export default function HRManagementPage() {
           "Talent Berpengalaman",
           "Siap Bekerja"
         ]}
+        hideMicroDetailsOnMobile={true}
         backgroundComponent={<HRManagementBackground />}
       />
 
       {/* HR Overview */}
       <section className="bg-black">
         <AnimatedDiv id="hr-management-overview" className="container mx-auto max-w-2xl md:max-w-3xl">
-          <div className="text-center mb-12 px-4 md:px-0">
+          <div className="text-center my-16 px-4 md:px-0">
             <h2 className="max-w-2xl text-2xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-5xl bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)] uppercase mb-4">
               {titleOverview1}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-orange-200">
@@ -87,8 +88,8 @@ export default function HRManagementPage() {
       <BenefitsSectionHero
         title={
           <>
-            Mengapa Memilih <br />
-            Layanan Kami
+            Terbaik Dalam <br />
+            Layanan SDM
           </>
         }
         subtitle="Keunggulan layanan talent management kami dalam menyediakan tenaga kerja profesional untuk kebutuhan bisnis Anda."

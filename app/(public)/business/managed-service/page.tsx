@@ -1,7 +1,6 @@
 import { PageBanner } from "@/components/ui/page-banner"
 import { AnimatedDiv } from "@/components/ui/animated-div"
-import { Shield, Clock, TrendingUp, Headphones, Server, Eye, Wrench, FileCheck } from "lucide-react"
-import Link from "next/link"
+import { Shield, Clock, TrendingUp, Headphones, Server, Eye } from "lucide-react"
 
 const services = [
   {
@@ -65,13 +64,13 @@ export default function ManagedServicePage() {
                     <Icon className="text-white/80" size={24} />
                   </div>
                   <h3 className="text-xl font-light text-white mb-3">{service.title}</h3>
-                  <p className="text-white/60 font-light leading-relaxed mb-6">
+                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
                     {service.description}
                   </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-white/50">
-                        <span className="w-1 h-1 rounded-full bg-white/40" />
+                      <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="w-1 h-1 rounded-full" />
                         {feature}
                       </li>
                     ))}
@@ -87,10 +86,10 @@ export default function ManagedServicePage() {
       <section className="bg-sk-sea-shade py-20 px-4">
         <AnimatedDiv id="sla-section" className="container mx-auto max-w-6xl" delay={0.1}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extralight text-white mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-light uppercase text-white mb-4 tracking-tight">
               Service Level Agreement
             </h2>
-            <p className="text-white/60 font-light text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground font-light text-lg max-w-2xl mx-auto">
               Komitmen kami untuk kualitas layanan terbaik
             </p>
           </div>
@@ -106,8 +105,8 @@ export default function ManagedServicePage() {
                   <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6 mx-auto">
                     <Icon className="text-white/70" size={24} />
                   </div>
-                  <div className="text-4xl font-extralight text-white mb-2">{metric.value}</div>
-                  <p className="text-white/50 font-light text-sm">{metric.label}</p>
+                  <div className="text-2xl font-regular text-white mb-2">{metric.value}</div>
+                  <p className="text-muted-foreground font-light text-sm">{metric.label}</p>
                 </div>
               )
             })}
@@ -117,12 +116,12 @@ export default function ManagedServicePage() {
 
       {/* CTA */}
       <section className="bg-sk-gold py-20 px-4">
-        <AnimatedDiv id="cta-section" className="container mx-auto max-w-4xl text-center" delay={0.3}>
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 tracking-tight">
+        <AnimatedDiv id="cta-section" className="container mx-auto max-w-3xl text-center" delay={0.3}>
+          <h2 className="text-3xl md:text-4xl font-light uppercase text-gray-900 mb-4 tracking-tight">
             Percayakan Kepada Kami untuk Mengelola IT Anda
           </h2>
           <p className="text-gray-600 font-light text-lg max-w-xl mx-auto">
-            Hubungi kami untuk mengetahui lebih lanjut tentang paket managed service kami
+            Hubungi kami untuk mengetahui lebih lanjut tentang layanan managed service kami
           </p>
         </AnimatedDiv>
       </section>

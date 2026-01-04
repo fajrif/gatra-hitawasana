@@ -5,6 +5,7 @@ import { MissionVisionDirectors } from "@/components/mission-vision-directors"
 import { ShowCaseGallery } from "@/components/show-case-gallery"
 import { DualCTASection } from "@/components/dual-cta-section"
 import { StatsSection } from "@/components/stats-section"
+import Image from "next/image"
 
 export default function AboutPage() {
   return (
@@ -15,7 +16,19 @@ export default function AboutPage() {
         description="Perusahaan IT terdepan yang berkomitmen memberikan solusi teknologi inovatif untuk mendukung transformasi digital bisnis Anda."
         breadcrumbs={[{ label: "Tentang Kami" }]}
         badge={{ label: "Sejak", text: "2003" }}
+        className="pb-8 md:pb-16"
       />
+
+      {/* Mobile-only image below banner */}
+      <div className="block md:hidden bg-black px-4">
+        <Image
+          src="/images/ruang-kantor-nariba.png"
+          alt="Kantor PT Gatra Hita Wasana"
+          width={800}
+          height={450}
+          className="w-full h-auto grayscale"
+        />
+      </div>
 
       {/* Company Overview */}
       <section className="bg-black py-20 px-4">

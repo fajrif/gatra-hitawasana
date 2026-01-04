@@ -15,7 +15,7 @@ export default function TelcoInfraPage() {
         description="Solusi perangkat keras enterprise-grade dari produsen terkemuka. Kami menangani pengadaan perangkat, installasi, serta integrasi infrastruktur telekomunikasi dan Teknologi Informasi."
         breadcrumbs={[
           { label: "Layanan", href: "/business" },
-          { label: "Telco & IT Infra" }
+          { label: "Telco & IT Infrastruktur" }
         ]}
         badge={{ label: "Enterprise", text: "Hardware" }}
       />
