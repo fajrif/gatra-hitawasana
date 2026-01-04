@@ -3,8 +3,9 @@
 import type React from "react"
 import { PageBanner } from "@/components/ui/page-banner"
 import { AnimatedDiv } from "@/components/ui/animated-div"
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,8 +26,9 @@ export default function ContactPage() {
       {/* Banner Section */}
       <PageBanner
         title="Hubungi Kami"
-        description="Siap memulai proyek Anda atau memiliki pertanyaan? Kami senang mendengar dari Anda."
+        description="Siap memulai proyek Anda atau memiliki pertanyaan? Silahkan mengirimkan pesan singkat anda atau hubungi Kami di email dan nomor tujuan, Kami sangat senang mendengar dari Anda."
         breadcrumbs={[{ label: "Kontak Kami" }]}
+        className="pb-0 md:pb-16"
       />
 
       {/* Contact Section */}
@@ -60,14 +62,6 @@ export default function ContactPage() {
           }}
         />
 
-        {/* Noise texture overlay */}
-        <div
-          className="absolute inset-0 opacity-30 mix-blend-overlay z-12"
-          style={{
-            // backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
-          }}
-        />
-
         {/* Bottom border glow */}
         <div
           className="absolute bottom-0 left-0 right-0 h-[2px] z-13"
@@ -84,7 +78,7 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-2xl font-medium text-white mb-6">Informasi Kontak</h2>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur hover:border-white/50">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
                       <Mail className="text-white/70" size={20} />
                     </div>
@@ -92,32 +86,32 @@ export default function ContactPage() {
                       <div className="text-white font-medium text-sm mb-1">Email</div>
                       <a
                         href="mailto:admin@gatrahitawasana.com"
-                        className="text-muted-foreground font-light hover:text-white/80 transition-colors"
+                        className="text-white/80 font-light hover:text-white/80 transition-colors"
                       >
                         admin@gatrahitawasana.com
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur hover:border-white/50">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
                       <Phone className="text-white/70" size={20} />
                     </div>
                     <div>
                       <div className="text-white font-medium text-sm mb-1">Telepon</div>
-                      <a href="tel:+6281110127970" className="text-muted-foreground font-light hover:text-white/80 transition-colors">
+                      <a href="tel:+6281110127970" className="text-white/80 font-light hover:text-white/80 transition-colors">
                         +62 811 1012 7970
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur hover:border-white/50">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
                       <MapPin className="text-white/70" size={20} />
                     </div>
                     <div>
                       <div className="text-white font-medium mb-1">Kantor</div>
-                      <p className="text-muted-foreground font-light">
+                      <p className="text-white/80 font-light">
                         Gedung Aditarina Lt.2
                         <br />
                         Jl. Bangka Raya No.33A, Pela Mampang
@@ -128,13 +122,13 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur">
+                  <div className="flex items-start gap-4 p-4 rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] backdrop-blur hover:border-white/50">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
                       <Clock className="text-white/60" size={20} />
                     </div>
                     <div>
                       <div className="text-white font-medium text-sm mb-1">Jam Operasional</div>
-                      <p className="text-muted-foreground font-light">
+                      <p className="text-white/80 font-light">
                         Senin - Jumat: 09:00 - 18:00 WIB
                         <br />
                         Sabtu - Minggu: Tutup
@@ -146,13 +140,15 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-8 backdrop-blur">
+            <motion.div
+              className="rounded-xl border border-white/20 bg-[#e7eceb2b] py-8 px-4 md:px-8 backdrop-blur hover:border-white/50 hover:bg-[#e7eceb33]"
+              whileHover={{ y: -8 }}
+              whileFocus={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
               <h2 className="text-2xl font-medium text-white mb-6">Kirim Pesan</h2>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-regular text-white mb-2">
-                    Nama *
-                  </label>
                   <input
                     id="name"
                     type="text"
@@ -160,14 +156,11 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-regular text-white mb-2">
-                    Email *
-                  </label>
                   <input
                     id="email"
                     type="email"
@@ -175,28 +168,22 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-regular text-white mb-2">
-                    Perusahaan
-                  </label>
                   <input
                     id="company"
                     type="text"
                     placeholder="Nama perusahaan Anda"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-regular text-white mb-2">
-                    Pesan *
-                  </label>
                   <textarea
                     id="message"
                     placeholder="Ceritakan tentang proyek atau pertanyaan Anda..."
@@ -204,7 +191,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/40 font-light focus:outline-none focus:border-white/40 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors resize-none"
                   />
                 </div>
 
@@ -217,7 +204,7 @@ export default function ContactPage() {
                   </button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </AnimatedDiv>
       </section>
