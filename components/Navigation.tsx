@@ -64,7 +64,7 @@ export function Navigation() {
                   <Link
                     href="/"
                     className={cn(
-                      "uppercase transition-all font-medium px-3 py-2 rounded-md",
+                      "uppercase transition-all font-medium text-sm px-3 py-2 rounded-md",
                       isScrolled
                         ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
                         : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
@@ -80,7 +80,7 @@ export function Navigation() {
                   <Link
                     href="/about"
                     className={cn(
-                      "uppercase transition-all font-medium px-3 py-2 rounded-md",
+                      "uppercase transition-all font-medium text-sm px-3 py-2 rounded-md",
                       isScrolled
                         ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
                         : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
@@ -160,7 +160,7 @@ export function Navigation() {
                   <Link
                     href="/media"
                     className={cn(
-                      "uppercase transition-all font-medium px-3 py-2 rounded-md",
+                      "uppercase transition-all font-medium text-sm px-3 py-2 rounded-md",
                       isScrolled
                         ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
                         : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
