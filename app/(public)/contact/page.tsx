@@ -6,6 +6,7 @@ import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { StatsSection } from "@/components/stats-section"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -208,6 +209,8 @@ export default function ContactPage() {
           </div>
         </AnimatedDiv>
       </section>
+
+      <StatsSection darkMode={true} />
 
     </div>
   )

@@ -1,5 +1,4 @@
 import { CircleDot } from "lucide-react"
-import { BackedByICONPlus } from '@/components/ui/backed-by-icon-plus'
 import { LottiePlayer } from '@/components/ui/lottie-player'
 
 export function InfrastructureSection() {
