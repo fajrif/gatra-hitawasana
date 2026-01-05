@@ -10,6 +10,29 @@ const hostGrotesk = Host_Grotesk({ subsets: ["latin"], variable: '--font-host-gr
 export const metadata: Metadata = {
     title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
     description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
+    metadataBase: new URL("https://gatrahitawasana.com"),
+    openGraph: {
+        title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
+        description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
+        url: "https://gatrahitawasana.com",
+        siteName: "PT Gatra Hita Wasana",
+        images: [
+            {
+                url: "/images/og-image.png",
+                width: 1200,
+                height: 630,
+                alt: "PT Gatra Hita Wasana Logo",
+            },
+        ],
+        locale: "id_ID",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
+        description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
+        images: ["/images/og-image.png"],
+    },
     icons: {
         icon: [
             {
