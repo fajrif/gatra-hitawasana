@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         siteName: "PT Gatra Hita Wasana",
         images: [
             {
-                url: "/images/og-image.png",
+                url: "/images/og-image.png?v=2",
                 width: 1200,
                 height: 630,
                 alt: "PT Gatra Hita Wasana Logo",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
         description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
-        images: ["/images/og-image.png"],
+        images: ["/images/og-image.png?v=2"],
     },
     icons: {
         icon: [
