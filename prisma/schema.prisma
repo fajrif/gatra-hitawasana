@@ -56,6 +56,7 @@ model Article {
   short_description String?
   content           String?       @db.Text
   image             String?
+  gallery_images    String[]      // Array of gallery image URLs
   category_id       String
   published_date    DateTime?
   status            ArticleStatus @default(DRAFT)

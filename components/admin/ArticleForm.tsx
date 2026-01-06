@@ -16,6 +16,7 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import TiptapLink from '@tiptap/extension-link'
 import TiptapImage from '@tiptap/extension-image'
+import { X } from 'lucide-react'
 
 interface ArticleFormProps {
     initialData?: any
@@ -27,6 +28,8 @@ export function ArticleForm({ initialData, categories }: ArticleFormProps) {
     const [error, setError] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
+    const [galleryPreviews, setGalleryPreviews] = useState<string[]>(initialData?.gallery_images || [])
+    const [newGalleryFiles, setNewGalleryFiles] = useState<File[]>([])
     const isEdit = !!initialData
 
     // Set up default values including today's date for published_date
@@ -104,6 +107,18 @@ export function ArticleForm({ initialData, categories }: ArticleFormProps) {
                 formData.append('image', imageInput.files[0])
             }
 
+            // Handle gallery images
+            if (isEdit) {
+                // For edit: send existing gallery URLs that weren't removed
+                const existingGallery = galleryPreviews.filter(url => !url.startsWith('data:'))
+                formData.append('existing_gallery_images', JSON.stringify(existingGallery))
+            }
+
+            // Append new gallery files
+            newGalleryFiles.forEach(file => {
+                formData.append('gallery_images', file)
+            })
+
             const url = isEdit ? `/api/articles/${initialData.id}` : '/api/articles'
             const response = await fetch(url, {
                 method: isEdit ? 'PUT' : 'POST',
@@ -139,6 +154,37 @@ export function ArticleForm({ initialData, categories }: ArticleFormProps) {
         }
     }
 
+    const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(e.target.files || [])
+        if (files.length > 0) {
+            // Store new files for submission
+            setNewGalleryFiles(prev => [...prev, ...files])
+
+            // Create previews for new files
+            files.forEach(file => {
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                    setGalleryPreviews(prev => [...prev, reader.result as string])
+                }
+                reader.readAsDataURL(file)
+            })
+        }
+        // Clear the input so same file can be selected again
+        e.target.value = ''
+    }
+
+    const removeGalleryImage = (index: number) => {
+        const imageToRemove = galleryPreviews[index]
+        setGalleryPreviews(prev => prev.filter((_, i) => i !== index))
+
+        // If it's a new file (data URL), also remove from newGalleryFiles
+        if (imageToRemove.startsWith('data:')) {
+            // Count how many data URLs come before this index
+            const dataUrlIndex = galleryPreviews.slice(0, index + 1).filter(url => url.startsWith('data:')).length - 1
+            setNewGalleryFiles(prev => prev.filter((_, i) => i !== dataUrlIndex))
+        }
+    }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {error && (
@@ -159,6 +205,41 @@ export function ArticleForm({ initialData, categories }: ArticleFormProps) {
                 />
                 {imagePreview && (
                     <img src={imagePreview} alt="Preview" className="mt-2 max-h-48 rounded" />
+                )}
+            </div>
+
+            {/* Gallery Images */}
+            <div className="space-y-2">
+                <Label htmlFor="gallery_images">Gallery Images (Optional)</Label>
+                <Input
+                    id="gallery_images"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleGalleryChange}
+                    disabled={isSubmitting}
+                />
+                <p className="text-xs text-gray-500">Upload multiple images for the article gallery</p>
+                {galleryPreviews.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                        {galleryPreviews.map((preview, index) => (
+                            <div key={index} className="relative group">
+                                <img
+                                    src={preview}
+                                    alt={`Gallery ${index + 1}`}
+                                    className="h-24 w-24 object-cover rounded border"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => removeGalleryImage(index)}
+                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    disabled={isSubmitting}
+                                >
+                                    <X size={14} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
 

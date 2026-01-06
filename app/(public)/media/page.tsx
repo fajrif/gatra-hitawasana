@@ -30,14 +30,25 @@ export default async function MediaPage() {
       />
 
       {/* Articles Grid */}
-      <section className="bg-black py-20 px-4">
+      <section className="bg-black pb-20 px-4">
         <AnimatedDiv id="articles-grid" className="container mx-auto max-w-6xl">
           {articles.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.map((article: typeof articles[0]) => (
                 <Link key={article.id} href={`/media/${article.slug}`}>
-                  <article className="group h-full rounded-2xl border border-white/20 bg-[rgba(231,236,235,0.08)] p-6 backdrop-blur hover:bg-[rgba(231,236,235,0.12)] transition-all duration-300">
-                    <div className="flex flex-col h-full">
+                  <article className="group h-full rounded-xl border border-white/20 bg-[rgba(231,236,235,0.08)] overflow-hidden backdrop-blur hover:bg-[rgba(231,236,235,0.10)] transition-all duration-300">
+                    {/* Article Image */}
+                    {article.image && (
+                      <div className="relative aspect-video overflow-hidden">
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+
+                    <div className="flex flex-col h-full p-6">
                       {/* Category Badge */}
                       <div className="mb-4">
                         <span className="inline-block px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-white/60">
@@ -46,12 +57,12 @@ export default async function MediaPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-light text-white mb-3 group-hover:text-white/80 transition-colors line-clamp-2">
+                      <h3 className="text-lg font-regular text-white mb-3 group-hover:text-white/80 transition-colors">
                         {article.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-white/50 font-light text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
+                      <p className="text-white/50 font-light text-sm leading-relaxed mb-6">
                         {article.short_description}
                       </p>
 

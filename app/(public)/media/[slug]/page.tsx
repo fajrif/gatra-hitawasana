@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import Link from 'next/link'
 import { ChevronRight, Calendar, Clock, ArrowLeft } from 'lucide-react'
+import { GallerySlider } from '@/components/ui/gallery-slider'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
@@ -95,10 +96,17 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* Article Content */}
-            <article className="bg-black py-16 px-4">
-                <div className="max-w-3xl mx-auto">
-                    {/* Featured Image */}
-                    {article.image && (
+            <article className="bg-black pb-16 px-4">
+                <div className="max-w-4xl mx-auto">
+                    {/* Featured Image or Gallery Slider */}
+                    {article.gallery_images && article.gallery_images.length > 0 ? (
+                        <div className="mb-12">
+                            <GallerySlider
+                                images={article.gallery_images}
+                                alt={article.title}
+                            />
+                        </div>
+                    ) : article.image ? (
                         <div className="mb-12 rounded-2xl overflow-hidden border border-white/10">
                             <img
                                 src={article.image}
@@ -106,18 +114,11 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
                                 className="w-full h-auto object-cover"
                             />
                         </div>
-                    )}
-
-                    {/* Description */}
-                    {article.short_description && (
-                        <p className="text-xl font-light text-white/70 leading-relaxed mb-10 pb-10 border-b border-white/10">
-                            {article.short_description}
-                        </p>
-                    )}
+                    ) : null}
 
                     {/* Content */}
                     <div
-                        className="prose prose-invert max-w-none
+                        className="space-y-4 prose prose-invert max-w-none
                             prose-headings:font-light prose-headings:text-white prose-headings:tracking-tight
                             prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
                             prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
@@ -128,7 +129,7 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
                             prose-li:font-light prose-li:marker:text-white/40
                             prose-blockquote:border-white/20 prose-blockquote:text-white/60 prose-blockquote:font-light
                             prose-code:text-white/80 prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                            prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10"
+                            prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 text-white"
                         dangerouslySetInnerHTML={{ __html: article.content || '' }}
                     />
 

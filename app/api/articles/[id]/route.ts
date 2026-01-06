@@ -73,6 +73,41 @@ export async function PUT(
             }
         }
 
+        // Handle gallery images
+        let galleryImages: string[] | undefined = undefined
+        const existingGalleryJson = formData.get('existing_gallery_images') as string | null
+        const existingGallery = existingGalleryJson ? JSON.parse(existingGalleryJson) : []
+
+        const galleryFiles = formData.getAll('gallery_images') as File[]
+        const newGalleryImages: string[] = []
+
+        for (const file of galleryFiles) {
+            if (file && file.size > 0) {
+                if (process.env.BLOB_READ_WRITE_TOKEN) {
+                    const blob = await put(file.name, file, {
+                        access: 'public',
+                    })
+                    newGalleryImages.push(blob.url)
+                } else {
+                    const bytes = await file.arrayBuffer()
+                    const buffer = Buffer.from(bytes)
+                    const fileName = `${Date.now()}-${file.name}`
+                    const fs = await import('fs/promises')
+                    const path = await import('path')
+
+                    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
+                    await fs.mkdir(uploadDir, { recursive: true })
+                    await fs.writeFile(path.join(uploadDir, fileName), buffer)
+                    newGalleryImages.push(`/uploads/${fileName}`)
+                }
+            }
+        }
+
+        // Combine existing and new gallery images
+        if (existingGalleryJson !== null || newGalleryImages.length > 0) {
+            galleryImages = [...existingGallery, ...newGalleryImages]
+        }
+
         const data: any = {
             title: formData.get('title') as string,
             slug: formData.get('slug') as string,
@@ -89,6 +124,10 @@ export async function PUT(
 
         if (imageUrl !== undefined) {
             data.image = imageUrl
+        }
+
+        if (galleryImages !== undefined) {
+            data.gallery_images = galleryImages
         }
 
         // Check if slug already exists (excluding current article)
