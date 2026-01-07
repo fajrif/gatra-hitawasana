@@ -31,7 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # ignore all local file uploads
-# public/uploads/**/*
+public/uploads/**/*
 
 # env files (can opt-in for committing if needed)
 .env*

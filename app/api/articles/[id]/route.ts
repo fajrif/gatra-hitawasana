@@ -2,8 +2,19 @@ import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { put } from '@vercel/blob'
+import { put, del } from '@vercel/blob'
 import { generateSlug } from '@/lib/slug'
+
+// Helper function to delete blob files
+async function deleteBlobIfExists(url: string | null | undefined) {
+    if (url && url.includes('blob.vercel-storage.com')) {
+        try {
+            await del(url)
+        } catch (error) {
+            console.error('Error deleting blob:', error)
+        }
+    }
+}
 
 // GET /api/articles/[id]
 export async function GET(
@@ -52,8 +63,19 @@ export async function PUT(
         const image = formData.get('image') as File | null
         let imageUrl: string | null | undefined = undefined
 
+        // Get current article to check for existing images
+        const currentArticle = await prisma.article.findUnique({
+            where: { id: params.id },
+            select: { image: true, gallery_images: true }
+        })
+
         // Handle image upload if new image provided
         if (image && image.size > 0) {
+            // Delete old main image from blob storage if exists
+            if (currentArticle?.image) {
+                await deleteBlobIfExists(currentArticle.image)
+            }
+
             if (process.env.BLOB_READ_WRITE_TOKEN) {
                 const blob = await put(image.name, image, {
                     access: 'public',
@@ -170,6 +192,25 @@ export async function DELETE(
         const session = await getServerSession(authOptions)
         if (!session) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+        }
+
+        // Get article to find associated blobs
+        const article = await prisma.article.findUnique({
+            where: { id: params.id },
+            select: { image: true, gallery_images: true }
+        })
+
+        // Delete blob files if they exist
+        if (article) {
+            // Delete main image
+            await deleteBlobIfExists(article.image)
+
+            // Delete gallery images
+            if (article.gallery_images && Array.isArray(article.gallery_images)) {
+                for (const galleryImage of article.gallery_images) {
+                    await deleteBlobIfExists(galleryImage as string)
+                }
+            }
         }
 
         await prisma.article.delete({
