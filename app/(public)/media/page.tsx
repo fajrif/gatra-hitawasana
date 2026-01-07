@@ -57,7 +57,7 @@ export default async function MediaPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-regular text-white mb-3 group-hover:text-white/80 transition-colors">
+                      <h3 className="text-lg font-regular text-white mb-3 group-hover:text-white/80 leading-tight transition-colors">
                         {article.title}
                       </h3>
 
