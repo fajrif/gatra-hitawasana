@@ -84,6 +84,7 @@ export async function POST(request: Request) {
                 // Production: Upload to Vercel Blob
                 const blob = await put(image.name, image, {
                     access: 'public',
+                    addRandomSuffix: true,
                 })
                 imageUrl = blob.url
             } else {
@@ -110,6 +111,7 @@ export async function POST(request: Request) {
                 if (process.env.BLOB_READ_WRITE_TOKEN) {
                     const blob = await put(file.name, file, {
                         access: 'public',
+                        addRandomSuffix: true,
                     })
                     galleryImages.push(blob.url)
                 } else {

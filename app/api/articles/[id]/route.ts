@@ -79,6 +79,7 @@ export async function PUT(
             if (process.env.BLOB_READ_WRITE_TOKEN) {
                 const blob = await put(image.name, image, {
                     access: 'public',
+                    addRandomSuffix: true,
                 })
                 imageUrl = blob.url
             } else {
@@ -108,6 +109,7 @@ export async function PUT(
                 if (process.env.BLOB_READ_WRITE_TOKEN) {
                     const blob = await put(file.name, file, {
                         access: 'public',
+                        addRandomSuffix: true,
                     })
                     newGalleryImages.push(blob.url)
                 } else {
