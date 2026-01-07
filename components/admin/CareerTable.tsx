@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { MoreHorizontal, Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -113,7 +114,15 @@ export function CareerTable({ careers, isLoading, onDelete }: CareerTableProps) 
                         ) : (
                             careers.map((career) => (
                                 <TableRow key={career.id}>
-                                    <TableCell className="font-medium">{career.title}</TableCell>
+                                    <TableCell className="font-medium max-w-[200px]">
+                                        <Link
+                                            href={`/admin/careers/${career.id}/edit`}
+                                            className="hover:text-blue-600 hover:underline truncate block"
+                                            title={career.title}
+                                        >
+                                            {career.title}
+                                        </Link>
+                                    </TableCell>
                                     <TableCell>{career.department}</TableCell>
                                     <TableCell>{career.location}</TableCell>
                                     <TableCell>

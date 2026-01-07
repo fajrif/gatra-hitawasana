@@ -92,7 +92,15 @@ export function CategoryTable({ categories, isLoading, onEdit, onDelete }: Categ
                         ) : (
                             categories.map((category) => (
                                 <TableRow key={category.id}>
-                                    <TableCell className="font-medium">{category.name}</TableCell>
+                                    <TableCell className="font-medium max-w-[200px]">
+                                        <button
+                                            onClick={() => onEdit(category)}
+                                            className="hover:text-blue-600 hover:underline truncate block text-left w-full"
+                                            title={category.name}
+                                        >
+                                            {category.name}
+                                        </button>
+                                    </TableCell>
                                     <TableCell>
                                         {format(new Date(category.createdAt), 'MMM dd, yyyy')}
                                     </TableCell>
