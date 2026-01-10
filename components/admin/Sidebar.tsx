@@ -42,6 +42,7 @@ export default function Sidebar() {
                   width={140}
                   height={40}
                   className="h-8 w-auto"
+                  unoptimized
                 />
                 <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
                   <X className="h-6 w-6" />
@@ -88,6 +89,7 @@ export default function Sidebar() {
               width={140}
               height={40}
               className="h-8 w-auto"
+              unoptimized
             />
           </div>
           <div className="flex flex-1 flex-col overflow-y-auto">

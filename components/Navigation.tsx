@@ -53,6 +53,8 @@ export function Navigation() {
                 "w-auto transition-all duration-300",
                 isScrolled ? "h-8 md:h-10" : "h-10 md:h-12"
               )}
+              unoptimized
+              priority
             />
           </Link>
 

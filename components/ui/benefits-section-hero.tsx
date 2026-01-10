@@ -115,6 +115,7 @@ const BenefitsSectionHero: React.FC<BenefitsSectionHeroProps> = ({
                         width={150}
                         height={40}
                         className="mb-8 h-12 w-auto"
+                        unoptimized
                     />
                 </motion.div>
 
