@@ -7,6 +7,7 @@ import {
   FileText,
   FolderOpen,
   Briefcase,
+  MessageSquare,
   X
 } from "lucide-react"
 import Link from "next/link"
@@ -25,6 +26,7 @@ export default function Sidebar() {
     { name: 'Articles', href: '/admin/articles', icon: FileText },
     { name: 'Categories', href: '/admin/categories', icon: FolderOpen },
     { name: 'Careers', href: '/admin/careers', icon: Briefcase },
+    { name: 'Inquiries', href: '/admin/inquiries', icon: MessageSquare },
   ]
 
   return (

@@ -172,6 +172,22 @@ export function Navigation() {
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="/contact"
+                    className={cn(
+                      "uppercase transition-all font-medium text-sm px-3 py-2 rounded-md",
+                      isScrolled
+                        ? "text-black hover:text-primary hover:bg-black/5 focus:text-primary focus:bg-black/5"
+                        : "text-white hover:text-white/80 hover:bg-white/10 focus:text-white/80 focus:bg-white/10"
+                    )}
+                  >
+                    Kontak
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           <div className="hidden md:block">

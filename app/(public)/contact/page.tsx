@@ -15,11 +15,36 @@ export default function ContactPage() {
     company: "",
     message: "",
   })
+  const [honeypot, setHoneypot] = useState("")
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [errorMsg, setErrorMsg] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+    setStatus("loading")
+    setErrorMsg("")
+
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, honeypot }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? "Something went wrong. Please try again.")
+        setStatus("error")
+        return
+      }
+
+      setStatus("success")
+      setFormData({ name: "", email: "", company: "", message: "" })
+    } catch {
+      setErrorMsg("Network error. Please check your connection and try again.")
+      setStatus("error")
+    }
   }
 
   return (
@@ -148,63 +173,102 @@ export default function ContactPage() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <h2 className="text-2xl font-medium text-white mb-6">Kirim Pesan</h2>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Nama Anda"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
-                  />
-                </div>
 
-                <div>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="email@perusahaan.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    id="company"
-                    type="text"
-                    placeholder="Nama perusahaan Anda"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <textarea
-                    id="message"
-                    placeholder="Ceritakan tentang proyek atau pertanyaan Anda..."
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors resize-none"
-                  />
-                </div>
-
-                <div className="text-center">
+              {status === "success" ? (
+                <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
+                  <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
+                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-medium text-white">Pesan Terkirim!</h3>
+                  <p className="text-white/60 text-sm font-light">Terima kasih telah menghubungi Kami. Kami akan segera merespon pesan Anda.</p>
                   <button
-                    type="submit"
-                    className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 px-6 has-[>svg]:px-4 rounded-2xl gap-2 bg-white text-black hover:bg-gray-100 text-sm py-3 cursor-pointer"
+                    onClick={() => setStatus("idle")}
+                    className="mt-2 text-white/60 text-xs underline hover:text-white transition-colors"
                   >
-                    Kirim Pesan
+                    Kirim pesan lain
                   </button>
                 </div>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
+
+                  <div>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="Nama Anda"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                      disabled={status === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors disabled:opacity-60"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="email@perusahaan.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                      disabled={status === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors disabled:opacity-60"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      id="company"
+                      type="text"
+                      placeholder="Nama perusahaan Anda"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      disabled={status === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors disabled:opacity-60"
+                    />
+                  </div>
+
+                  <div>
+                    <textarea
+                      id="message"
+                      placeholder="Ceritakan tentang proyek atau pertanyaan Anda..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      required
+                      disabled={status === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder:text-white/80 font-light focus:outline-none focus:border-white/50 hover:border-white/50 transition-colors resize-none disabled:opacity-60"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="text-red-300 text-xs">{errorMsg}</p>
+                  )}
+
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 px-6 has-[>svg]:px-4 rounded-2xl gap-2 bg-white text-black hover:bg-gray-100 text-sm py-3 cursor-pointer"
+                    >
+                      {status === "loading" ? "Mengirim..." : "Kirim Pesan"}
+                    </button>
+                  </div>
+                </form>
+              )}
             </motion.div>
           </div>
         </AnimatedDiv>
