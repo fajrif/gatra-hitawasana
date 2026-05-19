@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
     description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
     metadataBase: new URL("https://gatrahitawasana.com"),
+    verification: {
+        google: "CqY_wJYWNxaZ2QuAdb0oyiv2Q6Cg_bR03Ehdhi1ji0s",
+    },
     openGraph: {
         title: "PT Gatra Hita Wasana - Mitra Teknologi Terpercaya",
         description: "Perusahaan yang unggul dalam menyediakan layanan Teknologi Informasi.",
