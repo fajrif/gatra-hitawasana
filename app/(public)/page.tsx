@@ -9,6 +9,8 @@ import TelcoInfraServices from "@/components/services/telco-infra"
 import DigitalSolutionServices from "@/components/services/digital-solution"
 import HumanResourceServices from "@/components/services/human-resources"
 import ManagedServices from "@/components/services/managed-services"
+import { RenewableEnergySection } from "@/components/renewable-energy-section"
+import { LatestNewsSection } from "@/components/latest-news-section"
 
 export default function Home() {
   const cards = [
@@ -68,6 +70,12 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
       </NeuralNetworkBackground>
+
+      {/* Renewable Energy Section */}
+      <RenewableEnergySection />
+
+      {/* Latest News Section */}
+      <LatestNewsSection />
 
       {/* Clients Logo Cloud Section */}
       <section id="clients-section" className="bg-black text-white py-10 px-4">
