@@ -17,9 +17,12 @@ export function RenewableEnergySection() {
             </h2>
             <div className="space-y-4 text-white/80 leading-relaxed">
               <p>
-                <strong>PT Gatra Hita Wasana</strong> telah berhasil mengembangkan
-                teknologi <strong className="text-white">Community-Based Waste to Energy (TOSS)</strong> dan{" "}
+                <strong>PT Gatra Hita Wasana</strong> memiliki solusi
+                pengolahan sampah yang dapat dimanfaatkan untuk energi terbarukan melalui teknologi <strong className="text-white">Community-Based Waste to Energy (TOSS)</strong> dan{" "}
                 <strong className="text-white">Distributed Hybrid Renewable Energy for Community Solutions (DHYRECS)</strong>.
+              </p>
+              <p>
+                Saat ini solusi teknologi ini sudah digunakan di berbagai tempat baik di instansi pemerintah maupun swasta.
                 Inisiatif ini dimulai dari Indonesia, negara kepulauan terbesar
                 di dunia yang memiliki posisi strategis dalam mengurangi emisi
                 gas rumah kaca, sekaligus menjadi hub industrialisasi global
