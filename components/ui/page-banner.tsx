@@ -87,9 +87,11 @@ export function PageBanner({
                 if (badgeRef.current) {
                     gsap.set(badgeRef.current, { autoAlpha: 0, y: -6 })
                 }
-                if (descRef.current) {
-                    gsap.set(descRef.current, { autoAlpha: 0, y: 8 })
-                }
+                // Description is intentionally NOT hidden/animated: on banner-only
+                // pages (e.g. /contact) it is the LCP element, and starting it at
+                // autoAlpha:0 pins LCP to the animation's end (~4s on throttled
+                // mobile). Leaving it in its final painted state keeps LCP at first
+                // paint. Title/badge/breadcrumb/CTA/micro still animate in.
                 if (breadcrumbRef.current) {
                     gsap.set(breadcrumbRef.current, { autoAlpha: 0, y: -4 })
                 }
@@ -128,11 +130,6 @@ export function PageBanner({
                     },
                     0.15
                 )
-
-                // Description
-                if (descRef.current) {
-                    tl.to(descRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.4')
-                }
 
                 // CTA buttons
                 if (ctaRef.current) {

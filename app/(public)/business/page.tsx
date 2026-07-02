@@ -47,7 +47,7 @@ export default function BusinessPage() {
 
       {/* Services Grid */}
       <section id="features-section" className="bg-black">
-        <AnimatedDiv id="features-section-div" className="relative z-10 max-w-[1320px] mx-auto" delay={0.3}>
+        <AnimatedDiv id="features-section-div" className="relative z-10 max-w-[1320px] mx-auto" delay={0.3} fadeIn={false}>
           <ServicesSection cards={cards} hideTitle={true} hideAllButton={true} />
         </AnimatedDiv>
       </section>

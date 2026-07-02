@@ -26,6 +26,8 @@ export default function AboutPage() {
           alt="Kantor PT Gatra Hita Wasana"
           width={800}
           height={450}
+          sizes="100vw"
+          priority
           className="w-full h-auto grayscale"
         />
       </div>
