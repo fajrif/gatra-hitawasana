@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { BackedByICONPlus } from '@/components/ui/backed-by-icon-plus'
 import { ShinyButton } from '@/components/ui/shiny-button'
 
@@ -6,9 +7,12 @@ export function ClientPrimary() {
         <>
             <div className="flex flex-col lg:flex-row gap-10 lg:items-center">
                 <div className="bg-muted rounded-md w-full h-full flex-1">
-                    <img
+                    <Image
                         src="/images/pln-icon-plus-building.png"
                         alt="PLN Icon Plus Head Office"
+                        width={675}
+                        height={706}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
                         className="w-full h-full grayscale hover:grayscale-50 transition-all duration-300 cursor-pointer object-cover rounded-md"
                     />
                 </div>

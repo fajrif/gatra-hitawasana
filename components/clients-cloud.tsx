@@ -6,13 +6,13 @@ interface ClientsCloudProps {
 
 export function ClientsCloud({ title = true }: ClientsCloudProps) {
     const clientLogos = [
-        { src: "/images/clients/icon-green-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/icon-plus-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kai-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kemensos-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/kominfo-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/pertamina-logo.png", alt: "Our Clients" },
-        { src: "/images/clients/poltekkes-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/icon-green-logo.png", alt: "Our Clients", width: 360, height: 111 },
+        { src: "/images/clients/icon-plus-logo.png", alt: "Our Clients", width: 203, height: 74 },
+        { src: "/images/clients/kai-logo.png", alt: "Our Clients", width: 342, height: 144 },
+        { src: "/images/clients/kemensos-logo.png", alt: "Our Clients", width: 368, height: 110 },
+        { src: "/images/clients/kominfo-logo.png", alt: "Our Clients", width: 368, height: 125 },
+        { src: "/images/clients/pertamina-logo.png", alt: "Our Clients", width: 372, height: 86 },
+        { src: "/images/clients/poltekkes-logo.png", alt: "Our Clients", width: 369, height: 85 },
     ]
 
     return (

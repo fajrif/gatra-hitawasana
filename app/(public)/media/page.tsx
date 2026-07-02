@@ -2,6 +2,7 @@ import { PageBanner } from "@/components/ui/page-banner"
 import { AnimatedDiv } from "@/components/ui/animated-div"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { prisma } from "@/lib/prisma"
 import { format } from "date-fns"
 import { id } from "date-fns/locale"
@@ -40,10 +41,12 @@ export default async function MediaPage() {
                     {/* Article Image */}
                     {article.image && (
                       <div className="relative aspect-video overflow-hidden">
-                        <img
+                        <Image
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     )}

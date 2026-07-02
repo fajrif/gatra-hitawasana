@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronRight, Calendar, Clock, ArrowLeft } from 'lucide-react'
 import { GallerySlider } from '@/components/ui/gallery-slider'
 
@@ -107,11 +108,13 @@ export default async function MediaPostPage({ params }: { params: Promise<{ slug
                             />
                         </div>
                     ) : article.image ? (
-                        <div className="mb-12 rounded-2xl overflow-hidden border border-white/10">
-                            <img
+                        <div className="relative aspect-video mb-12 rounded-2xl overflow-hidden border border-white/10">
+                            <Image
                                 src={article.image}
                                 alt={article.title}
-                                className="w-full h-auto object-cover"
+                                fill
+                                sizes="(min-width: 1024px) 896px, 100vw"
+                                className="object-cover"
                             />
                         </div>
                     ) : null}

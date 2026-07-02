@@ -1,4 +1,5 @@
 import type React from "react"
+import Image from "next/image"
 
 interface DigitalSolutionServicesProps {
   className?: string
@@ -102,9 +103,11 @@ const DigitalSolutionServices: React.FC<DigitalSolutionServicesProps> = ({ class
                     flexShrink: 0,
                   }}
                 >
-                  <img
+                  <Image
                     src={tech.icon || "/placeholder.svg"}
                     alt={tech.name}
+                    width={24}
+                    height={24}
                     className="w-full h-full object-contain opacity-70 grayscale" // Apply opacity and grayscale
                   />
                 </div>

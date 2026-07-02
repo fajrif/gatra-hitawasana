@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface GallerySliderProps {
@@ -28,11 +29,13 @@ export function GallerySlider({ images, alt = 'Image' }: GallerySliderProps) {
     // If only one image, show without controls
     if (images.length === 1) {
         return (
-            <div className="rounded-2xl overflow-hidden border border-white/10">
-                <img
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
+                <Image
                     src={images[0]}
                     alt={alt}
-                    className="w-full h-auto object-cover"
+                    fill
+                    sizes="(min-width: 1024px) 896px, 100vw"
+                    className="object-cover"
                 />
             </div>
         )
@@ -42,10 +45,12 @@ export function GallerySlider({ images, alt = 'Image' }: GallerySliderProps) {
         <div className="relative rounded-2xl overflow-hidden border border-white/10">
             {/* Main Image */}
             <div className="relative aspect-video">
-                <img
+                <Image
                     src={images[currentIndex]}
                     alt={`${alt} ${currentIndex + 1}`}
-                    className="w-full h-full object-cover transition-opacity duration-300"
+                    fill
+                    sizes="(min-width: 1024px) 896px, 100vw"
+                    className="object-cover transition-opacity duration-300"
                 />
             </div>
 
