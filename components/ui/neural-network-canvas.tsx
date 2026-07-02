@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useEffect, useState } from 'react'
+import { useRef, useMemo, useEffect, useState, useCallback } from 'react'
 import { Canvas, useFrame, extend } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three'
@@ -188,11 +188,15 @@ interface ShaderPlaneProps {
         accent?: string
     }
     intensity?: number
+    /** Called when frames run slow (no real GPU) so the parent can freeze. */
+    onDegraded?: () => void
 }
 
-function ShaderPlane({ colorScheme, intensity = 0.5 }: ShaderPlaneProps) {
+function ShaderPlane({ colorScheme, intensity = 0.5, onDegraded }: ShaderPlaneProps) {
     const meshRef = useRef<THREE.Mesh>(null!)
     const materialRef = useRef<any>(null!)
+    const frameCountRef = useRef(0)
+    const slowFramesRef = useRef(0)
 
     useEffect(() => {
         if (materialRef.current && colorScheme) {
@@ -209,11 +213,27 @@ function ShaderPlane({ colorScheme, intensity = 0.5 }: ShaderPlaneProps) {
         }
     }, [colorScheme, intensity])
 
-    useFrame((state) => {
+    useFrame((state, delta) => {
         if (!materialRef.current) return
         materialRef.current.iTime = state.clock.elapsedTime
         const { width, height } = state.size
         materialRef.current.iResolution.set(width, height)
+
+        // Adaptive degradation. This CPPN shader is per-pixel-brutal and only cheap
+        // on a real GPU. When there's no hardware acceleration (PSI's lab renderer,
+        // or a weak/blocklisted GPU) frames run slow, and continuous rendering pegs
+        // the main thread for the whole session (catastrophic TBT). Detect sustained
+        // slow frames and tell the parent to freeze. Skip the first frames while the
+        // shader compiles, and require *consecutive* slow frames so an occasional
+        // hitch on a capable machine never trips it.
+        frameCountRef.current++
+        if (frameCountRef.current > 3) {
+            if (delta > 0.05) {
+                if (++slowFramesRef.current >= 4) onDegraded?.()
+            } else {
+                slowFramesRef.current = 0
+            }
+        }
     })
 
     return (
@@ -243,10 +263,8 @@ export default function NeuralNetworkCanvas({ colorScheme, intensity = 0.5 }: Ne
         []
     )
 
-    // The CPPN fragment shader is a per-pixel neural net — far too heavy to run
-    // continuously on a phone: it pegs the main thread (huge TBT) and its
-    // ever-changing pixels keep Speed Index from ever settling. This component is
-    // client-only (dynamic ssr:false), so reading matchMedia during render is safe.
+    // Client-only component (dynamic ssr:false), so reading matchMedia during
+    // render is safe.
     const isMobile = useMemo(
         () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
         []
@@ -256,27 +274,34 @@ export default function NeuralNetworkCanvas({ colorScheme, intensity = 0.5 }: Ne
         []
     )
 
-    // On mobile: play a short intro, then freeze on the last frame by switching the
-    // render loop to 'never' (this stops the RAF loop and useFrame, so the main
-    // thread goes idle and the background stops repainting). Desktop keeps the full
-    // continuous animation — a real GPU handles it and desktop already scores ~99.
+    // Freeze the background on its last frame by switching the render loop to
+    // 'never' — this stops the RAF loop and useFrame, so the main thread goes idle
+    // and the shader stops repainting. Two triggers:
+    //   • time-cap (mobile / reduced-motion): a brief intro then freeze — a phone's
+    //     GPU can run the shader, but continuous animation drains battery.
+    //   • adaptive (any device, via ShaderPlane's onDegraded): freeze as soon as
+    //     frames run slow, which is what saves desktop TBT when PSI's lab or a weak
+    //     GPU falls back to software rendering. A capable desktop GPU never trips
+    //     this, so it keeps animating continuously.
     const [animating, setAnimating] = useState(true)
+    const freeze = useCallback(() => setAnimating(false), [])
+
     useEffect(() => {
-        if (!isMobile) return
+        if (!isMobile && !prefersReducedMotion) return
         const introMs = prefersReducedMotion ? 200 : MOBILE_INTRO_MS
-        const t = window.setTimeout(() => setAnimating(false), introMs)
+        const t = window.setTimeout(freeze, introMs)
         return () => window.clearTimeout(t)
-    }, [isMobile, prefersReducedMotion])
+    }, [isMobile, prefersReducedMotion, freeze])
 
     return (
         <Canvas
             camera={camera}
-            gl={{ antialias: !isMobile, alpha: false }}
-            dpr={isMobile ? 1 : [1, 2]}
+            gl={{ antialias: false, alpha: false }}
+            dpr={1}
             frameloop={animating ? 'always' : 'never'}
             style={{ width: '100%', height: '100%' }}
         >
-            <ShaderPlane colorScheme={colorScheme} intensity={intensity} />
+            <ShaderPlane colorScheme={colorScheme} intensity={intensity} onDegraded={freeze} />
         </Canvas>
     )
 }
