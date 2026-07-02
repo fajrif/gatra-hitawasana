@@ -45,6 +45,10 @@ next-env.d.ts
 
 /lib/generated/prisma
 
+# lighthouse ci reports
+.ai/
+.lighthouseci/
+
 # ignore claude files
 .claude/
 CLAUDE.md

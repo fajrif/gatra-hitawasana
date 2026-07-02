@@ -119,32 +119,32 @@
   }
 }
 
+/* Shiny Button Styles — @property must stay outside @layer, Lightning CSS's minifier can't parse it nested */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
 @layer components {
-
-  /* Shiny Button Styles */
-  @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @property --gradient-angle-offset {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @property --gradient-percent {
-    syntax: "<percentage>";
-    initial-value: 5%;
-    inherits: false;
-  }
-
-  @property --gradient-shine {
-    syntax: "<color>";
-    initial-value: white;
-    inherits: false;
-  }
 
   .shiny-cta {
     --shiny-cta-bg: #000000;

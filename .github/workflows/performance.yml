@@ -1,0 +1,73 @@
+name: Performance Audit
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+jobs:
+
+  pr-check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - run: npm run build
+
+      - name: Run Lighthouse (mobile)
+        continue-on-error: true
+        run: npx lhci autorun --config=lighthouserc.mobile.json --collect.startServerCommand="npm run start" --collect.url=http://localhost:3000/ --collect.url=http://localhost:3000/about --collect.url=http://localhost:3000/business --collect.url=http://localhost:3000/contact
+
+      - name: Run Lighthouse (desktop)
+        continue-on-error: true
+        run: npx lhci autorun --config=lighthouserc.desktop.json --collect.startServerCommand="npm run start" --collect.url=http://localhost:3000/ --collect.url=http://localhost:3000/about --collect.url=http://localhost:3000/business --collect.url=http://localhost:3000/contact
+
+      - name: Summarize reports
+        run: |
+          node scripts/lighthouse-summary.mjs
+          cat .ai/performance/latest/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-pr
+          path: .ai/performance/latest
+
+  production-check:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - name: Run Lighthouse (mobile)
+        continue-on-error: true
+        run: npx lhci autorun --config=lighthouserc.mobile.json --collect.url=https://www.gatrahitawasana.com/ --collect.url=https://www.gatrahitawasana.com/about --collect.url=https://www.gatrahitawasana.com/business --collect.url=https://www.gatrahitawasana.com/contact
+
+      - name: Run Lighthouse (desktop)
+        continue-on-error: true
+        run: npx lhci autorun --config=lighthouserc.desktop.json --collect.url=https://www.gatrahitawasana.com/ --collect.url=https://www.gatrahitawasana.com/about --collect.url=https://www.gatrahitawasana.com/business --collect.url=https://www.gatrahitawasana.com/contact
+
+      - name: Summarize reports
+        run: |
+          node scripts/lighthouse-summary.mjs
+          cat .ai/performance/latest/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-production
+          path: .ai/performance/latest
