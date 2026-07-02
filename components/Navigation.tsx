@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Menu, X, FileText } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -45,13 +45,13 @@ export function Navigation() {
         )}>
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src={isScrolled ? "/images/logo.png" : "/images/logo-white.png"}
+              src="/images/logo.png"
               alt="PT Gatra Hita Wasana"
               width={180}
               height={50}
               className={cn(
                 "w-auto transition-all duration-300",
-                isScrolled ? "h-8 md:h-10" : "h-10 md:h-12"
+                isScrolled ? "h-8 md:h-10" : "h-10 md:h-12 brightness-0 invert"
               )}
               unoptimized
               priority
@@ -190,22 +190,6 @@ export function Navigation() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <div className="hidden md:block">
-            <Link
-              href="/files/Company-Profile-PT-Gatra-Hita-Wasana-2025.pdf"
-              target="_blank"
-              className={cn(
-                "flex items-center gap-2 rounded-sm border border-white/10 px-5 text-sm font-light text-white tracking-tight transition-all focus:outline-none duration-300 backdrop-blur-sm",
-                isScrolled
-                  ? "bg-primary hover:bg-primary/90 focus:bg-primary/90 py-2"
-                  : "bg-white/10 hover:bg-white/20 focus:bg-white/20 py-3"
-              )}
-            >
-              <FileText className="w-4 h-4" />
-              Download
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -292,16 +276,6 @@ export function Navigation() {
               >
                 Kontak Kami
               </Link>
-              <div className="block py-4 border-t border-gray-200">
-                <Link
-                  href="/files/Company-Profile-PT-Gatra-Hita-Wasana-2025.pdf"
-                  target="_blank"
-                  className="flex items-center gap-2 text-sm transition-colors hover:text-primary"
-                >
-                  <FileText className="w-4 h-4" />
-                  Download Profil Perusahaan
-                </Link>
-              </div>
             </div>
           </>
         )}

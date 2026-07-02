@@ -1,8 +1,13 @@
 'use client'
 
 import React from 'react'
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
 import { cn } from '@/lib/utils'
+
+// lottie-react pulls in a sizeable animation runtime; loading it via next/dynamic
+// keeps it out of the calling route's shared JS bundle so pages that merely
+// prefetch a route using LottiePlayer don't also fetch this dependency.
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 interface LottiePlayerProps {
     animationPath?: string

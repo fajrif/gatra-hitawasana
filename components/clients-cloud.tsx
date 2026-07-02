@@ -6,13 +6,13 @@ interface ClientsCloudProps {
 
 export function ClientsCloud({ title = true }: ClientsCloudProps) {
     const clientLogos = [
-        { src: "/images/clients/icon-green-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/icon-green-logo.png" },
-        { src: "/images/clients/icon-plus-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/icon-plus-logo.png" },
-        { src: "/images/clients/kai-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kai-logo.png" },
-        { src: "/images/clients/kemensos-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kemensos-logo.png" },
-        { src: "/images/clients/kominfo-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/kominfo-logo.png" },
-        { src: "/images/clients/pertamina-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/pertamina-logo.png" },
-        { src: "/images/clients/poltekkes-logo-white.png", alt: "Our Clients", hoverSrc: "/images/clients/poltekkes-logo.png" },
+        { src: "/images/clients/icon-green-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/icon-plus-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/kai-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/kemensos-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/kominfo-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/pertamina-logo.png", alt: "Our Clients" },
+        { src: "/images/clients/poltekkes-logo.png", alt: "Our Clients" },
     ]
 
     return (

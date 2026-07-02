@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
+import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import SplitType from 'split-type'
@@ -227,29 +228,36 @@ export function AnimatedHeroContent({
                     style={{ gridTemplateRows: 'repeat(2, 1fr)' }}
                 >
                     {/* Top left image */}
-                    <div className="hero-image overflow-hidden rounded-lg bg-gray-100 shadow-lg">
-                        <img
+                    <div className="hero-image relative overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+                        <Image
                             src={images[1].src}
                             alt={images[1].alt}
-                            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${images[1].grayscale ? 'grayscale' : ''}`}
+                            fill
+                            sizes="(min-width: 768px) 25vw, 0px"
+                            className={`object-cover transition-all duration-500 hover:scale-105 ${images[1].grayscale ? 'grayscale' : ''}`}
                         />
                     </div>
 
                     {/* Large portrait image - spans 2 rows, placed in second column */}
-                    <div className="hero-image row-span-2 overflow-hidden rounded-lg bg-gray-100 shadow-lg">
-                        <img
+                    <div className="hero-image row-span-2 relative overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+                        <Image
                             src={images[0].src}
                             alt={images[0].alt}
-                            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${images[0].grayscale ? 'grayscale' : ''}`}
+                            fill
+                            sizes="(min-width: 768px) 25vw, 0px"
+                            priority
+                            className={`object-cover transition-all duration-500 hover:scale-105 ${images[0].grayscale ? 'grayscale' : ''}`}
                         />
                     </div>
 
                     {/* Bottom left image */}
-                    <div className="hero-image overflow-hidden rounded-lg bg-gray-100 shadow-lg">
-                        <img
+                    <div className="hero-image relative overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+                        <Image
                             src={images[2].src}
                             alt={images[2].alt}
-                            className={`h-full w-full object-cover transition-all duration-500 hover:scale-105 ${images[2].grayscale ? 'grayscale' : ''}`}
+                            fill
+                            sizes="(min-width: 768px) 25vw, 0px"
+                            className={`object-cover transition-all duration-500 hover:scale-105 ${images[2].grayscale ? 'grayscale' : ''}`}
                         />
                     </div>
                 </div>
