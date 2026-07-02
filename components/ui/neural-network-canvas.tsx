@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useEffect } from 'react'
+import { useRef, useMemo, useEffect, useState } from 'react'
 import { Canvas, useFrame, extend } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three'
@@ -233,17 +233,47 @@ export interface NeuralNetworkCanvasProps {
     intensity?: number
 }
 
+// How long the shader animates on mobile before freezing on its last frame.
+// Lower this to reclaim more mobile score (less TBT, earlier Speed Index settle).
+const MOBILE_INTRO_MS = 3000
+
 export default function NeuralNetworkCanvas({ colorScheme, intensity = 0.5 }: NeuralNetworkCanvasProps) {
     const camera = useMemo(
         () => ({ position: [0, 0, 1] as [number, number, number], fov: 75, near: 0.1, far: 1000 }),
         []
     )
 
+    // The CPPN fragment shader is a per-pixel neural net — far too heavy to run
+    // continuously on a phone: it pegs the main thread (huge TBT) and its
+    // ever-changing pixels keep Speed Index from ever settling. This component is
+    // client-only (dynamic ssr:false), so reading matchMedia during render is safe.
+    const isMobile = useMemo(
+        () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+        []
+    )
+    const prefersReducedMotion = useMemo(
+        () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        []
+    )
+
+    // On mobile: play a short intro, then freeze on the last frame by switching the
+    // render loop to 'never' (this stops the RAF loop and useFrame, so the main
+    // thread goes idle and the background stops repainting). Desktop keeps the full
+    // continuous animation — a real GPU handles it and desktop already scores ~99.
+    const [animating, setAnimating] = useState(true)
+    useEffect(() => {
+        if (!isMobile) return
+        const introMs = prefersReducedMotion ? 200 : MOBILE_INTRO_MS
+        const t = window.setTimeout(() => setAnimating(false), introMs)
+        return () => window.clearTimeout(t)
+    }, [isMobile, prefersReducedMotion])
+
     return (
         <Canvas
             camera={camera}
-            gl={{ antialias: true, alpha: false }}
-            dpr={[1, 2]}
+            gl={{ antialias: !isMobile, alpha: false }}
+            dpr={isMobile ? 1 : [1, 2]}
+            frameloop={animating ? 'always' : 'never'}
             style={{ width: '100%', height: '100%' }}
         >
             <ShaderPlane colorScheme={colorScheme} intensity={intensity} />
