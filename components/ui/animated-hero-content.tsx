@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import SplitType from 'split-type'
 import { ShinyButton } from './shiny-button'
 
 gsap.registerPlugin(useGSAP)
@@ -43,7 +42,6 @@ export function AnimatedHeroContent({
     images = [],
 }: AnimatedHeroContentProps) {
     const sectionRef = useRef<HTMLDivElement | null>(null)
-    const headerRef = useRef<HTMLHeadingElement | null>(null)
     const paraRef = useRef<HTMLParagraphElement | null>(null)
     const ctaRef = useRef<HTMLDivElement | null>(null)
     const badgeRef = useRef<HTMLDivElement | null>(null)
@@ -52,89 +50,63 @@ export function AnimatedHeroContent({
 
     useGSAP(
         () => {
-            if (!animate || !headerRef.current) return
+            if (!animate) return
 
-            // Wait for fonts to load
-            document.fonts.ready.then(() => {
-                // Split text into words using SplitType
-                const split = new SplitType(headerRef.current!, {
-                    types: 'words',
-                    wordClass: 'word',
-                })
+            // The title (h1) is intentionally NOT animated. It's the LCP element on
+            // mobile, and animating it in from opacity:0 pins LCP to the animation's
+            // end (~7s under throttled mobile). Leaving it in its final painted state
+            // keeps LCP at first paint. The surrounding elements still animate in.
 
-                // Set initial states
-                gsap.set(split.words, {
-                    filter: 'blur(16px)',
-                    yPercent: 30,
-                    autoAlpha: 0,
-                    scale: 1.06,
-                    transformOrigin: '50% 100%',
-                })
+            // Set initial states
+            if (badgeRef.current) {
+                gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 })
+            }
+            if (paraRef.current) {
+                gsap.set(paraRef.current, { autoAlpha: 0, y: 8 })
+            }
+            if (ctaRef.current) {
+                gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 })
+            }
+            if (microRef.current) {
+                const microItems = microRef.current.querySelectorAll('li')
+                gsap.set(microItems, { autoAlpha: 0, y: 6 })
+            }
+            if (imagesRef.current) {
+                const imageItems = imagesRef.current.querySelectorAll('.hero-image')
+                gsap.set(imageItems, { autoAlpha: 0, y: 20, scale: 0.95 })
+            }
 
-                if (badgeRef.current) {
-                    gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 })
-                }
-                if (paraRef.current) {
-                    gsap.set(paraRef.current, { autoAlpha: 0, y: 8 })
-                }
-                if (ctaRef.current) {
-                    gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 })
-                }
-                if (microRef.current) {
-                    const microItems = microRef.current.querySelectorAll('li')
-                    gsap.set(microItems, { autoAlpha: 0, y: 6 })
-                }
-                if (imagesRef.current) {
-                    const imageItems = imagesRef.current.querySelectorAll('.hero-image')
-                    gsap.set(imageItems, { autoAlpha: 0, y: 20, scale: 0.95 })
-                }
-
-                // Animation timeline
-                const tl = gsap.timeline({
-                    defaults: { ease: 'power3.out' },
-                })
-
-                // Badge
-                if (badgeRef.current) {
-                    tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0)
-                }
-
-                // Title words
-                tl.to(
-                    split.words,
-                    {
-                        filter: 'blur(0px)',
-                        yPercent: 0,
-                        autoAlpha: 1,
-                        scale: 1,
-                        duration: 0.9,
-                        stagger: 0.15,
-                    },
-                    0.1
-                )
-
-                // Description
-                if (paraRef.current) {
-                    tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55')
-                }
-
-                // CTA buttons
-                if (ctaRef.current) {
-                    tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35')
-                }
-
-                // Micro details
-                if (microRef.current) {
-                    const microItems = microRef.current.querySelectorAll('li')
-                    tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25')
-                }
-
-                // Hero Images
-                if (imagesRef.current) {
-                    const imageItems = imagesRef.current.querySelectorAll('.hero-image')
-                    tl.to(imageItems, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15 }, '-=0.4')
-                }
+            // Animation timeline
+            const tl = gsap.timeline({
+                defaults: { ease: 'power3.out' },
             })
+
+            // Badge
+            if (badgeRef.current) {
+                tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0)
+            }
+
+            // Description
+            if (paraRef.current) {
+                tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.15)
+            }
+
+            // CTA buttons
+            if (ctaRef.current) {
+                tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35')
+            }
+
+            // Micro details
+            if (microRef.current) {
+                const microItems = microRef.current.querySelectorAll('li')
+                tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25')
+            }
+
+            // Hero Images
+            if (imagesRef.current) {
+                const imageItems = imagesRef.current.querySelectorAll('.hero-image')
+                tl.to(imageItems, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15 }, '-=0.4')
+            }
         },
         { scope: sectionRef, dependencies: [animate] }
     )
@@ -164,9 +136,8 @@ export function AnimatedHeroContent({
                     </div>
                 )}
 
-                {/* Title */}
+                {/* Title — intentionally not animated; it's the mobile LCP element. */}
                 <h1
-                    ref={headerRef}
                     className="max-w-2xl text-left text-3xl font-extralight uppercase leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl"
                 >
                     {title}

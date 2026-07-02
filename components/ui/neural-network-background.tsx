@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -34,6 +34,25 @@ export function NeuralNetworkBackground({
 }: NeuralNetworkBackgroundProps) {
     const canvasRef = useRef<HTMLDivElement | null>(null)
 
+    // Defer mounting the WebGL canvas until the browser is idle. The shader
+    // compile + per-frame CPPN loop is heavy on the main thread and, mounted
+    // eagerly, competes with hydration and the hero text's first paint (hurting
+    // LCP on throttled mobile). The wrapper's bg-sk-sea-shade fills the space
+    // until the canvas fades in, so there's no visual gap.
+    const [showCanvas, setShowCanvas] = useState(false)
+    useEffect(() => {
+        const w = window as typeof window & {
+            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number
+            cancelIdleCallback?: (id: number) => void
+        }
+        if (w.requestIdleCallback) {
+            const id = w.requestIdleCallback(() => setShowCanvas(true), { timeout: 2000 })
+            return () => w.cancelIdleCallback?.(id)
+        }
+        const id = window.setTimeout(() => setShowCanvas(true), 200)
+        return () => window.clearTimeout(id)
+    }, [])
+
     useGSAP(
         () => {
             if (!canvasRef.current) return
@@ -64,7 +83,7 @@ export function NeuralNetworkBackground({
                 className="bg-sk-sea-shade absolute inset-0 -z-10 w-full h-full"
                 aria-hidden="true"
             >
-                <NeuralNetworkCanvas colorScheme={colorScheme} intensity={intensity} />
+                {showCanvas && <NeuralNetworkCanvas colorScheme={colorScheme} intensity={intensity} />}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
             </div>
 
